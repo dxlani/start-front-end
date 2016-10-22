@@ -1,0 +1,28 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.box{
+  padding:10px;
+  box-shadow:0 0 5px ;
+  border-radius: 10px;
+  border:1px solid #ccc;
+  width: 165px;
+  /*overflow: hidden;*/
+}
+.pin{
+	padding:10px 0 0 15px;
+}
+.box img{
+	display: block;
+	height: auto;
+	width: 165px;
+}
+#main{
+	column-width: 202px;
+	-webkit-column-width: 202px;
+	-moz-column-width: 202px;
+	-o-column-width: 202px;
+	-ms-column-width: 202px;
+	column-gap: 5px;
+}
