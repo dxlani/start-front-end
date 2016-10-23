@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>图标动画</title>
+	<style type="text/css">
+		*{margin:0px;
+		  padding:0px;
+		  font-size: 14px;}
+		#div1{
+			width:380px;
+			background: pink;
+			padding: 30px;
+			overflow: auto;
+			position: relative;
+			margin: 0 auto;
+		}
+		#div1 a {width: 80px;
+		 height: 80px; 
+		 text-decoration: none; 
+		 margin: 20px;
+		 float: left;
+		  border-radius: 10px;
+		   position: relative;
+		    overflow: hidden;
+		    text-align:center;
+		    border:2px red solid;
+		    color: #000;
+		}
+		#div1 img{height: 40px;
+			width: 40px;
+			border-radius: 10px;
+
+		}
+		#div1 i{position: absolute;
+			top:15px;
+			left:20px;
+			opacity: 1;
+		}
+		#div1 p{margin-top:60px;
+		}
+	</style>
+	<script src='move.js'></script>
+	<script type="text/javascript">
+		window.onload=function(){
+				var oDiv=document.getElementById('div1')
+				var aa=document.getElementsByTagName('a');		
+				for(var i=0;i<aa.length;i++){
+					aa[i].onmouseenter=function(){
+						var _this=this.getElementsByTagName('i')[0];
+						startMove(_this,{top:-40,opacity:0},function(){
+							_this.style.top='55px';
+							startMove(_this,{top:15,opacity:100})
+						});
+					}
+				}
+		}			
+</script>
+</head>
+<body>
+	<div id="div1">
+		<a href="#"><i><img src="http://d.lanrentuku.com/down/png/1103/12animal/12animal_03.png"></i>
+			<p>电影</p>
+		</a> 
+		<a href="#"><i><img src="http://d.lanrentuku.com/down/png/1103/12animal/12animal_03.png"></i>
+			<p>遊戲</p>
+		</a>
+		<a href="#"><i><img src="http://d.lanrentuku.com/down/png/1103/12animal/12animal_03.png"></i>
+			<p>美女</p>
+		</a>
+		<a href="#"><i><img src="http://d.lanrentuku.com/down/png/1103/12animal/12animal_03.png"></i>
+			<p>唱歌</p>
+		</a>
+		<a href="#"><i><img src="http://d.lanrentuku.com/down/png/1103/12animal/12animal_03.png"></i>
+			<p>酒店</p>
+		</a>
+		<a href="#"><i><img src="http://d.lanrentuku.com/down/png/1103/12animal/12animal_03.png"></i>
+			<p>美食</p>
+		</a>
+	</div>
+</body>
+</html>
