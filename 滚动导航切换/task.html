@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>天猫首发</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            color:#e64abc;
+        }
+        body{
+            background: #dbf5be;
+        }
+        li{
+            list-style-type: none;
+        }
+        #menu{
+            position: fixed;
+            top:200px;
+            right: 50%;
+            margin-right: 500px;
+            width: 200px;
+            text-align:center;
+        }
+        #menu h1{
+            font-size: 20px;
+            background: #ee1111;
+            height: 50px;
+            line-height: 50px;
+            color:#fff;
+        }
+        #menu a{
+            text-decoration: none;
+            display: block;
+            width:200px;
+            height: 50px;
+            line-height: 25px;
+            border: 1px solid blue;
+        }
+        #menu a:hover,#menu a.current{
+            background: #24eafb;
+        }
+        .content{
+            width: 1000px;
+            margin: 0 auto;
+            padding:100px 0 500px 0;
+        }
+        .item{
+            width: 1000px;
+            height: 540px;
+            position: relative;
+        }
+        .item img{
+            position: absolute;
+            bottom:0;
+            right:0;
+        }
+        #item1{
+            background: url(http://img.mukewang.com/536c9ea800013ae610000540.jpg) no-repeat;
+        }
+        #item2{
+            background: url(http://img.mukewang.com/536c9ecd0001606d10000540.jpg) no-repeat;
+        }
+        #item3{
+            background: url(http://img.mukewang.com/536c9f0a0001ccc310000540.jpg) no-repeat;
+        }
+        #item4{
+            background: url(http://img.mukewang.com/536c9f6700012e9010000540.jpg) no-repeat;
+        }
+        #item5{
+            background: url(http://img.mukewang.com/536c9f800001b28510000540.jpg) no-repeat;
+        }
+    </style>
+    <script src="jquery-3.1.0.js"></script>
+    <script type="text/javascript">
+        $().ready(function(){
+            $(document).scroll(function(){
+                var menus=$('#menu');
+                var top=$(document).scrollTop();
+                var items=$('.content').find('.item');
+                var currentId='';
+                console.log(top);
+                $(items).each(function(){
+                    var m=$(this);
+                    var ittop=m.offset().top;
+                    
+                    if(top>ittop-200){
+                        currentId='#'+m.attr('id');
+                    }
+                    else{
+                        return false;
+                    }
+                })
+                var currentA = menus.find('.current');
+                if (currentId && currentA.attr('href') != currentId) {
+                    currentA.removeClass('current');
+                    menus.find("[href='" + currentId + "']").addClass('current');
+                };
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="menu">
+    <h1>天猫首发</h1>
+    <ul>
+        <li>
+            <a href="#item1" class="current"> <strong>2014.04.09</strong>
+                <br>施华蔻0元赢Smart</a>
+        </li>
+        <li>
+            <a href="#item2"> <strong>2014.04.05</strong>
+                <br>alienware机皇限量抢</a>
+        </li>
+        <li>
+            <a href="#item3">
+                <strong>2014.04.04</strong>
+                <br>联想Miix2 3G平板电脑</a>
+        </li>
+        <li>
+            <a href="#item4">
+                <strong>2014.04.03</strong>
+                <br>御爵厨房垃圾处理器</a>
+        </li>
+        <li>
+            <a href="#item5">
+                <strong>2014.04.01</strong>
+                <br>中兴天机GRAND S II</a>
+        </li>
+    </ul>
+</div>
+<div class="content">
+    <div id="item1" class="item">
+        <a href="">
+            <img src="http://img.mukewang.com/536ca02800014e7105000400.jpg" alt=""></a>
+    </div>
+    <div id="item2" class="item">
+        <a href="">
+            <img src="http://img.mukewang.com/536ca04b0001dbeb04520519.jpg" alt=""></a>
+    </div>
+    <div id="item3" class="item">
+        <a href="">
+            <img src="http://img.mukewang.com/536ca06200016a4d03950387.jpg" alt=""></a>
+    </div>
+    <div id="item4" class="item">
+        <a href="">
+            <img src="http://img.mukewang.com/536ca0ab0001c89205000400.jpg" alt=""></a>
+    </div>
+    <div id="item5" class="item">
+        <a href="">
+            <img src="http://img.mukewang.com/536ca0830001b17f05000400.jpg" alt=""></a>
+    </div>
+</div>
+</body>
+</html>

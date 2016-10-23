@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>醉春楼</title>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		font-size:20px;
+		line-height: 1.5;
+		font-color: #000;
+	}
+	li{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+	}
+	h1{
+		text-indent: 1em;
+	}
+	#menu {
+		position: fixed;
+		left: 50%;
+		margin-top:200px;
+		margin-left:490px;
+		width: 120px;
+	}
+	#menu a{
+		display: block;
+		height: 50px;
+		width: 100px;
+		line-height: 50px;
+		padding: 0 5px;
+	}
+	#menu a:hover,#menu .cur{
+			color: #fff;
+          background:#f9319e;
+	}
+	#content{
+		width: 980px;
+		margin: 0 auto;
+	}
+	.item{
+		padding: 20px;
+		border: 2px dashed red;
+		margin-bottom:20px;
+	}
+	.item h2{
+		font-size: 20px;
+		font-weight: bold;
+		border-bottom:2px solid blue;
+		margin-bottom: 10px;
+	}
+	.item li{
+		display: inline;
+	}
+	.item a{
+		margin-left:5px;
+	}
+	.item img{
+		width: 300px;
+		height:288px;
+	}
+</style>
+<script src="jquery-3.1.0.js"></script>
+<!-- <script type="text/javascript">
+	window.onload=function () {
+  window.onscroll = function(){ 
+	var as=document.getElementById('menu').getElementsByTagName('a');
+	var items=document.getElementsByClassName('item');
+	var top =document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop;
+	var curId='';
+		for(var i=0;i<items.length;i++){
+			var itop=items[i].offsetTop
+			if(top>itop-200){
+				curId=items[i].id;
+			}
+			else{
+				break;
+			}
+		}
+		if(curId){
+			for(var i=0;i<as.length;i++){
+				var _href=as[i].href.split('#');
+				if(_href[_href.length-1]!=curId){
+					as[i].className='';
+				}
+				else{
+					as[i].className='cur';
+				}
+			}
+		}
+	}
+}
+</script> -->
+<script type="text/javascript">
+ $().ready(function(){
+	$(window).scroll(function(){
+		var items=$('#content').find('.item'),
+			menu=$('#menu'),
+			top=$(document).scrollTop();
+			var curId='';
+		items.each(function() {
+                    var m = $(this);
+                    var itop=m.offset().top;
+                    if (top > itop-300) {
+                        curId = "#" + m.attr("id");
+                    } else {
+                        return false;
+                    }
+         });
+		var currentLink = menu.find(".cur");
+                if (curId&&currentLink.attr("href") != curId) {
+                   	currentLink.removeClass("cur");
+                    menu.find("[href='"+curId+"']").addClass("cur");
+                }
+	});
+});
+</script>        
+</head>
+<body>
+<div id="menu">
+	<ui>
+		<li><a href="#item1" class="cur">一楼·春泥</a></li>
+		<li><a href="#item2">二楼·翠绿</a></li>
+		<li><a href="#item3">三楼·花枝</a></li>
+		<li><a href="#item4">四楼·头牌</a></li>
+		<li><a href="#item5">五楼·楼凤</a></li>
+	</ui>
+</div>
+<div id="content">
+	<h1>醉春楼</h1>
+	<div id='item1' class="item">
+		<h2>一楼·春泥</h2>
+			<ul>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/1f.jpg" alt=""></a></li>
+			</ul>
+	</div>
+	<div id='item2' class="item">
+		<h2>二楼·翠绿</h2>
+			<ul>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/2f.jpg" alt=""></a></li>
+			</ul>
+	</div>
+	<div id='item3' class="item">
+		<h2>三楼·花枝</h2>
+			<ul>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/3f.jpg" alt=""></a></li>
+			</ul>
+	</div>
+	<div id='item4' class="item">
+		<h2>四楼·头牌</h2>
+			<ul>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/4f.jpg" alt=""></a></li>
+			</ul>
+	</div>
+	<div id='item5' class="item">
+		<h2>五楼·楼凤</h2>
+			<ul>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/5f.jpg" alt=""></a></li>
+			</ul>
+	</div>
+</div>
+</body>
+</html>
