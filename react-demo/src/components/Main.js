@@ -55,7 +55,7 @@ class ImgFigure extends React.Component {
       styleObj.transform = 'rotate(' + this.props.arrange.rotate + 'deg)';
     }
     if (this.props.arrange.isCenter) {
-      styleObj.zIndex = 10
+      styleObj.zIndex = 10000;
     }
     var imgFigureClassName = 'img-figure';
     imgFigureClassName += this.props.arrange.isInverse ? ' is-inverse ' : '';
@@ -74,6 +74,35 @@ class ImgFigure extends React.Component {
         </figcaption>
       </figure>
     );
+  }
+}
+
+//图片数字导航
+class Controller extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.stopPropagation();
+    e.preventDefault();
+    if (this.props.arrange.isCenter) {
+      this.props.inverse();
+    }
+    else {
+      this.props.center();
+    }
+  }
+
+  render() {
+    var controllerClassName = 'controller-span';
+    controllerClassName += this.props.arrange.isCenter ? ' center-span ' : '';
+    controllerClassName += this.props.arrange.isInverse ? ' inverse-span ' : '';
+
+    return (
+      <span className={controllerClassName} onClick={this.handleClick}></span>
+    )
   }
 }
 
@@ -247,7 +276,7 @@ class AppComponent extends React.Component {
 
   render() {
 
-    // var controllerUnits = [];
+    var controllerUnits = [];
     var imgFigures = [];
 
     imageDatas.forEach(function(value, index) {
@@ -261,16 +290,22 @@ class AppComponent extends React.Component {
         }
 
         imgFigures.push(<ImgFigure key={index} data={value} ref={'imgFigure' + index}
-        arrange={this.state.imgsArrangeArr[index]}
-        inverse={this.inverse(index)}
-        center={this.center(index)}/>);
+          arrange={this.state.imgsArrangeArr[index]}
+          inverse={this.inverse(index)}
+          center={this.center(index)} />);
+        controllerUnits.push(<Controller key={index} data={index} ref={'controller' + index} arrange={this.state.imgsArrangeArr[index]}
+          inverse={this.inverse(index)}
+          center={this.center(index)} />);
     }.bind(this));
 
     return (
-      <section className='stage' ref="stage">
+      <section className="stage" ref="stage">
         <section className="img-sec">
           {imgFigures}
         </section>
+        <nav className="controller-nav">
+          {controllerUnits}
+        </nav>
       </section>
     );
   }
