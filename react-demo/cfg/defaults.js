@@ -53,12 +53,13 @@ function getDefaultModules() {
         loader: 'file-loader'
       }
     ]
-  };
+  }
 }
+
 
 module.exports = {
   srcPath: srcPath,
-  publicPath: 'assets/',
+  publicPath: '/assets/',
   port: dfltPort,
   getDefaultModules: getDefaultModules
 };

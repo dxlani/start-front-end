@@ -1,0 +1,398 @@
+//reset
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+//右侧滑出动画
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate(100%, 0)
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+//左侧滑出动画
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translate(-100%, 0)
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+//淡出动画
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@mixin basic($w:100%, $h:100%) {
+    width: $w;
+    height: $h;
+}
+
+@mixin bgsize {
+    background-size: 100% 100%;
+}
+
+@mixin pa {
+    position: absolute;
+}
+
+html,
+body {
+    @include basic;
+}
+
+.wrap,
+.container,
+.column {
+    @include basic;
+}
+
+.wrap {
+    overflow: hidden;
+}
+
+.container {
+    //屏幕滚动动画
+    transition: all 1s ease-in-out;
+}
+
+.column {
+    overflow: hidden;
+    position: relative;
+}
+
+.row1 {
+    background: lightgreen url(../images/bg1.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.row2 {
+    background: hotpink url(../images/bg2.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.row3 {
+    background: mediumpurple url(../images/bg3.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.row4 {
+    background: deepskyblue url(../images/bg4.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.row5 {
+    background: lightyellow url(../images/bg5.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.peo,
+.tit {
+    @include pa;
+}
+
+.tit {
+    z-index: 3
+}
+
+//二屏人物r和标题t位置和缩放
+.r2 {
+    right: -600px;
+    bottom: -300px;
+    transform: scale(.6);
+}
+
+.t2 {
+    left: 6%;
+    top: -50px;
+    transform: scale(.6);
+}
+
+//三屏人物r和标题t位置和缩放
+.r3 {
+    right: 105px;
+    top: -280px;
+    transform: scale(.5);
+}
+
+.t3 {
+    right: 25%;
+    top: -50px;
+    transform: scale(.6);
+}
+
+//四屏人物r和标题t位置和缩放
+.r4-1 {
+    right: -520px;
+    top: -290px;
+    transform: scale(.5);
+}
+
+.r4-2 {
+    right: 240px;
+    top: -600px;
+    transform: scale(.5);
+}
+
+.t4 {
+    right: 37%;
+    top: -50px;
+    transform: scale(.6);
+}
+
+//五屏人物r和标题t位置和缩放
+.r5 {
+    right: -15%;
+    top: -200px;
+    transform: scale(.6);
+}
+
+.t5 {
+    right: 5%;
+    top: -50px;
+    transform: scale(.6);
+}
+
+//加上.on的动画
+.on {
+    //二屏
+    .r2 {
+        animation: fadeInRight 1s ease .5s both;
+    }
+    .t2 {
+        animation: fadeInLeft 1.2s ease 1s both;
+    }
+    //三屏
+    .r3 {
+        animation: fadeInLeft .6s ease .5s both;
+    }
+    .t3 {
+        animation: fadeIn 1.2s ease .8s both;
+    }
+    //四屏
+    .r4-1 {
+        animation: fadeInRight .6s ease .5s both;
+    }
+    .r4-2 {
+        animation: fadeInLeft .6s ease .5s both;
+    }
+    .t4 {
+        animation: fadeIn 1.2s ease 1s both;
+    }
+    //五屏
+    .r5 {
+        animation: fadeIn 1.2s ease .6s both;
+    }
+    .t5 {
+        animation: fadeInRight 1s ease .6s both;
+    }
+}
+
+//右侧fixed点击导航
+.nav-right {
+    $nrH: 348px;
+    width: 48px;
+    height: $nrH;
+    position: fixed;
+    right: 5%;
+    top: 50%;
+    margin-top: -$nrH/2;
+}
+
+.item {
+    background: url(../images/navRight_list.png) no-repeat;
+    height: 48px;
+    width: 48px;
+    margin-bottom: 10px;
+}
+
+//导航图标雪碧图定位
+@mixin ixy ($ix, $iy) {
+    background-position: $ix $iy;
+}
+
+.i1 {
+    @include ixy(0, 0);
+}
+
+.i2 {
+    @include ixy(0, -57px);
+}
+
+.i3 {
+    @include ixy(0, -113px);
+}
+
+.i4 {
+    @include ixy(0, -170px);
+}
+
+.i5 {
+    @include ixy(0, -226px);
+}
+
+.i6 {
+    @include ixy(0, -285px);
+}
+
+//导航图标hover式样
+.nav-right a:hover {
+    .i1 {
+        @include ixy(-80px, 0);
+    }
+    .i2 {
+        @include ixy(-80px, -57px);
+    }
+    .i3 {
+        @include ixy(-80px, -113px);
+    }
+    .i4 {
+        @include ixy(-80px, -170px);
+    }
+    .i5 {
+        @include ixy(-80px, -226px);
+    }
+    .i6 {
+        @include ixy(-80px, -285px);
+    }
+}
+
+//滚动或点击后附上class——on后的式样
+.i1 {
+    &.on {
+        @include ixy(-80px, 0);
+    }
+}
+
+.i2 {
+    &.on {
+        @include ixy(-80px, -57px);
+    }
+}
+
+.i3 {
+    &.on {
+        @include ixy(-80px, -113px);
+    }
+}
+
+.i4 {
+    &.on {
+        @include ixy(-80px, -170px);
+    }
+}
+
+.i5 {
+    &.on {
+        @include ixy(-80px, -226px);
+    }
+}
+
+.i6 {
+    &.on {
+        @include ixy(-80px, -285px);
+    }
+}
+
+// 左侧新闻弹出层
+.news-right {
+    $newsH: 600px;
+    width: 282px;
+    height: $newsH;
+    position: fixed;
+    left: 0;
+    top: 50%;
+    margin-top: -$newsH/2;
+    background: url(../images/newsBg.png) no-repeat 0 0;
+    z-index: 10;
+}
+
+//最新新闻按钮
+.news-btn {
+    $newsBtnH: 234px;
+    width: 55px;
+    height: $newsBtnH;
+    position: absolute;
+    right: -37px;
+    top: 50%;
+    margin-top: -$newsBtnH/2;
+    background: url(../images/newsBtn.png) no-repeat 0 0;
+}
+
+//新闻内容
+.news-box {
+    padding: 11px 50px 11px 35px;
+}
+
+.news-list {
+    overflow: hidden;
+    margin: 35px 0 20px;
+}
+
+.news-li {
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-bottom: 1px dashed #cdcdcd;
+    // li前面的三角形项目符号
+     ::before {
+        content: "";
+        display: inline-block;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 10px solid #000;
+        margin-right: 5px;
+    }
+    a {
+        color: #666;
+        font-size: 14px;
+    }
+}
+
+// 二维码
+.news-qrcode {
+    text-align: center;
+}
+
+//求激活码按钮
+.news-cdk {
+    display: block;
+    width: 146px;
+    height: 43px;
+    line-height: 43px;
+    margin: 20px auto;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    background: #379bff;
+}
+
+.news-cdk:hover {
+    background: #06cef9;
+}

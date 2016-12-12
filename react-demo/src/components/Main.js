@@ -12,7 +12,7 @@ var imageDatas = require('json-loader!../data/imageDatas.json');
 imageDatas = (function getImageURL(imageDatasArr) {
   for (var i = 0; i < imageDatasArr.length; i++) {
     var singleImageData = imageDatasArr[i];
-    singleImageData.imageURL = require('../images/' + singleImageData.fileName);
+    singleImageData.imageURL = 'http://ohjk5hfzd.bkt.clouddn.com/movieWall' + singleImageData.fileName;
     imageDatasArr[i] = singleImageData;
   }
   return imageDatasArr;
@@ -238,38 +238,41 @@ class AppComponent extends React.Component {
   componentDidMount() {
 
     //获取舞台的大小
-    var stageDOM = ReactDOM.findDOMNode(this.refs.stage);
-    var stageW = stageDOM.scrollWidth;
-    var stageH = stageDOM.scrollHeight;
-    var halfStageW = Math.ceil(stageW / 2);
-    var halfStageH = Math.ceil(stageH / 2);
+    var imgSecDOM = ReactDOM.findDOMNode(this.refs.imgSec);
+    var imgSecW = imgSecDOM.scrollWidth;
+    var imgSecH = imgSecDOM.scrollHeight;
+    var halfimgSecW = Math.ceil(imgSecW / 2);
+    var halfimgSecH = Math.ceil(imgSecH / 2);
     //拿到imgFigure的大小 都是一样的so取第一个
     var imgFigureDOM = ReactDOM.findDOMNode(this.refs.imgFigure0);
     var imgW = imgFigureDOM.scrollWidth;
     var imgH = imgFigureDOM.scrollHeight;
     var halfImgW = Math.ceil(imgW / 2);
     var halfImgH = Math.ceil(imgH / 2);
+    
 
     //计算中心图片的位置
     this.Constant.centerPos = {
-      left: halfStageW - halfImgW,
-      top: halfStageH - halfImgH
+      left: halfimgSecW - halfImgW,
+      top: halfimgSecH - halfImgH
     }
 
     //左右侧图片xy坐标的取值范围
     this.Constant.hPosRange = {
-      leftSecX: [-halfImgW, halfStageW - halfImgW * 3],
-      rightSecX: [halfStageW + halfImgW, stageW - halfImgW],
-      y: [-halfImgH, stageH - halfImgH]
+      leftSecX: [-halfImgW, halfimgSecW - halfImgW * 3],
+      rightSecX: [halfimgSecW + halfImgW, imgSecW - halfImgW],
+      y: [-halfImgH, imgSecH - halfImgH]
     }
 
     //上分区图片xy坐标的取值范围
     this.Constant.vPosRange = {
-      x: [halfStageW - imgW, halfStageW],
-      topY: [-halfImgH, halfStageH - halfImgH * 3]
+      x: [halfimgSecW - imgW, halfimgSecW],
+      topY: [-halfImgH, halfimgSecH - halfImgH * 3]
     }
 
-    this.reArrange(0);
+    // 随机一张放在中间
+    var n = Math.random() * imageDatas.length;
+    this.reArrange(n);
 
   }
 
@@ -279,35 +282,36 @@ class AppComponent extends React.Component {
     var controllerUnits = [];
     var imgFigures = [];
 
-    imageDatas.forEach(function(value, index) {
-        if (!this.state.imgsArrangeArr[index]) {
-            this.state.imgsArrangeArr[index] = {
-                pos: {
-                    left: 0,
-                    top: 0
-                }
-            }
+    imageDatas.forEach(function (value, index) {
+      if (!this.state.imgsArrangeArr[index]) {
+        this.state.imgsArrangeArr[index] = {
+          pos: {
+            left: 0,
+            top: 0
+          }
         }
+      }
 
-        imgFigures.push(<ImgFigure key={index} data={value} ref={'imgFigure' + index}
-          arrange={this.state.imgsArrangeArr[index]}
-          inverse={this.inverse(index)}
-          center={this.center(index)} />);
-        controllerUnits.push(<Controller key={index} data={index} ref={'controller' + index} arrange={this.state.imgsArrangeArr[index]}
-          inverse={this.inverse(index)}
-          center={this.center(index)} />);
+      imgFigures.push(<ImgFigure key={index} data={value} ref={'imgFigure' + index}
+        arrange={this.state.imgsArrangeArr[index]}
+        inverse={this.inverse(index)}
+        center={this.center(index)} />);
+      controllerUnits.push(<Controller key={index} data={index} ref={'controller' + index} arrange={this.state.imgsArrangeArr[index]}
+        inverse={this.inverse(index)}
+        center={this.center(index)} />);
     }.bind(this));
 
     return (
-      <section className="stage" ref="stage">
-        <section className="img-sec">
+      <section>
+        <section className="img-sec" ref="imgSec">
           {imgFigures}
         </section>
         <nav className="controller-nav">
           {controllerUnits}
         </nav>
+        <h1 className="main-title">无风的电影墙</h1>
       </section>
-    );
+    )
   }
 }
 
