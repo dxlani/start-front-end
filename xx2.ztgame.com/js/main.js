@@ -6,7 +6,7 @@ var onScroll = false;
 var timer = null;
 // 下标
 var onIndex = 0;
-// 屏幕高度
+// 默认屏幕高度
 var screenHeight = 734;
 // 新闻弹出层状态
 var newsOut = true;
@@ -73,12 +73,6 @@ function newsShow() {
     $('.news-right').fadeIn(300);
 }
 
-// 点击切换
-$('.news-btn').click(function () {
-    newsOut = !newsOut;
-    newsToggle();
-})
-
 // 给当前所在屏加上class——on，适用于column和nav-right
 function currentOn(className) {
     $(className).removeClass('on');
@@ -101,6 +95,22 @@ function currentOn(className) {
     }
 }
 
+// 通过onIndex的值来设置container的margin-top值，并给当前的附上class——on
+function setMtAndOn() {
+    screenHeight = $(document).height();
+    mt = -screenHeight * onIndex;
+    $('.container').css('margin-top', mt);
+    currentOn('.column');
+    currentOn('.item');
+}
+
+
+// 点击切换
+$('.news-btn').click(function () {
+    newsOut = !newsOut;
+    newsToggle();
+})
+
 // 点击nav-right切换至对应屏
 $('.nav-right > a').each(function (index) {
     if (index == 5) {
@@ -109,7 +119,7 @@ $('.nav-right > a').each(function (index) {
             newsShow();
             newsOut = !newsOut;
             newsToggle();
-            
+
         })
     } else {
         $(this).click(function () {
@@ -120,25 +130,41 @@ $('.nav-right > a').each(function (index) {
     }
 })
 
-// 通过onIndex的值来设置container的margin-top值，并给当前的附上class——on
-function setMtAndOn() {
-    screenHeight = $(document).height();
-    mt = -screenHeight * onIndex;
-    $('.container').css('margin-top', mt);
-    currentOn('.column');
-    currentOn('.item');
-}
+// 给document绑定鼠标滚轮事件、键盘事件、鼠标移动事件
+$(document).on({
+    'mousewheel keydown': function (e) {
+        MouseWheelHandler(e);
+    },
+    'mousemove': function (e) {
+        petalsMove(e);
+    }
+})
 
-// 给document绑定鼠标滚轮事件和键盘事件
-function addMouseWheelHandler() {
-    $(document).on({
-        'mousewheel': function (e) {
-            MouseWheelHandler()
-        },
-        'keydown': function (e) {
-            MouseWheelHandler()
+var _l = [];
+var _t = [];
+var _x = 0;
+var _y = 0;
+$('.petals>div').each(function (index) {
+    var $self = $(this);
+    _l[index] = parseInt($self.css('left'));
+    _t[index] = parseInt($self.css('top'));
+});
+
+function petalsMove(e) {
+    _x = e.pageX;
+    _y = e.pageY;
+    $('.petals>div').each(function (index) {
+        var $self = $(this);
+        if (index % 2 == 0) {
+            $self.css({
+                'left': _l[index] + _x / 20,
+                'top': _t[index] + _y / 20
+            });
+        } else {
+            $self.css({
+                'left': _l[index] - _x / 20,
+                'top': _t[index] - _y / 20
+            });
         }
     });
-};
-
-addMouseWheelHandler();
+}

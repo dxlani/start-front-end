@@ -115,7 +115,11 @@ body {
 }
 
 .tit {
-    z-index: 3
+    z-index: 9;
+}
+
+.peo {
+    z-index: 8;
 }
 
 //二屏人物r和标题t位置和缩放
@@ -380,7 +384,7 @@ body {
     text-align: center;
 }
 
-//求激活码按钮
+// 求激活码按钮
 .news-cdk {
     display: block;
     width: 146px;
@@ -395,4 +399,41 @@ body {
 
 .news-cdk:hover {
     background: #06cef9;
+}
+
+// 花瓣
+.petals {
+    >div {
+        width: 209px;
+        height: 142px;
+        position: fixed;
+        background: url(../images/petal.png) no-repeat 0 0;
+        z-index: 5;
+        animation: fadeIn .5s ease .5s both;
+    }
+    .p1 {
+        left: 85%;
+        top: -2%;
+        transform: rotate(0deg) scale(.5);
+    }
+    .p2 {
+        left: 5%;
+        top: -5%;
+        transform: rotate(15deg) scale(.6);
+    }
+    .p3 {
+        left: 15%;
+        top: 85%;
+        transform: rotate(20deg) scale(.9);
+    }
+    .p4 {
+        left: 60%;
+        top: 85%;
+        transform: rotate(10deg) scale(1);
+    }
+    .p5 {
+        left: 25%;
+        top: 20%;
+        transform: rotate(25deg) scale(.4);
+    }
 }
