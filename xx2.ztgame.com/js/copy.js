@@ -1023,3 +1023,93 @@ var doFn = {
 
 
 //doFn.init();
+var state = true;
+
+function videoOk() {
+    if (!state) {
+        return false
+    };
+    state = false;
+    //alert('加载完成');
+    setTimeout(function () {
+        $('#commentCanvas').fadeIn();
+        //调用弹幕
+        doFn.flipPop.init();
+        //插入第三屏视频
+        doFn.videoInsert();
+    }, 2000);
+};
+//定时10s，
+setTimeout(function () {
+    if (state) {
+        state = false;
+        //$('#commentCanvas').fadeIn();
+        //调用弹幕
+        //doFn.flipPop.init();
+        //插入第三屏视频
+        doFn.videoInsert();
+    }
+}, 10000);
+
+
+var tag1 = true;
+
+function setPop() {
+    if (tag1) {
+        $('.setMsg').fadeIn();
+    } else {
+        $('.setMsg').fadeOut();
+    };
+    tag1 = !tag1;
+};
+//调用弹幕
+doFn.flipPop.init();
+
+function tagPop(type) {
+    /*0隐藏，1显示*/
+    if (type == 1) {
+        //清空随机，参数true清空dom
+        doFn.flipPop.clearFlipPop(false);
+        $('#commentCanvas').fadeOut();
+        $('.setMsg').fadeOut();
+    } else {
+        $('#commentCanvas').fadeIn();
+        doFn.flipPop.clearFlipPop(false);
+        doFn.flipPop.ranPopEven();
+    }
+};
+$(function () {
+    //设置每一块的高度
+    doFn.setHeight(['wrap', 'column']);
+    //ie兼容处理
+    doFn.ieSet();
+    //翻页
+    doFn.changePage('content', 'navRight ul');
+    //切换图片
+    doFn.leftRightTab('tabbtn .btn.l', 'tabbtn .btn.r', 'bnImgList .list');
+    //图片预览效果
+    doFn.imgView('bnImgList area', 'lightboxImg', 'imgViewPop .btn');
+    //space后播放图片
+    doFn.spacePlay('images/v6/flight/Comp 1_1_000');
+    //隐藏
+    doFn.hidePop();
+    //显示右新闻
+    doFn.showNews('rightNews .btn_box', 'rightNews');
+    doFn.showNewsOnly('navRight .item.i6', 'rightNews');
+    //花瓣跟随鼠标
+    doFn.moves('petals');
+
+});
+
+var _is = true;
+
+function videoEnd() {
+    setTimeout(function () {
+        $('.row3 .zz').fadeIn();
+        $('.row3 .box').fadeIn();
+        $('.row3 .bgimg').fadeIn();
+        //让页面获得焦点
+        $('.row3 .box').focus();
+        _is = true;
+    }, 3000);
+};
