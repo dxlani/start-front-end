@@ -54,11 +54,11 @@ function newsControl() {
 // 新闻弹出层缩进和弹出
 function newsToggle() {
     if (newsOut) {
-        $('.news-right').animate({
+        $('.news-left').animate({
             marginLeft: 0
         }, 300);
     } else {
-        $('.news-right').animate({
+        $('.news-left').animate({
             marginLeft: '-269px'
         }, 300);
     }
@@ -66,11 +66,11 @@ function newsToggle() {
 
 // 新闻弹出层渐隐和展现动画
 function newsHide() {
-    $('.news-right').fadeOut(300);
+    $('.news-left').fadeOut(300);
 }
 
 function newsShow() {
-    $('.news-right').fadeIn(300);
+    $('.news-left').fadeIn(300);
 }
 
 // 给当前所在屏加上class——on，适用于column和nav-right
@@ -97,13 +97,17 @@ function currentOn(className) {
 
 // 通过onIndex的值来设置container的margin-top值，并给当前的附上class——on
 function setMtAndOn() {
-    screenHeight = $(document).height();
+    screenHeight = $(window).height();
     mt = -screenHeight * onIndex;
     $('.container').css('margin-top', mt);
     currentOn('.column');
     currentOn('.item');
 }
 
+// 缩放页面时按照当前可视高度自动调整mt
+$(window).resize(function () {
+    setMtAndOn();
+})
 
 // 点击切换
 $('.news-btn').click(function () {
@@ -134,12 +138,15 @@ $('.nav-right > a').each(function (index) {
 $(document).on({
     'mousewheel keydown': function (e) {
         MouseWheelHandler(e);
+        $('.f4-video>video')[0].pause();
+        $('.f4-popup').hide();
     },
     'mousemove': function (e) {
         petalsMove(e);
     }
 })
 
+// 获取当前各花瓣坐标
 var _l = [];
 var _t = [];
 var _x = 0;
@@ -150,11 +157,13 @@ $('.petals>div').each(function (index) {
     _t[index] = parseInt($self.css('top'));
 });
 
+// 花瓣随鼠标移动
 function petalsMove(e) {
     _x = e.pageX;
     _y = e.pageY;
     $('.petals>div').each(function (index) {
         var $self = $(this);
+        // 判断偶数花瓣正向移动 奇数花瓣反向移动
         if (index % 2 == 0) {
             $self.css({
                 'left': _l[index] + _x / 20,
@@ -168,3 +177,16 @@ function petalsMove(e) {
         }
     });
 }
+
+// 点击四屏按钮显示蒙层播放视频
+$('.f4-btn1').click(function (e) {
+    e.preventDefault();
+    $('.f4-popup').show();
+    $('.f4-video>video')[0].play();
+});
+
+// 点击关闭按钮暂停视频隐藏蒙层
+$('.close-video').click(function () {
+    $('.f4-video>video')[0].pause();
+    $('.f4-popup').hide();
+});

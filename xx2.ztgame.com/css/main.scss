@@ -14,54 +14,20 @@ a {
     text-decoration: none;
 }
 
-//右侧滑出动画
-@keyframes fadeInRight {
-    0% {
-        opacity: 0;
-        transform: translate(100%, 0)
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-//左侧滑出动画
-@keyframes fadeInLeft {
-    0% {
-        opacity: 0;
-        transform: translate(-100%, 0)
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
-//淡出动画
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
 @mixin basic($w:100%, $h:100%) {
     width: $w;
     height: $h;
 }
 
-@mixin bgsize {
-    background-size: 100% 100%;
-}
-
-@mixin pa {
-    position: absolute;
+// spirits背景图定位
+@mixin ixy($ix, $iy) {
+    background-position: $ix $iy;
 }
 
 html,
 body {
     @include basic;
+    font: 400 12px/1.5 Microsoft YaHei, sans-serif;
 }
 
 .wrap,
@@ -84,8 +50,12 @@ body {
     position: relative;
 }
 
+@mixin bgsize {
+    background-size: 100% 100%;
+}
+
 .row1 {
-    background: lightgreen url(../images/bg1.jpg) no-repeat top center;
+    background: #fff url(../images/bg1.jpg) no-repeat top center;
     @include bgsize;
 }
 
@@ -105,21 +75,45 @@ body {
 }
 
 .row5 {
-    background: lightyellow url(../images/bg5.jpg) no-repeat top center;
+    // width: 100%;
+    // height: 80%;
+    // overflow: hidden;
+    // position: relative;
+    background: greenyellow url(../images/bg5.jpg) no-repeat top center;
     @include bgsize;
 }
 
+.footer {
+    position: absolute;
+    width: 100%;
+    height: 110px;
+    left: 0;
+    bottom: 0;
+    background: #0b1a2e;
+    font-size: 12px;
+    padding: 40px;
+    z-index: 10;
+    .foot-wrap {
+        width: 1000px;
+        height: 100%;
+        margin: 0 auto;
+        text-align: center;
+        background: url(../images/footbg.png) no-repeat 0 center;
+        .health-game {
+            color: #c0c2c2;
+        }
+        .copyright,
+        .copyright * {
+            color: #666;
+            margin-top: 20px;
+        }
+    }
+}
+
 .peo,
-.tit {
-    @include pa;
-}
-
-.tit {
-    z-index: 9;
-}
-
-.peo {
-    z-index: 8;
+.tit,
+.feature {
+    position: absolute;
 }
 
 //二屏人物r和标题t位置和缩放
@@ -135,6 +129,49 @@ body {
     transform: scale(.6);
 }
 
+.f2 {
+    left: 20%;
+    top: -5%;
+    width: 518px;
+    height: 515px;
+    overflow: hidden;
+    transform: scale(.6);
+    >ul {
+        width: 1000%;
+        >li {
+            float: left;
+            width: 518px;
+            height: 515px;
+        }
+    }
+    .tab-btns {
+        height: 100%;
+        width: 50px;
+        margin-left: 447px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(../images/tab-btns.png) no-repeat 8px 136px;
+        padding-left: 30px;
+    }
+    .tab-btns>a {
+        display: block;
+        width: 10px;
+        height: 20px;
+        float: left;
+        margin-right: 15px;
+        margin-top: 247.5px;
+    }
+    .tab-btn1 {
+        background: url(../images/tab-btns.png) no-repeat;
+        @include ixy(0, -412px);
+    }
+    .tab-btn2 {
+        background: url(../images/tab-btns.png) no-repeat;
+        @include ixy(0, -463px);
+    }
+}
+
 //三屏人物r和标题t位置和缩放
 .r3 {
     right: 105px;
@@ -148,7 +185,7 @@ body {
     transform: scale(.6);
 }
 
-//四屏人物r和标题t位置和缩放
+//四屏人物r、标题t、特色f的位置和缩放
 .r4-1 {
     right: -520px;
     top: -290px;
@@ -167,6 +204,55 @@ body {
     transform: scale(.6);
 }
 
+.f4 {
+    top: 50%;
+    right: 50%;
+    margin: -55px 90px 0 0;
+    width: 126px;
+    transform: scale(.6);
+    .f4-btns {
+        display: block;
+        width: 100%;
+        height: 126px;
+        margin-bottom: 25px;
+        background: url(../images/f4_feature.png) no-repeat 0 0;
+    }
+    .f4-btn1 {
+        @include ixy(0, -291px);
+    }
+    .f4-btn2 {
+        @include ixy(0, 0);
+    }
+    .f4-btn3 {
+        @include ixy(0, -146px);
+    }
+}
+
+.f4-popup {
+    @include basic;
+    background: rgba(0, 0, 0, .6);
+    display: none;
+    position: relative;
+    .f4-video {
+        width: 800px;
+        height: 450px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -225px;
+        margin-left: -400px;
+        .close-video {
+            display: block;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 0;
+            right: -50px;
+            background: url(../images/close-video.jpg) no-repeat center;
+        }
+    }
+}
+
 //五屏人物r和标题t位置和缩放
 .r5 {
     right: -15%;
@@ -180,8 +266,43 @@ body {
     transform: scale(.6);
 }
 
+.f5 {
+    left: 5%;
+    top: 10%;
+    transform: scale(.6);
+}
+
 //加上.on的动画
 .on {
+    //右侧滑出动画
+    @keyframes fadeInRight {
+        0% {
+            opacity: 0;
+            transform: translate(100%, 0)
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    //左侧滑出动画
+    @keyframes fadeInLeft {
+        0% {
+            opacity: 0;
+            transform: translate(-100%, 0)
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    //淡出动画
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
     //二屏
     .r2 {
         animation: fadeInRight 1s ease .5s both;
@@ -206,12 +327,45 @@ body {
     .t4 {
         animation: fadeIn 1.2s ease 1s both;
     }
+    .f4 {
+        animation: fadeIn 1.2s ease 1.5s both;
+    }
     //五屏
     .r5 {
         animation: fadeIn 1.2s ease .6s both;
     }
     .t5 {
         animation: fadeInRight 1s ease .6s both;
+    }
+    .f5 {
+        animation: fadeInLeft 1s ease .6s both;
+    }
+}
+
+//一屏和五屏跳动的鼠标提示
+.mouse-tips {
+    @keyframes doUpDown {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(0, -30%);
+        }
+    }
+    position: absolute;
+    width: 38px;
+    height: 101px;
+    left: 50%;
+    bottom: 20px;
+    margin-left: -19px;
+    background: url(../images/mouse_tips.png) no-repeat;
+    animation: doUpDown .5s ease-in-out infinite alternate both;
+    &.down {
+        background-position: 0 0;
+    }
+    &.up {
+        bottom: 200px;
+        background-position: 0 -170px;
     }
 }
 
@@ -221,7 +375,7 @@ body {
     width: 48px;
     height: $nrH;
     position: fixed;
-    right: 5%;
+    right: 3%;
     top: 50%;
     margin-top: -$nrH/2;
 }
@@ -234,10 +388,6 @@ body {
 }
 
 //导航图标雪碧图定位
-@mixin ixy ($ix, $iy) {
-    background-position: $ix $iy;
-}
-
 .i1 {
     @include ixy(0, 0);
 }
@@ -322,7 +472,7 @@ body {
 }
 
 // 左侧新闻弹出层
-.news-right {
+.news-left {
     $newsH: 600px;
     width: 282px;
     height: $newsH;
@@ -331,7 +481,6 @@ body {
     top: 50%;
     margin-top: -$newsH/2;
     background: url(../images/newsBg.png) no-repeat 0 0;
-    z-index: 10;
 }
 
 //最新新闻按钮
@@ -408,7 +557,6 @@ body {
         height: 142px;
         position: fixed;
         background: url(../images/petal.png) no-repeat 0 0;
-        z-index: 5;
         animation: fadeIn .5s ease .5s both;
     }
     .p1 {
@@ -436,4 +584,49 @@ body {
         top: 20%;
         transform: rotate(25deg) scale(.4);
     }
+}
+
+// z-index属性汇总
+// 标题图片
+.tit {
+    z-index: 80;
+}
+
+// 人物图片层
+.peo {
+    z-index: 70;
+}
+
+.feature {
+    z-index: 72;
+}
+
+// 跳动的鼠标提示
+.mouse-tips {
+    z-index: 97;
+}
+
+// 右侧导航按钮
+.nav-right {
+    z-index: 100;
+}
+
+// 左侧新闻层
+.news-left {
+    z-index: 99;
+}
+
+// 花瓣
+.petals>div {
+    z-index: 95;
+}
+
+// 第五屏页脚
+.footer {
+    z-index: 96;
+}
+
+// 第四屏视频弹出层
+.f4-popup {
+    z-index: 110;
 }

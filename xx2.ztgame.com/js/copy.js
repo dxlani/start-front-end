@@ -21,7 +21,6 @@ var doFn = {
             self.winHei = $(window).height();
             self.setHeight(['wrap', 'column']);
         };
-
     },
     setHeight: function (classArr) {
         var self = this;
