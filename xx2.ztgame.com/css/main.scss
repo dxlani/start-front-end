@@ -1,5 +1,20 @@
-//reset
-* {
+// reset
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+form,
+input,
+img,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+p {
     margin: 0;
     padding: 0;
     border: none;
@@ -12,6 +27,12 @@ li {
 
 a {
     text-decoration: none;
+}
+
+@mixin clearfix {
+    content: '';
+    display: table;
+    clear: both;
 }
 
 @mixin basic($w:100%, $h:100%) {
@@ -138,6 +159,7 @@ body {
     transform: scale(.6);
     >ul {
         width: 1000%;
+        @include clearfix;
         >li {
             float: left;
             width: 518px;
@@ -228,12 +250,12 @@ body {
     }
 }
 
-.f4-popup {
+.popup-bg {
     @include basic;
     background: rgba(0, 0, 0, .6);
     display: none;
     position: relative;
-    .f4-video {
+    .popup-content {
         width: 800px;
         height: 450px;
         position: absolute;
@@ -241,7 +263,9 @@ body {
         left: 50%;
         margin-top: -225px;
         margin-left: -400px;
-        .close-video {
+        text-align: center;
+        line-height: 450px;
+        .close-btn {
             display: block;
             width: 50px;
             height: 50px;
@@ -249,6 +273,23 @@ body {
             top: 0;
             right: -50px;
             background: url(../images/close-video.jpg) no-repeat center;
+        }
+        .picture-tab {
+            display: block;
+            width: 55px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            margin-top: -60px;
+            background: url(../images/picture-tab.png) no-repeat center;
+            &.left-tab {
+                left: -55px;
+                @include ixy(5px, -102px);
+            }
+            &.right-tab {
+                right: -55px;
+                @include ixy(5px, -252px);
+            }
         }
     }
 }
@@ -627,6 +668,6 @@ body {
 }
 
 // 第四屏视频弹出层
-.f4-popup {
+.popup-bg {
     z-index: 110;
 }

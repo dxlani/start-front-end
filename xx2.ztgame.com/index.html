@@ -1,9 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 
 <head>
     <meta charset="UTF-8">
     <title>欢迎来到仙侠世界</title>
+    <script type="text/javascript">
+        // 判断是否为移动端
+        if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) ||
+            /Android|iPhone|Windows Phone|webOS|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            if (window.location.href.indexOf("?pc") === -1) {
+                window.location.href = "/m";
+            }
+        }
+    </script>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 
@@ -22,13 +31,40 @@
                 <div class="peo r2"><img src="images/r2_peo.png" alt=""></div>
                 <div class="feature f2">
                     <ul>
-                        <li><img src="images/banner1.png" alt=""></li>
-                        <li><img src="images/banner2.png" alt=""></li>
-                        <li><img src="images/banner3.png" alt=""></li>
+                        <li><img src="images/banner1.png" alt="" usemap="#map1" /></li>
+                        <li><img src="images/banner2.png" alt="" usemap="#map2" /></li>
+                        <li><img src="images/banner3.png" alt="" usemap="#map3" /></li>
                     </ul>
+                    <!--图片预览map-->
+                    <map name="map1" id="map1">
+                        <area shape="poly" coords="1,255,73,378,216,381,287,256,215,132,73,133" href="javascript:;" alt="" data-url="images/f2-picture/m0.jpg" rel="0" />
+                        <area shape="poly" coords="230,125,301,6,449,9,515,125,444,247,303,249" href="javascript:;" alt="" data-url="images/f2-picture/m1.jpg" rel="1" />
+                        <area shape="poly" coords="303,266,445,267,514,388,445,511,302,511,231,389" href="javascript:;" alt="" data-url="images/f2-picture/m2.jpg" rel="2" />
+                    </map>
+                    <map name="map2" id="map2">
+                        <area shape="poly" coords="4,257,74,132,215,133,286,254,215,380,72,381" href="javascript:;" alt="" data-url="images/f2-picture/m3.jpg" rel="3" />
+                        <area shape="poly" coords="230,124,298,7,448,7,514,124,447,248,303,249" href="javascript:;" alt="" data-url="images/f2-picture/m4.jpg" rel="4" />
+                        <area shape="poly" coords="232,391,304,267,443,266,514,389,446,511,303,511" href="javascript:;" alt="" data-url="images/f2-picture/m5.jpg" rel="5" />
+                    </map>
+                    <map name="map3" id="map3">
+                        <area shape="poly" coords="4,256,74,134,215,134,286,255,217,379,72,380" href="javascript:;" alt="" data-url="images/f2-picture/m6.jpg" rel="6" />
+                        <area shape="poly" coords="232,125,298,7,447,7,514,124,447,248,303,249" href="javascript:;" alt="" data-url="images/f2-picture/m7.jpg" rel="7" />
+                        <area shape="poly" coords="231,390,303,267,442,265,515,390,445,510,304,512" href="javascript:;" alt="" data-url="images/f2-picture/m8.jpg" rel="8" />
+                    </map>
+                    <!--map end-->
+                    <!--切换按钮-->
                     <div class="tab-btns">
                         <a href="javascript:;" class="tab-btn1"></a>
                         <a href="javascript:;" class="tab-btn2"></a>
+                    </div>
+                </div>
+                <!--图片预览弹层-->
+                <div class="popup-bg">
+                    <div class="popup-content">
+                        <img src="images/f2-picture/loading.gif" alt="" />
+                        <a href="javascript:;" class="picture-tab left-tab"></a>
+                        <a href="javascript:;" class="picture-tab right-tab"></a>
+                        <a href="javascript:;" class="close-btn"></a>
                     </div>
                 </div>
             </div>
@@ -45,13 +81,15 @@
                     <a href="javascript:;" class="f4-btns f4-btn2"></a>
                     <a href="javascript:;" class="f4-btns f4-btn3"></a>
                 </div>
-                <div class="f4-popup">
-                    <div class="f4-video">
+                <!--第四屏视频弹层-->
+                <div class="popup-bg">
+                    <div class="popup-content">
                         <video width="800" height="450" controls src="http://videogame.ztgame.com.cn/xx2/20160927/xx2-147495913984.mp4">
                         </video>
-                        <a href="javascript:;" class="close-video"></a>
+                        <a href="javascript:;" class="close-btn"></a>
                     </div>
                 </div>
+                <!--视频弹层 end-->
             </div>
             <div class="column row5">
                 <div class="tit t5"><img src="images/tit5.png" alt=""></div>

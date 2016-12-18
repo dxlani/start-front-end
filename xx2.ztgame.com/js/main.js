@@ -1,19 +1,22 @@
 var doFn = {
-
+    // 储存第二屏风景图片的数组
+    img: [],
     //鼠标滚动 上下箭头键 鼠标点击导航按钮页面切换
     scrollFn: function () {
+        // 当前所在屏幕 从0开始
+        var onIndex = 0;
         // container的margin-top
         var mt = 0;
         // 是否正在滚动
         var onScroll = false;
         // 计数器
         var timer = null;
-        // 下标
-        var onIndex = 0;
         // 默认屏幕高度
         var screenHeight = 734;
         // 新闻弹出层状态
         var newsOut = true;
+        // 二屏的图片还未加载
+        imgLoad = false;
 
         function pageTurnHandler() {
             e = event || window.event;
@@ -37,11 +40,12 @@ var doFn = {
                         onIndex--;
                     }
                 }
-                newsControl()
+                newsControl();
                 setMtAndOn();
             }
         }
 
+        // 新闻控制 不在第一屏的时候自动隐藏
         function newsControl() {
             if (onIndex == 0) {
                 newsOut = true;
@@ -55,7 +59,7 @@ var doFn = {
             }
         }
 
-        // 新闻弹出层缩进和弹出
+        // 新闻弹出层缩进和弹出动画
         function newsToggle() {
             if (newsOut) {
                 $('.news-left').animate({
@@ -107,6 +111,18 @@ var doFn = {
             currentOn('.column');
             currentOn('.item');
         }
+
+        //二屏的风景图片加载 加载过一次便不执行了
+        function f2imgLoad() {
+            if (onIndex === 1 && !imgLoad) {
+                $('.f2 area').each(function (index) {
+                    doFn.img[index] = new Image();
+                    doFn.img[index].src = $(this).attr('data-url');
+                });
+                imgLoad = true;
+            }
+        }
+
         // 点击切换
         $('.news-btn').click(function () {
             newsOut = !newsOut;
@@ -120,7 +136,7 @@ var doFn = {
 
         // 点击nav-right切换至对应屏
         $('.nav-right > a').each(function (index) {
-            if (index == 5) {
+            if (index === 5) {
                 // 显示新闻面板
                 $(this).click(function () {
                     newsShow();
@@ -141,8 +157,10 @@ var doFn = {
         $(document).on({
             'mousewheel keydown': function (event) {
                 pageTurnHandler();
-                $('.f4-video>video')[0].pause();
-                $('.f4-popup').hide();
+                // 滚动时pause视频，隐藏二屏和视频的弹层
+                $('.popup-content').find('video')[0].pause();
+                $('.popup-bg').hide();
+                f2imgLoad();
             }
         });
     },
@@ -167,7 +185,7 @@ var doFn = {
             $('.petals>div').each(function (index) {
                 var $self = $(this);
                 // 判断偶数花瓣正向移动 奇数花瓣反向移动
-                if (index % 2 == 0) {
+                if (index % 2 === 0) {
                     $self.css({
                         'left': _l[index] + _x / 20,
                         'top': _t[index] + _y / 20
@@ -187,25 +205,78 @@ var doFn = {
     // 第四屏的视频控制函数
     f4VideoFn: function () {
         // 点击四屏按钮显示蒙层播放视频
-        $('.f4-btn1').click(function (e) {
-            e.preventDefault();
-            $('.f4-popup').show();
-            $('.f4-video>video')[0].play();
+        $('.f4-btn1').click(function (event) {
+            event.preventDefault();
+            $('.row4 .popup-bg').show();
+            $('.popup-content').find('video')[0].play();
         });
 
         // 点击关闭按钮暂停视频隐藏蒙层
-        $('.close-video').click(function () {
-            $('.f4-video>video')[0].pause();
-            $('.f4-popup').hide();
+        $('.close-btn').click(function () {
+            event.preventDefault();
+            $('.popup-content').find('video')[0].pause();
+            $('.row4 .popup-bg').hide();
         });
     },
 
     // 第二屏图片预览函数
-    f2PictureFn: function() {
-        
+    f2PictureFn: function () {
+        var $ul = $('.f2 > ul');
+        var uml = 0;
+
+        function setImgSrc() {
+            $('.popup-content').find('img').eq(0).attr('src', doFn.img[rel].src);
+        }
+        // 点击btn1 ul的ml+518px 限定范围 
+        $('.tab-btn1').click(function () {
+            if (uml >= -1036 && uml < 0) {
+                $ul.animate({
+                    'marginLeft': '+=518'
+                }, 500);
+                uml += 518;
+            }
+        });
+
+        // 点击btn2 ul的ml-518px 限定范围
+        $('.tab-btn2').click(function () {
+            if (uml <= 0 && uml > -1036) {
+                $ul.animate({
+                    'marginLeft': '-=518'
+                }, 500);
+                uml -= 518;
+            };
+        });
+
+        // 点击area图片预览弹层show
+        $('.f2 area').click(function (index) {
+            rel = $(this).attr('rel');
+            $('.row2 .popup-bg').show();
+            setImgSrc()
+                //点击左右tab按钮切换图片
+            $('.left-tab').click(function () {
+                if (rel > 0) {
+                    rel--;
+                    setImgSrc();
+                }
+            });
+            $('.right-tab').click(function () {
+                if (rel < doFn.img.length) {
+                    rel++;
+                    setImgSrc();
+                }
+            });
+        });
+
+        // 点击关闭按钮隐藏图片预览弹层
+        $('.close-btn').click(function () {
+            $('.row2 .popup-bg').hide();
+        });
+
     }
+
 }
 
 doFn.scrollFn();
 doFn.petalsFn();
 doFn.f4VideoFn();
+doFn.f2PictureFn();
