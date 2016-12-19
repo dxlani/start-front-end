@@ -61,11 +61,6 @@ body {
     overflow: hidden;
 }
 
-.container {
-    //屏幕滚动动画
-    transition: all 1s ease-in-out;
-}
-
 .column {
     overflow: hidden;
     position: relative;
@@ -75,32 +70,28 @@ body {
     background-size: 100% 100%;
 }
 
-.row1 {
-    background: #fff url(../images/bg1.jpg) no-repeat top center;
+.page1 {
+    background: url(../images/bg1.jpg) no-repeat top center;
     @include bgsize;
 }
 
-.row2 {
-    background: hotpink url(../images/bg2.jpg) no-repeat top center;
+.page2 {
+    background: url(../images/bg2.jpg) no-repeat top center;
     @include bgsize;
 }
 
-.row3 {
-    background: mediumpurple url(../images/bg3.jpg) no-repeat top center;
+.page3 {
+    background: url(../images/bg3.jpg) no-repeat top center;
     @include bgsize;
 }
 
-.row4 {
-    background: deepskyblue url(../images/bg4.jpg) no-repeat top center;
+.page4 {
+    background: url(../images/bg4.jpg) no-repeat top center;
     @include bgsize;
 }
 
-.row5 {
-    // width: 100%;
-    // height: 80%;
-    // overflow: hidden;
-    // position: relative;
-    background: greenyellow url(../images/bg5.jpg) no-repeat top center;
+.page5 {
+    background: url(../images/bg5.jpg) no-repeat top center;
     @include bgsize;
 }
 
@@ -135,6 +126,7 @@ body {
 .tit,
 .feature {
     position: absolute;
+    opacity: 0;
 }
 
 //二屏人物r和标题t位置和缩放
@@ -346,40 +338,40 @@ body {
     }
     //二屏
     .r2 {
-        animation: fadeInRight 1s ease .5s both;
+        animation: fadeInRight .8s ease both;
     }
     .t2 {
-        animation: fadeInLeft 1.2s ease 1s both;
+        animation: fadeInLeft .5s ease .1s both;
     }
     //三屏
     .r3 {
-        animation: fadeInLeft .6s ease .5s both;
+        animation: fadeInLeft .3s ease both;
     }
     .t3 {
-        animation: fadeIn 1.2s ease .8s both;
+        animation: fadeIn .3s ease both;
     }
     //四屏
     .r4-1 {
-        animation: fadeInRight .6s ease .5s both;
+        animation: fadeInRight .5s ease both;
     }
     .r4-2 {
-        animation: fadeInLeft .6s ease .5s both;
+        animation: fadeInLeft .5s ease both;
     }
     .t4 {
-        animation: fadeIn 1.2s ease 1s both;
+        animation: fadeIn .5s ease both;
     }
     .f4 {
-        animation: fadeIn 1.2s ease 1.5s both;
+        animation: fadeIn .8s ease both;
     }
     //五屏
     .r5 {
-        animation: fadeIn 1.2s ease .6s both;
+        animation: fadeIn 1s ease .3s both;
     }
     .t5 {
-        animation: fadeInRight 1s ease .6s both;
+        animation: fadeInRight .8s ease both;
     }
     .f5 {
-        animation: fadeInLeft 1s ease .6s both;
+        animation: fadeInLeft .8s ease both;
     }
 }
 

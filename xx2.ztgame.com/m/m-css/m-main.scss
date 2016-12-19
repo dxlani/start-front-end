@@ -1,0 +1,411 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+@mixin clearfix {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+@mixin basic($w:100%, $h:100%) {
+    width: $w;
+    height: $h;
+}
+
+// spirits背景图定位
+@mixin ixy($ix, $iy) {
+    background-position: $ix $iy;
+}
+
+html,
+body {
+    @include basic;
+    font: 400 65px/1.5 Microsoft YaHei, sans-serif;
+}
+
+.wp,
+.wp-inner,
+.page {
+    @include basic;
+}
+
+.wp {
+    overflow: hidden;
+}
+
+.page {
+    overflow: hidden;
+    position: relative;
+}
+
+@mixin bgsize {
+    background-size: 100% 100%;
+}
+
+@mixin bgsizeAuto {
+    background-size: 100% auto;
+}
+
+.page1 {
+    background: url(../m-images/bg1.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page2 {
+    background: url(../m-images/bg2.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page3 {
+    background: url(../m-images/bg3.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page4 {
+    background: url(../m-images/bg4.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page5 {
+    background: url(../m-images/bg5.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.logo,
+.peo,
+.tit,
+.feature {
+    position: absolute;
+    opacity: 0;
+}
+
+//  logo跳动动画 from animate.css
+@keyframes bounceIn {
+    0%,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
+        -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1)
+    }
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03)
+    }
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97)
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1)
+    }
+}
+
+// 云移动动画
+@keyframes cloudMove {
+    0% {
+        transform: translateX(0)
+    }
+    100% {
+        transform: translateX(200%)
+    }
+}
+
+//右侧滑出动画
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate(100%, 0)
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+//左侧滑出动画
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translate(-100%, 0)
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+//淡出动画
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.page1 {
+    //二屏人物r和标题t位置和缩放
+    .logo {
+        width: 3.66rem;
+        height: 1.45rem;
+        bottom: 5rem;
+        left: 50%;
+        margin: -1rem 0 0 -1.83rem;
+    }
+    .t1 {
+        width: 5.7rem;
+        height: 2.2rem;
+        bottom: 2.8rem;
+        left: 50%;
+        margin-left: -2.85rem;
+    }
+    .cloud {
+        position: absolute;
+        width: 20rem;
+        height: 4rem;
+        left: -20em;
+        bottom: 3rem;
+        animation: cloudMove 3s linear 0s infinite;
+    }
+    &.cur {
+        .logo {
+            animation: bounceIn .8s linear .2s 1 both;
+        }
+        .t1 {
+            animation: fadeInLeft .3s ease .1s 1 both;
+        }
+    }
+}
+
+.page2 {
+    //二屏人物r和标题t位置和缩放
+    .t2 {
+        width: 2.23rem;
+        height: 4.56rem;
+        top: .5rem;
+        left: .5rem;
+    }
+    .r2 {
+        width: 6.25rem;
+        height: 10.77rem;
+        right: 0;
+        bottom: 0;
+    }
+    .f2 {
+        width: 3.76rem;
+        height: 3.77rem;
+        left: .3rem;
+        bottom: .4rem;
+    }
+    &.cur {
+        .t2 {
+            animation: fadeInLeft .3s ease .1s 1 both;
+        }
+        .r2 {
+            animation: fadeInRight .5s ease 0s 1 both;
+        }
+        .f2 {
+            animation: fadeIn 1s ease .8s 1 both;
+        }
+    }
+}
+
+.page3 {
+    //二屏人物r和标题t位置和缩放
+    .t3 {
+        width: 1.91rem;
+        height: 5.92rem;
+        top: .5rem;
+        left: .5rem;
+    }
+    .r3 {
+        width: 6.4rem;
+        height: 10.9rem;
+        right: 0;
+        bottom: 0;
+    }
+    &.cur {
+        .t3 {
+            animation: fadeInLeft .5s ease .1s 1 both;
+        }
+        .r3 {
+            animation: fadeInRight .5s ease 0s 1 both;
+        }
+    }
+}
+
+.page4 {
+    //二屏人物r和标题t位置和缩放
+    .t4 {
+        width: 2.34rem;
+        height: 5.7rem;
+        top: 1.5rem;
+        left: 50%;
+        margin-left: -1.17rem;
+    }
+    .r4-1 {
+        width: 3.28rem;
+        height: 5.87rem;
+        right: 0;
+        top: 0;
+    }
+    .r4-2 {
+        width: 3.1rem;
+        height: 10.12rem;
+        left: 0;
+        bottom: 0;
+    }
+    &.cur {
+        .t4 {
+            animation: fadeIn .5s ease 0s 1 both;
+        }
+        .r4-1 {
+            animation: fadeInRight .5s ease 0s 1 both;
+        }
+        .r4-2 {
+            animation: fadeInLeft .5s ease 0s 1 both;
+        }
+    }
+}
+
+.page5 {
+    //五屏人物r和标题t位置和缩放
+    .t5 {
+        width: 2.13rem;
+        height: 4.77rem;
+        top: .5rem;
+        left: .5rem;
+    }
+    .r5 {
+        width: 100%;
+        height: 100%;
+        right: 0;
+        bottom: 0;
+    }
+    &.cur {
+        .t5 {
+            animation: fadeInLeft .5s ease .1s 1 both;
+        }
+        .r5 {
+            animation: fadeInRight .5s ease 0s 1 both;
+        }
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: .8rem;
+    }
+}
+
+.touch-tips {
+    // 闪烁动画
+    @keyframes fadeInOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: .1;
+        }
+    }
+    position: absolute;
+    width: .56rem;
+    height: .56rem;
+    bottom: .35rem;
+    left: 50%;
+    margin-left: -.28rem;
+    background: url(../m-images/downpage.png) no-repeat 0 0 / 100% 300%;
+    animation: fadeInOut .6s linear alternate infinite;
+    &:after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: -10%;
+        left: -10%;
+        width: 120%;
+        height: 120%;
+        border: 1px solid #949b9e;
+        box-sizing: border-box;
+        border-radius: 100%;
+    }
+    &.bright {
+        background-position: 0 50%;
+    }
+    &.up {
+        bottom: 1.15rem;
+        background-position: 0 101%;
+    }
+    &.bright,
+    &.up {
+        &:after {
+            border-color: #ccc;
+        }
+    }
+}
+
+// z-index属性汇总
+// 标题图片
+.tit {
+    z-index: 80;
+}
+
+// 一屏logo层
+.logo {
+    z-index: 100;
+}
+
+// 人物图片层
+.peo {
+    z-index: 70;
+}
+
+// 游戏特色
+.feature {
+    z-index: 72;
+}
+
+// 跳动的鼠标提示
+.mouse-tips {
+    z-index: 97;
+}
+
+// 左侧新闻层
+.news-left {
+    z-index: 99;
+}
+
+// 第五屏页脚
+.footer {
+    z-index: 96;
+}

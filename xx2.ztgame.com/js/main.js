@@ -26,7 +26,7 @@ var doFn = {
                 timer = setTimeout(function () {
                     onScroll = false;
                     timer = null;
-                }, 1000);
+                }, 800);
                 // 滚轮向下滚动event.wheelDelta为负 onIndex++
                 if (e.wheelDelta < 0 || e.keyCode == 40) {
                     screenHeight = $(document).height();
@@ -63,11 +63,11 @@ var doFn = {
         function newsToggle() {
             if (newsOut) {
                 $('.news-left').animate({
-                    marginLeft: 0
+                    'marginLeft': 0
                 }, 300);
             } else {
                 $('.news-left').animate({
-                    marginLeft: '-269px'
+                    'marginLeft': '-269px'
                 }, 300);
             }
         }
@@ -107,9 +107,12 @@ var doFn = {
         function setMtAndOn() {
             screenHeight = $(window).height();
             mt = -screenHeight * onIndex;
-            $('.container').css('margin-top', mt);
-            currentOn('.column');
-            currentOn('.item');
+            $('.container').animate({
+                'margin-top': mt
+            }, 800, function () {
+                currentOn('.column');
+                currentOn('.item');
+            });
         }
 
         //二屏的风景图片加载 加载过一次便不执行了
@@ -207,7 +210,7 @@ var doFn = {
         // 点击四屏按钮显示蒙层播放视频
         $('.f4-btn1').click(function (event) {
             event.preventDefault();
-            $('.row4 .popup-bg').show();
+            $('.page4 .popup-bg').show();
             $('.popup-content').find('video')[0].play();
         });
 
@@ -215,7 +218,7 @@ var doFn = {
         $('.close-btn').click(function () {
             event.preventDefault();
             $('.popup-content').find('video')[0].pause();
-            $('.row4 .popup-bg').hide();
+            $('.page4 .popup-bg').hide();
         });
     },
 
@@ -250,7 +253,7 @@ var doFn = {
         // 点击area图片预览弹层show
         $('.f2 area').click(function (index) {
             rel = $(this).attr('rel');
-            $('.row2 .popup-bg').show();
+            $('.page2 .popup-bg').show();
             setImgSrc()
                 //点击左右tab按钮切换图片
             $('.left-tab').click(function () {
@@ -269,7 +272,7 @@ var doFn = {
 
         // 点击关闭按钮隐藏图片预览弹层
         $('.close-btn').click(function () {
-            $('.row2 .popup-bg').hide();
+            $('.page2 .popup-bg').hide();
         });
 
     }
