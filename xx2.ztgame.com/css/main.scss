@@ -264,7 +264,7 @@ body {
             position: absolute;
             top: 0;
             right: -50px;
-            background: url(../images/close-video.jpg) no-repeat center;
+            background: url(../images/close.jpg) no-repeat center;
         }
         .picture-tab {
             display: block;
@@ -342,6 +342,9 @@ body {
     }
     .t2 {
         animation: fadeInLeft .5s ease .1s both;
+    }
+    .f2 {
+        animation: fadeIn .8s ease both;
     }
     //三屏
     .r3 {
@@ -659,7 +662,7 @@ body {
     z-index: 96;
 }
 
-// 第四屏视频弹出层
+// 图片视频弹出层
 .popup-bg {
     z-index: 110;
 }

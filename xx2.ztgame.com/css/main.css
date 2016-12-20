@@ -59,7 +59,7 @@ html, body { width: 100%; height: 100%; font: 400 12px/1.5 Microsoft YaHei, sans
 
 .popup-bg { width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: none; position: relative; }
 .popup-bg .popup-content { width: 800px; height: 450px; position: absolute; top: 50%; left: 50%; margin-top: -225px; margin-left: -400px; text-align: center; line-height: 450px; }
-.popup-bg .popup-content .close-btn { display: block; width: 50px; height: 50px; position: absolute; top: 0; right: -50px; background: url(../images/close-video.jpg) no-repeat center; }
+.popup-bg .popup-content .close-btn { display: block; width: 50px; height: 50px; position: absolute; top: 0; right: -50px; background: url(../images/close.jpg) no-repeat center; }
 .popup-bg .popup-content .picture-tab { display: block; width: 55px; height: 120px; position: absolute; top: 50%; margin-top: -60px; background: url(../images/picture-tab.png) no-repeat center; }
 .popup-bg .popup-content .picture-tab.left-tab { left: -55px; background-position: 5px -102px; }
 .popup-bg .popup-content .picture-tab.right-tab { right: -55px; background-position: 5px -252px; }
@@ -85,6 +85,7 @@ html, body { width: 100%; height: 100%; font: 400 12px/1.5 Microsoft YaHei, sans
   100% { opacity: 1; } }
 .on .r2 { -webkit-animation: fadeInRight .8s ease both; animation: fadeInRight .8s ease both; }
 .on .t2 { -webkit-animation: fadeInLeft .5s ease .1s both; animation: fadeInLeft .5s ease .1s both; }
+.on .f2 { -webkit-animation: fadeIn .8s ease both; animation: fadeIn .8s ease both; }
 .on .r3 { -webkit-animation: fadeInLeft .3s ease both; animation: fadeInLeft .3s ease both; }
 .on .t3 { -webkit-animation: fadeIn .3s ease both; animation: fadeIn .3s ease both; }
 .on .r4-1 { -webkit-animation: fadeInRight .5s ease both; animation: fadeInRight .5s ease both; }
