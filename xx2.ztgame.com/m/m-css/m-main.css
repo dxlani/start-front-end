@@ -4,9 +4,9 @@ li { list-style: none; }
 
 a { text-decoration: none; }
 
-html, body { width: 100%; height: 100%; font: 400 65px/1.5 Microsoft YaHei, sans-serif; }
+body { font: 400 12px/1.5 Microsoft YaHei, sans-serif; }
 
-.wp, .wp-inner, .page { width: 100%; height: 100%; }
+html, body, .wp, .wp-inner, .page { width: 100%; height: 100%; }
 
 .wp { overflow: hidden; }
 
@@ -144,7 +144,9 @@ html, body { width: 100%; height: 100%; font: 400 65px/1.5 Microsoft YaHei, sans
 
 .mouse-tips { z-index: 97; }
 
-.news-left { z-index: 105; }
+.news-btn { z-index: 105; }
+
+.news-box { z-index: 120; }
 
 .footer { z-index: 96; }
 

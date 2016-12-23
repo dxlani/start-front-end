@@ -29,12 +29,12 @@ a {
     background-position: $ix $iy;
 }
 
-html,
 body {
-    @include basic;
-    font: 400 65px/1.5 Microsoft YaHei, sans-serif;
+    font: 400 12px/1.5 Microsoft YaHei, sans-serif;
 }
 
+html,
+body,
 .wp,
 .wp-inner,
 .page {
@@ -565,9 +565,14 @@ body {
     z-index: 97;
 }
 
+// 新闻按钮
+.news-btn {
+    z-index: 105
+}
+
 // 左侧新闻层
-.news-left {
-    z-index: 105;
+.news-box {
+    z-index: 120;
 }
 
 // 第五屏页脚

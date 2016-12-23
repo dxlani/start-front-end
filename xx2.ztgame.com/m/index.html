@@ -10,6 +10,16 @@
 </head>
 
 <body>
+    <script>
+        // 设置rem字体多机型适配，以宽度为640px的设计图 html字体大小16px为基准 
+        (function (size) {
+            var originSize = parseInt((window.getComputedStyle(document.documentElement, null)).fontSize);
+            var clientW = parseInt(document.documentElement.clientWidth);
+            var htmlSize = (clientW / size) / (originSize / 16) * 100;
+            var html = document.getElementsByTagName('html')[0];
+            html.style.fontSize = htmlSize + 'px';
+        })(640);
+    </script>
     <div class="wp">
         <div class="wp-inner">
             <div class="page page1">
@@ -67,101 +77,103 @@
     <a href="javascript:;" class="news-btn"></a>
     <div class="news-box">
         <h3>新闻中心</h3>
-        <a href="javascript:;" class="news-back">
+        <div class="newsListAll">
+            <a href="javascript:;" class="news-back">
                 &lt;&lt;返回</a>
-        <div class="news-top">
-            <a href="javascript:;" class="news-tab on" data-tab="t1">新闻</a>
-            <a href="javascript:;" class="news-tab" data-tab="t2">公告</a>
-        </div>
-        <div class="news-content">
-            <ul class="news-list latest" data-tab="t1">
-                <li class="news-li">
-                    <a href="javascript:;" newsid="58" newstitle="《仙侠世界2》“影驰杯”游戏截图大赛开启" newsdate="2016/12/20">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">《仙侠世界2》“影驰杯”游戏截图大赛开启</span>
-                        <span class="time">12/20</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="57" newstitle="12月16日仙侠世界2更新公告" newsdate="2016/12/16">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">12月16日仙侠世界2更新公告</span>
-                        <span class="time">12/16</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="39" newstitle="今日14时开启首次招募测试" newsdate="2016/11/25">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">今日14时开启首次招募测试</span>
-                        <span class="time">11/25</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="35" newstitle="招募测试等级大比拼！京东卡大放送~" newsdate="2016/11/14">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">招募测试等级大比拼！京东卡大放送~</span>
-                        <span class="time">11/14</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="46" newstitle="【媒体】《仙侠世界2》评测：节奏舒服的高颜值仙侠网游" newsdate="2016/11/29">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">【媒体】《仙侠世界2》评测：节奏舒服的高颜值仙侠网游</span>
-                        <span class="time">11/29</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="36" newstitle="客户端下载与安装报错问题" newsdate="2016/11/16">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">客户端下载与安装报错问题</span>
-                        <span class="time">11/16</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="news-list notice" data-tab="t2">
-                <li class="news-li">
-                    <a href="javascript:;" newsid="54" newstitle="12月12日例行停机维护公告" newsdate="2016/12/12">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">12月12日例行停机维护公告</span>
-                        <span class="time">12/12</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="53" newstitle="12月8日仙侠世界2更新公告" newsdate="2016/12/08">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">12月8日仙侠世界2更新公告</span>
-                        <span class="time">12/08</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="52" newstitle="12月7日仙侠世界2更新公告" newsdate="2016/12/07">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">12月7日仙侠世界2更新公告</span>
-                        <span class="time">12/07</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="51" newstitle="12月6日仙侠世界2更新公告" newsdate="2016/12/06">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">12月6日仙侠世界2更新公告</span>
-                        <span class="time">12/06</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="50" newstitle="12月3日仙侠世界2更新公告" newsdate="2016/12/03">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">12月3日仙侠世界2更新公告</span>
-                        <span class="time">12/03</span>
-                    </a>
-                </li>
-                <li class="news-li">
-                    <a href="javascript:;" newsid="49" newstitle="12月2日仙侠世界2更新公告" newsdate="2016/12/02">
-                        <span class="type">官网新闻</span>
-                        <span class="txt">12月2日仙侠世界2更新公告</span>
-                        <span class="time">12/02</span>
-                    </a>
-                </li>
-            </ul>
+            <div class="news-top">
+                <a href="javascript:;" class="news-tab on" data-tab="t1">新闻</a>
+                <a href="javascript:;" class="news-tab" data-tab="t2">公告</a>
+            </div>
+            <div class="news-content">
+                <ul class="news-list latest" data-tab="t1">
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="58" newstitle="《仙侠世界2》“影驰杯”游戏截图大赛开启" newsdate="2016/12/20">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">《仙侠世界2》“影驰杯”游戏截图大赛开启</span>
+                            <span class="time">12/20</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="57" newstitle="12月16日仙侠世界2更新公告" newsdate="2016/12/16">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">12月16日仙侠世界2更新公告</span>
+                            <span class="time">12/16</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="39" newstitle="今日14时开启首次招募测试" newsdate="2016/11/25">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">今日14时开启首次招募测试</span>
+                            <span class="time">11/25</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="35" newstitle="招募测试等级大比拼！京东卡大放送~" newsdate="2016/11/14">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">招募测试等级大比拼！京东卡大放送~</span>
+                            <span class="time">11/14</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="46" newstitle="【媒体】《仙侠世界2》评测：节奏舒服的高颜值仙侠网游" newsdate="2016/11/29">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">【媒体】《仙侠世界2》评测：节奏舒服的高颜值仙侠网游</span>
+                            <span class="time">11/29</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="36" newstitle="客户端下载与安装报错问题" newsdate="2016/11/16">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">客户端下载与安装报错问题</span>
+                            <span class="time">11/16</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="news-list notice" data-tab="t2">
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="54" newstitle="12月12日例行停机维护公告" newsdate="2016/12/12">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">12月12日例行停机维护公告</span>
+                            <span class="time">12/12</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="53" newstitle="12月8日仙侠世界2更新公告" newsdate="2016/12/08">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">12月8日仙侠世界2更新公告</span>
+                            <span class="time">12/08</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="52" newstitle="12月7日仙侠世界2更新公告" newsdate="2016/12/07">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">12月7日仙侠世界2更新公告</span>
+                            <span class="time">12/07</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="51" newstitle="12月6日仙侠世界2更新公告" newsdate="2016/12/06">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">12月6日仙侠世界2更新公告</span>
+                            <span class="time">12/06</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="50" newstitle="12月3日仙侠世界2更新公告" newsdate="2016/12/03">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">12月3日仙侠世界2更新公告</span>
+                            <span class="time">12/03</span>
+                        </a>
+                    </li>
+                    <li class="news-li">
+                        <a href="javascript:;" newsid="49" newstitle="12月2日仙侠世界2更新公告" newsdate="2016/12/02">
+                            <span class="type">官网新闻</span>
+                            <span class="txt">12月2日仙侠世界2更新公告</span>
+                            <span class="time">12/02</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <!--新闻层 end-->
