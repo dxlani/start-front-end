@@ -606,19 +606,127 @@ body {
         transform: rotate(15deg) scale(.6);
     }
     .p3 {
-        left: 15%;
-        top: 85%;
+        left: 20%;
+        top: 64%;
         transform: rotate(20deg) scale(.9);
     }
     .p4 {
-        left: 60%;
-        top: 85%;
+        left: 77%;
+        top: 90%;
         transform: rotate(10deg) scale(1);
     }
     .p5 {
         left: 25%;
         top: 20%;
         transform: rotate(25deg) scale(.4);
+    }
+}
+
+// 弹幕盒子
+.barrageBox {
+    width: 100%;
+    height: 230px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: none;
+    overflow: hidden;
+    .barrage {
+        display: block;
+        position: absolute;
+        bottom: 10px;
+        right: -300px;
+        span {
+            display: inline-block;
+        }
+        .jianbing {
+            height: 40px;
+            background-image: url(../images/jianbing.png);
+            background-repeat: no-repeat;
+            background-position-x: 0;
+            position: absolute;
+            top: -8px;
+            right: -80px;
+        }
+        .jianjian {
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            position: absolute;
+            top: 0;
+            left: -24px;
+        }
+        .txt {
+            height: 24px;
+            line-height: 24px;
+            font-size: 16px;
+            padding-right: 30px;
+            letter-spacing: 0;
+            word-break: keep-all;
+            white-space: pre;
+        }
+    }
+}
+
+// 三种式样的弹幕
+@mixin barragejx($jbr, $jw, $bpy, $bgc) {
+    .jianbing {
+        width: $jw + px;
+        background-position-y: $bpy + px;
+        right: $jbr + px;
+    }
+    .txt {
+        background: $bgc;
+    }
+    .jianjian {
+        border-right: 24px solid $bgc;
+    }
+}
+
+.barrage.j1 {
+    @include barragejx(-50, 66, 0, #b7ebc5)
+}
+
+.barrage.j2 {
+    @include barragejx( -80, 107, -60, #f5caee)
+}
+
+.barrage.j3 {
+    @include barragejx(-56, 75, -123, #b7ebfc)
+}
+
+.barTxt {
+    width: 11%;
+    height: 50px;
+    position: absolute;
+    display: table;
+    bottom: 6%;
+    right: 25.55%;
+    background: #e0c56c;
+    >span {
+        display: table-cell;
+        color: #874320;
+        width: 50%;
+        height: 100%;
+        font-size: 14px;
+        text-align: center;
+        vertical-align: middle;
+    }
+}
+
+.barBtns {
+    width: 11%;
+    height: 50px;
+    position: absolute;
+    bottom: 6%;
+    right: 25.55%;
+    display: table;
+    font-size: 0;
+    >a {
+        display: table-cell;
+        width: 50%;
+        height: 100%;
     }
 }
 
@@ -665,4 +773,17 @@ body {
 // 图片视频弹出层
 .popup-bg {
     z-index: 110;
+}
+
+// 弹幕层
+.barrageBox {
+    z-index: 105;
+}
+
+.barrageBtn {
+    z-index: 104;
+}
+
+.barBtns {
+    z-index: 106;
 }
