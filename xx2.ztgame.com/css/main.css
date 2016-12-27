@@ -183,12 +183,12 @@ html, body { width: 100%; height: 100%; font: 400 12px/1.5 Microsoft YaHei, sans
 .barrage.j3 .txt { background: #b7ebfc; }
 .barrage.j3 .jianjian { border-right: 24px solid #b7ebfc; }
 
-.barTxt { width: 12%; height: 60px; position: absolute; bottom: 30%; right: 26%; }
+.barTxt { width: 130px; height: 60px; position: absolute; bottom: 30%; right: 28%; }
 .barTxt > div { width: 50%; height: 100%; line-height: 60px; margin-bottom: 10px; color: #874320; background: #e0c56c; font-size: 14px; text-align: center; box-sizing: border-box; float: left; }
 .barTxt .tabTxt { border-radius: 15px 0 0 15px; }
 .barTxt .sendTxt { border-radius: 0 15px 15px 0; }
 
-.barBtns { width: 12%; height: 60px; position: absolute; bottom: 30%; right: 26%; }
+.barBtns { width: 130px; height: 60px; position: absolute; bottom: 30%; right: 28%; }
 .barBtns > a { display: block; float: left; width: 50%; height: 100%; }
 
 .bar-send { width: 100%; height: 62px; position: absolute; bottom: 0; left: 0; background: rgba(0, 0, 0, 0.8); display: none; }

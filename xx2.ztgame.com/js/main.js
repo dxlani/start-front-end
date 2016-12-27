@@ -1,8 +1,11 @@
 var doFn = {
     // 储存第二屏风景图片的数组
     img: [],
+    // 弹幕是否显示
     bar: false,
+    // 弹幕滚动定时器
     barTimer: null,
+    
     //鼠标滚动 上下箭头键 鼠标点击导航按钮页面切换
     scrollFn: function () {
         // 当前所在屏幕 从0开始
@@ -22,7 +25,8 @@ var doFn = {
 
         function pageTurnHandler() {
             e = event || window.event;
-            // 如果没有在滚动 开始滚动 将onScroll设置为true 设置一个1s的倒计时 与css3动画时间一致 滚动完成后将onScroll设置为false
+            // 如果没有在滚动 开始滚动 并将onScroll设置为true 
+            // 设置一个1s的倒计时 防止频繁出发滚动事件 滚动完成后将onScroll设置为false
             if (!onScroll) {
                 onScroll = true;
                 scrTimer = setTimeout(function () {
@@ -44,8 +48,45 @@ var doFn = {
                 }
                 newsControl();
                 setMtAndOn();
-                // console.log(onIndex, clientH, mt);
+                // 不在第一屏时关闭弹幕
+                if (onIndex != 0 && doFn.bar === true) {
+                    clearInterval(doFn.barTimer);
+                    $('.barrageBox').hide();
+                    $('.tabTxt').text('开启弹幕');
+                    doFn.bar = false;
+                }
+                // 滚到第二屏的时候加载二屏轮播图片
+                if (onIndex === 1) {
+                    f2imgLoad();
+                }
+                // 滚动时pause四屏视频，隐藏二屏和四屏的弹层
+                if (onIndex != 1 && onIndex != 3) {
+                    $('.popup-content').find('video')[0].pause();
+                    $('.popup-bg').hide();
+                }
             }
+        }
+
+        // 新闻弹出层缩进和弹出动画 不是完全隐藏会露出一条
+        function newsToggle() {
+            if (newsOut) {
+                $('.news-left').animate({
+                    'marginLeft': 0
+                }, 300);
+            } else {
+                $('.news-left').animate({
+                    'marginLeft': '-269px'
+                }, 300);
+            }
+        }
+
+        // 新闻弹出层隐藏和出现动画
+        function newsHide() {
+            $('.news-left').fadeOut(300);
+        }
+
+        function newsShow() {
+            $('.news-left').fadeIn(300);
         }
 
         // 新闻控制 不在第一屏的时候自动隐藏
@@ -60,28 +101,6 @@ var doFn = {
                 newsToggle();
                 newsHide();
             }
-        }
-
-        // 新闻弹出层缩进和弹出动画
-        function newsToggle() {
-            if (newsOut) {
-                $('.news-left').animate({
-                    'marginLeft': 0
-                }, 300);
-            } else {
-                $('.news-left').animate({
-                    'marginLeft': '-269px'
-                }, 300);
-            }
-        }
-
-        // 新闻弹出层渐隐和展现动画
-        function newsHide() {
-            $('.news-left').fadeOut(300);
-        }
-
-        function newsShow() {
-            $('.news-left').fadeIn(300);
         }
 
         // 给当前所在屏加上class——on，适用于column和nav-right
@@ -129,7 +148,7 @@ var doFn = {
             }
         }
 
-        // 点击切换
+        // 新闻点击伸缩按钮
         $('.news-btn').click(function () {
             newsOut = !newsOut;
             newsToggle();
@@ -140,15 +159,14 @@ var doFn = {
             setMtAndOn();
         });
 
-        // 点击nav-right切换至对应屏
+        // 给右侧导航按钮绑定点击事件
         $('.nav-right > a').each(function (index) {
+            // 点第六个按钮——先显示新闻，然后相当于新闻点击伸缩按钮
             if (index === 5) {
-                // 显示新闻面板
                 $(this).click(function () {
-                    newsShow();
                     newsOut = !newsOut;
+                    newsShow();
                     newsToggle();
-
                 })
             } else {
                 $(this).click(function () {
@@ -161,26 +179,9 @@ var doFn = {
 
         // 给document绑定鼠标滚轮事件、键盘事件、鼠标移动事件
         $(document).on({
-            'mousewheel keydown': function (event) {
-                pageTurnHandler();
-                // 不在第一屏时关闭弹幕
-                if (onIndex != 0 && doFn.bar === true) {
-                    clearInterval(doFn.barTimer);
-                    $('.barrageBox').hide();
-                    $('.tabTxt').text('开启弹幕');
-                    doFn.bar = false;
-                }
-                // 滚到第二屏的时候加载二屏轮播图片
-                if (onIndex === 1) {
-                    f2imgLoad();
-                }
-                // 滚动时pause四屏视频，隐藏二屏和四屏的弹层
-                if (onIndex != 1 && onIndex != 3) {
-                    $('.popup-content').find('video')[0].pause();
-                    $('.popup-bg').hide();
-                }
-            }
+            'mousewheel keydown': pageTurnHandler
         });
+
     },
 
     // 花瓣控制函数
@@ -374,10 +375,10 @@ var doFn = {
                     doFn.bar = !doFn.bar;
                 }
                 if (!send) {
-                    $('.bar-send').slideDown(500);
+                    $('.bar-send').slideDown(200);
                     $('.sendTxt').text('隐藏弹框');
                 } else {
-                    $('.bar-send').slideUp(500);
+                    $('.bar-send').slideUp(200);
                     $('.sendTxt').text('发送弹幕');
                 }
                 send = !send;
