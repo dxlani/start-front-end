@@ -1,8 +1,6 @@
 var doFn = {
     // 储存第二屏风景图片的数组
     img: [],
-    bar: false,
-    barbarTimer: null,
     //鼠标滚动 上下箭头键 鼠标点击导航按钮页面切换
     scrollFn: function () {
         // 当前所在屏幕 从0开始
@@ -12,7 +10,7 @@ var doFn = {
         // 是否正在滚动
         var onScroll = false;
         // 计数器
-        var barTimer = null;
+        var timer = null;
         // 默认屏幕高度
         var screenHeight = 734;
         // 新闻弹出层状态
@@ -25,9 +23,9 @@ var doFn = {
             // 如果没有在滚动 开始滚动 将onScroll设置为true 设置一个1s的倒计时 与css3动画时间一致 滚动完成后将onScroll设置为false
             if (!onScroll) {
                 onScroll = true;
-                barTimer = setTimeout(function () {
+                timer = setTimeout(function () {
                     onScroll = false;
-                    barTimer = null;
+                    timer = null;
                 }, 800);
                 // 滚轮向下滚动event.wheelDelta为负 onIndex++
                 if (e.wheelDelta < 0 || e.keyCode == 40) {
@@ -278,13 +276,30 @@ var doFn = {
         });
 
     },
-    barFn: {
-        oIndex: 0,
-        prea: 0,
-        preb: 0,
-        a: 0,
-        b: 0,
-        barTxtArr: [
+    barrageFn: function () {
+        var bar = false;
+        var timer = null;
+        $('.startBar').on('click', function () {
+            if (!bar) {
+                $('.barrageBox').show();
+                $('.tabTxt').text('关闭弹幕');
+                // 先执行一次
+                randomBar();
+                timer = setInterval(randomBar, 1000);
+            } else {
+                clearInterval(timer);
+                $('.barrageBox').hide();
+                $('.tabTxt').text('开启弹幕');
+            }
+            bar = !bar;
+        });
+
+        var oIndex = 0;
+        var prea = 0;
+        var preb = 0;
+        var a = 0;
+        var b = 0;
+        var barTxtArr = [
             '来啊~造作啊~一起摇摆啊~',
             '小姐姐~一起上天吧~',
             '看，天上有猪在飞~',
@@ -326,67 +341,48 @@ var doFn = {
             '这画面我能看一天',
             '你们只多了个游戏 而我们却多了一帮神仙',
             '我上仙班。。'
-        ],
+        ];
 
-        barClick: function () {
-            $('.startBar').on('click', this.barControl);
-        },
-
-        barControl: function () {
-            if (!doFn.bar) {
-                $('.barrageBox').show();
-                $('.tabTxt').text('关闭弹幕');
-                // 先执行一次
-                doFn.barFn.randomBar();
-                doFn.barTimer = setInterval(doFn.barFn.randomBar, 1000);
-            } else {
-                clearInterval(doFn.barTimer);
-                $('.barrageBox').hide();
-                $('.tabTxt').text('开启弹幕');
-            }
-            doFn.bar = !doFn.bar;
-        },
-
-        randomBar: function () {
-            var self = this;
+        function randomBar() {
             var $thisBar = $("<div class='barrage'><span class='jianjian'></span><span class='txt'></span><span class='jianbing'></span></div>");
             judgeRepA(3, 1);
             judgeRepB(4, 0);
             var clientW = document.documentElement.clientWidth;
             $('.barrageBox').append($thisBar);
-            $thisBar.addClass('j' + self.a).css('bottom', self.b * 60 + 10).animate({
+            $thisBar.addClass('j' + a).css('bottom', b * 60 + 10).animate({
                 'right': clientW
             }, 10000, 'linear', function () {
                 this.remove();
             });
-            $thisBar.find('.txt').text(self.barTxtArr);
-            if (self.oIndex >= self.barTxtArr.length - 1) {
-                self.oIndex = 0;
+            $thisBar.find('.txt').text(barTxtArr[oIndex]);
+            if (oIndex >= barTxtArr.length - 1) {
+                oIndex = 0;
             } else {
-                self.oIndex++;
+                oIndex++;
             }
-            // 随机一个数
-            function randomNum(n, m) {
-                return parseInt(Math.random() * n + m);
-            }
+        }
 
-            // 防止和前一次随机重复
-            function judgeRepA(n, m) {
-                if (self.a != self.prea) {
-                    self.prea = self.a;
-                } else {
-                    self.a = randomNum(n, m);
-                    judgeRepA(n, m);
-                }
-            }
+        // 随机一个数
+        function randomNum(n, m) {
+            return parseInt(Math.random() * n + m);
+        }
 
-            // 防止重复改进版
-            function judgeRepB(n, m) {
-                do {
-                    self.b = randomNum(n, m);
-                } while (self.b === self.preb);
-                self.preb = self.b;
+        // 防止和前一次随机重复
+        function judgeRepA(n, m) {
+            if (a != prea) {
+                prea = a;
+            } else {
+                a = randomNum(n, m);
+                judgeRepA(n, m);
             }
+        }
+
+        // 防止重复改进版
+        function judgeRepB(n, m) {
+            do {
+                b = randomNum(n, m);
+            } while (b === preb);
+            preb = b;
         }
     }
 }
@@ -395,4 +391,4 @@ doFn.scrollFn();
 doFn.petalsFn();
 doFn.f4VideoFn();
 doFn.f2PictureFn();
-doFn.barFn.barClick();
+doFn.barrageFn();

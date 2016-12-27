@@ -1,6 +1,8 @@
 var doFn = {
     // 储存第二屏风景图片的数组
     img: [],
+    bar: false,
+    barTimer: null,
     //鼠标滚动 上下箭头键 鼠标点击导航按钮页面切换
     scrollFn: function () {
         // 当前所在屏幕 从0开始
@@ -10,27 +12,27 @@ var doFn = {
         // 是否正在滚动
         var onScroll = false;
         // 计数器
-        var timer = null;
+        var scrTimer = null;
         // 默认屏幕高度
-        var screenHeight = 734;
+        var clientH = 734;
         // 新闻弹出层状态
         var newsOut = true;
         // 二屏的图片还未加载
-        imgLoad = false;
+        var imgLoad = false;
 
         function pageTurnHandler() {
             e = event || window.event;
             // 如果没有在滚动 开始滚动 将onScroll设置为true 设置一个1s的倒计时 与css3动画时间一致 滚动完成后将onScroll设置为false
             if (!onScroll) {
                 onScroll = true;
-                timer = setTimeout(function () {
+                scrTimer = setTimeout(function () {
                     onScroll = false;
-                    timer = null;
+                    scrTimer = null;
                 }, 800);
                 // 滚轮向下滚动event.wheelDelta为负 onIndex++
                 if (e.wheelDelta < 0 || e.keyCode == 40) {
-                    screenHeight = $(document).height();
-                    if (mt > -screenHeight * 4) {
+                    clientH = $(window).height();
+                    if (mt > -clientH * 4) {
                         onIndex++;
                     }
                 }
@@ -42,12 +44,13 @@ var doFn = {
                 }
                 newsControl();
                 setMtAndOn();
+                // console.log(onIndex, clientH, mt);
             }
         }
 
         // 新闻控制 不在第一屏的时候自动隐藏
         function newsControl() {
-            if (onIndex == 0) {
+            if (onIndex === 0) {
                 newsOut = true;
                 newsShow();
                 newsToggle();
@@ -105,9 +108,9 @@ var doFn = {
 
         // 通过onIndex的值来设置container的margin-top值，并给当前的附上class——on
         function setMtAndOn() {
-            screenHeight = $(window).height();
-            mt = -screenHeight * onIndex;
-            $('.container').animate({
+            clientH = $(window).height();
+            mt = -clientH * onIndex;
+            $('.container').stop(true, false).animate({
                 'margin-top': mt
             }, 800, function () {
                 currentOn('.column');
@@ -160,10 +163,22 @@ var doFn = {
         $(document).on({
             'mousewheel keydown': function (event) {
                 pageTurnHandler();
-                // 滚动时pause视频，隐藏二屏和视频的弹层
-                $('.popup-content').find('video')[0].pause();
-                $('.popup-bg').hide();
-                f2imgLoad();
+                // 不在第一屏时关闭弹幕
+                if (onIndex != 0 && doFn.bar === true) {
+                    clearInterval(doFn.barTimer);
+                    $('.barrageBox').hide();
+                    $('.tabTxt').text('开启弹幕');
+                    doFn.bar = false;
+                }
+                // 滚到第二屏的时候加载二屏轮播图片
+                if (onIndex === 1) {
+                    f2imgLoad();
+                }
+                // 滚动时pause四屏视频，隐藏二屏和四屏的弹层
+                if (onIndex != 1 && onIndex != 3) {
+                    $('.popup-content').find('video')[0].pause();
+                    $('.popup-bg').hide();
+                }
             }
         });
     },
@@ -276,113 +291,158 @@ var doFn = {
         });
 
     },
-    barrageFn: function () {
-        var bar = false;
-        var timer = null;
-        $('.startBar').on('click', function () {
-            if (!bar) {
+    barFn: {
+        init: function () {
+            var self = this;
+            // 储存前一次随机的数
+            self.prea = 0;
+            self.preb = 0;
+            self.aIndex = 0;
+            self.barTxtArr = [
+                '来啊~造作啊~一起摇摆啊~',
+                '小姐姐~一起上天吧~',
+                '看，天上有猪在飞~',
+                '厉害了我的哥！ 抖得累不累',
+                '谁来玩  组队 组队',
+                '答题好难啊    姨妈难求！！！！',
+                '无限飞行？ 加速飞 会御剑吗！',
+                '我是仙 修炼多久可以成仙',
+                '答题好难  智商不在线啊啊啊啊  跪求鸡和马',
+                '前方高能预警，飞行战队准备，非战斗人员撤离',
+                '【哔】喘等等福利', '辣么大，这不科学',
+                '如果XX更大就是神作了',
+                '听说，玩这个游戏的汉子女朋友胸都很大',
+                '你那么厉害，咋不上天呢~ ',
+                '恩，我上了',
+                '迷之抖动，简直鬼畜，23333',
+                '游戏我玩还不行吗，您老别晃了',
+                '你上你的班，我成我的仙',
+                '能玩游戏 就少吵吵 消停点行吗',
+                '大哥 干哈呢 来玩会嘛',
+                '梦想,就是坚持让你觉得幸福',
+                '仙2,就是你圆梦的新手村',
+                '神仙 妖怪 ~~~',
+                '吃饭睡觉打怪怪~',
+                '5555 这游戏什么时候能玩儿？我也要飞！',
+                '大哥 天上的风景好么？',
+                '大哥你好帅 求带我一起飞',
+                '历害了我的仙哥',
+                '吓得我不要不要的',
+                '这真是太萝莉啦！',
+                '羞耻play',
+                '弹幕护体',
+                '玩个游戏强行上天，心疼天上的兄弟',
+                '前方高能预警，这不是演习 ，有仙！',
+                '要是仙侠出2就神作了',
+                '摄像师晚饭加鸡腿',
+                '这边的弹幕由我来承包 求官方给工作',
+                '什么东西在天上飞？66666666',
+                '这画面我能看一天',
+                '你们只多了个游戏 而我们却多了一帮神仙',
+                '我上仙班。。'
+            ];
+
+            function startBar() {
                 $('.barrageBox').show();
                 $('.tabTxt').text('关闭弹幕');
                 // 先执行一次
-                randomBar();
-                timer = setInterval(randomBar, 1000);
-            } else {
-                clearInterval(timer);
-                $('.barrageBox').hide();
-                $('.tabTxt').text('开启弹幕');
+                var randomValue = self.barTxtArr[self.aIndex];
+                self.randomBar(randomValue);
+                clearInterval(doFn.barTimer);
+                doFn.barTimer = setInterval(function () {
+                    randomValue = self.barTxtArr[self.aIndex];
+                    self.randomBar(randomValue);
+                }, 2000);
             }
-            bar = !bar;
-        });
 
-        var oIndex = 0;
-        var prea = 0;
-        var preb = 0;
-        var a = 0;
-        var b = 0;
-        var barTxtArr = [
-            '来啊~造作啊~一起摇摆啊~',
-            '小姐姐~一起上天吧~',
-            '看，天上有猪在飞~',
-            '厉害了我的哥！ 抖得累不累',
-            '谁来玩  组队 组队',
-            '答题好难啊    姨妈难求！！！！',
-            '无限飞行？ 加速飞 会御剑吗！',
-            '我是仙 修炼多久可以成仙',
-            '答题好难  智商不在线啊啊啊啊  跪求鸡和马',
-            '前方高能预警，飞行战队准备，非战斗人员撤离',
-            '【哔】喘等等福利', '辣么大，这不科学',
-            '如果XX更大就是神作了',
-            '听说，玩这个游戏的汉子女朋友胸都很大',
-            '你那么厉害，咋不上天呢~ ',
-            '恩，我上了',
-            '迷之抖动，简直鬼畜，23333',
-            '游戏我玩还不行吗，您老别晃了',
-            '你上你的班，我成我的仙',
-            '能玩游戏 就少吵吵 消停点行吗',
-            '大哥 干哈呢 来玩会嘛',
-            '梦想,就是坚持让你觉得幸福',
-            '仙2,就是你圆梦的新手村',
-            '神仙 妖怪 ~~~',
-            '吃饭睡觉打怪怪~',
-            '5555 这游戏什么时候能玩儿？我也要飞！',
-            '大哥 天上的风景好么？',
-            '大哥你好帅 求带我一起飞',
-            '历害了我的仙哥',
-            '吓得我不要不要的',
-            '这真是太萝莉啦！',
-            '羞耻play',
-            '弹幕护体',
-            '玩个游戏强行上天，心疼天上的兄弟',
-            '前方高能预警，这不是演习 ，有仙！',
-            '要是仙侠出2就神作了',
-            '摄像师晚饭加鸡腿',
-            '这边的弹幕由我来承包 求官方给工作',
-            '什么东西在天上飞？66666666',
-            '这画面我能看一天',
-            '你们只多了个游戏 而我们却多了一帮神仙',
-            '我上仙班。。'
-        ];
+            // 随机发送弹幕
+            $('.startBar').on('click', function () {
+                if (!doFn.bar) {
+                    startBar();
+                } else {
+                    clearInterval(doFn.barTimer);
+                    $('.barrageBox').hide();
+                    $('.tabTxt').text('开启弹幕');
+                }
+                doFn.bar = !doFn.bar;
+            });
 
-        function randomBar() {
-            var $thisBar = $("<div class='barrage'><span class='jianjian'></span><span class='txt'></span><span class='jianbing'></span></div>");
-            judgeRepA(3, 1);
-            judgeRepB(4, 0);
+            var send = false;
+            $('.sendBar').on('click', function () {
+                if (!doFn.bar) {
+                    startBar();
+                    doFn.bar = !doFn.bar;
+                }
+                if (!send) {
+                    $('.bar-send').slideDown(500);
+                    $('.sendTxt').text('隐藏弹框');
+                } else {
+                    $('.bar-send').slideUp(500);
+                    $('.sendTxt').text('发送弹幕');
+                }
+                send = !send;
+            });
+
+
+            $('.input-value').on('focus', function () {
+                $(this).val('');
+
+            });
+            // 手动发送弹幕
+            $('.inputBar').on('click', function () {
+                var inputValue = $('.input-value').val();
+                if (inputValue === '') {
+                    $('.input-value').val('弹幕不能为空！');
+                } else {
+                    self.randomBar(inputValue)
+                }
+            });
+        },
+
+        randomBar: function (value) {
+            var self = this;
             var clientW = document.documentElement.clientWidth;
-            $('.barrageBox').append($thisBar);
-            $thisBar.addClass('j' + a).css('bottom', b * 60 + 10).animate({
+            var $barDom = $("<div class='barrage'><span class='jianjian'></span><span class='txt'></span><span class='jianbing'></span></div>");
+            // 随机一个5000-10000的弹幕速度
+            var rollSpeed = randomNum(5000, 5000);
+            var a = judgeRepA(3, 1);
+            var b = judgeRepB(4, 0);
+            $('.barrageBox').append($barDom);
+            $barDom.find('.txt').text(value);
+            $barDom.addClass('j' + a).css('bottom', b * 60 + 10).animate({
                 'right': clientW
-            }, 10000, 'linear', function () {
+            }, rollSpeed, 'linear', function () {
                 this.remove();
             });
-            $thisBar.find('.txt').text(barTxtArr[oIndex]);
-            if (oIndex >= barTxtArr.length - 1) {
-                oIndex = 0;
+            if (self.aIndex >= self.barTxtArr.length - 1) {
+                self.aIndex = 0;
             } else {
-                oIndex++;
+                self.aIndex++;
             }
-        }
 
-        // 随机一个数
-        function randomNum(n, m) {
-            return parseInt(Math.random() * n + m);
-        }
-
-        // 防止和前一次随机重复
-        function judgeRepA(n, m) {
-            if (a != prea) {
-                prea = a;
-            } else {
-                a = randomNum(n, m);
-                judgeRepA(n, m);
+            // 随机一个数
+            function randomNum(n, m) {
+                return parseInt(Math.random() * n + m);
             }
-        }
 
-        // 防止重复改进版
-        function judgeRepB(n, m) {
-            do {
-                b = randomNum(n, m);
-            } while (b === preb);
-            preb = b;
+            // 防止随机数和上一次重复
+            function judgeRepA(n, m) {
+                var x = 0;
+                do {
+                    x = randomNum(n, m);
+                } while (x === self.prea);
+                self.prea = x;
+                return x;
+            }
+
+            function judgeRepB(n, m) {
+                var x = 0;
+                do {
+                    x = randomNum(n, m);
+                } while (x === self.preb);
+                self.preb = x;
+                return x;
+            }
         }
     }
 }
@@ -391,4 +451,4 @@ doFn.scrollFn();
 doFn.petalsFn();
 doFn.f4VideoFn();
 doFn.f2PictureFn();
-doFn.barrageFn();
+doFn.barFn.init();
