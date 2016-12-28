@@ -5,7 +5,7 @@ var doFn = {
     bar: false,
     // 弹幕滚动定时器
     barTimer: null,
-    
+
     //鼠标滚动 上下箭头键 鼠标点击导航按钮页面切换
     scrollFn: function () {
         // 当前所在屏幕 从0开始
@@ -367,7 +367,7 @@ var doFn = {
                 }
                 doFn.bar = !doFn.bar;
             });
-
+            // 弹幕输入框是否打开
             var send = false;
             $('.sendBar').on('click', function () {
                 if (!doFn.bar) {
@@ -384,20 +384,33 @@ var doFn = {
                 send = !send;
             });
 
-
-            $('.input-value').on('focus', function () {
-                $(this).val('');
-
-            });
-            // 手动发送弹幕
-            $('.inputBar').on('click', function () {
-                var inputValue = $('.input-value').val();
-                if (inputValue === '') {
-                    $('.input-value').val('弹幕不能为空！');
-                } else {
-                    self.randomBar(inputValue)
+            // focus清空input 按enter键发送弹幕
+            $('.input-value').on({
+                'focus': function () {
+                    $(this).val('');
+                },
+                'keyup': function (event) {
+                    if (event.keyCode === 13) {
+                        sendBar();
+                    }
                 }
             });
+
+            // 点击手动发送弹幕
+            $('.inputBar').on({
+                'click': sendBar
+            });
+
+            // 手动发送弹幕函数            
+            function sendBar() {
+                var inputValue = $('.input-value').val();
+                if (inputValue === '' || inputValue === '弹幕不能为空！') {
+                    $('.input-value').val('弹幕不能为空！').blur();
+                } else {
+                    self.randomBar(inputValue);
+                    $('.input-value').val('');
+                }
+            }
         },
 
         randomBar: function (value) {
