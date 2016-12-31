@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="cn-zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>土豆历史</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<section class="todoapp">
+    <header>
+        <h1>土豆丝</h1>
+        <input class="new-todo" placeholder="你想干嘛？" @keyup.enter="addTodo" v-model="newTodo">
+    </header>
+    <section class="main" v-cloak v-show="todos.length">
+        <!--<input class="toggle-all" type="checkbox" v-model="allDone">-->
+        <ul class="todo-list">
+            <li class="todo" v-for="todo in todos" :key="todo.id" :class="{ completed: todo.completed, editing: todo == editedTodo}">
+            <!--todo == editedTodo 这是个表达式，如果全等则返回true，并附上editing这个class  -->
+                <div class="view">
+                    <input class="toggle" type="checkbox" v-model="todo.completed">
+                    <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
+                    <button class="destroy" @click="removeTodo(todo)"></button>
+                </div>
+                <!--<input class="edit" type="text">-->
+            </li>
+        </ul>
+    </section>
+</section>
+<footer class="info">
+    <p>今日事，今日毕</p>
+    <p>使用指南：</p>
+    <p>输入要完成的任务按回车键添加</p>
+    <p>点击左上角箭头选中所有任务</p>
+</footer>
+
+<body>
+    <script src="http://cdn.bootcss.com/vue/2.1.8/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
