@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cn-zh">
+<html lang="zh-cn">
 
 <head>
     <meta charset="UTF-8">
@@ -12,19 +12,31 @@
         <input class="new-todo" placeholder="你想干嘛？" @keyup.enter="addTodo" v-model="newTodo">
     </header>
     <section class="main" v-cloak v-show="todos.length">
-        <!--<input class="toggle-all" type="checkbox" v-model="allDone">-->
+        <input class="toggle-all" type="checkbox" v-model="allDone">
         <ul class="todo-list">
-            <li class="todo" v-for="todo in todos" :key="todo.id" :class="{ completed: todo.completed, editing: todo == editedTodo}">
-            <!--todo == editedTodo 这是个表达式，如果全等则返回true，并附上editing这个class  -->
+            <li class="todo" v-for="todo in filteredTodos" :key="todo.id" :class="{ completed: todo.completed, editing: todo === editedTodo}">
+                <!--todo == editedTodo 这是个表达式，如果全等则返回true，并附上editing这个class-->
                 <div class="view">
                     <input class="toggle" type="checkbox" v-model="todo.completed">
                     <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
                     <button class="destroy" @click="removeTodo(todo)"></button>
                 </div>
-                <!--<input class="edit" type="text">-->
+                <input class="edit" type="text" v-model="todo.title" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)"
+                    v-focus="todo === editedTodo">
             </li>
         </ul>
     </section>
+    <footer class="footer" v-show="todos.length" v-cloak>
+        <span class="todo-count">
+            <strong>{{remaining}}</strong>项任务未完成
+        </span>
+        <ul class="filters">
+            <li><a href="#all" :class="{selected: visibility === 'all'}">所有</a></li>
+            <li><a href="#active" :class="{selected: visibility === 'active'}">未完成</a></li>
+            <li><a href="#completed" :class="{selected: visibility === 'completed'}">已完成</a></li>
+        </ul>
+        <button class="clear-completed" v-show="todos.length > remaining" @click="removeCompleted">清除已完成</button>
+    </footer>
 </section>
 <footer class="info">
     <p>今日事，今日毕</p>
