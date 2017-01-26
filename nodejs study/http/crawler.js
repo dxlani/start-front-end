@@ -1,31 +1,50 @@
 let http = require('http')
-var url="http://www.imooc.com/learn/348";
-http.get(url, (res) => {
-    // const statusCode = res.statusCode;
-    // const contentType = res.headers['content-type'];
+let cheerio = require('cheerio')
+let url = 'http://www.imooc.com/learn/348'
 
-    // let error;
-    // if (statusCode !== 200) {
-    //     error = new Error(`Request Failed.\n` +
-    //         `Status Code: ${statusCode}`);
-    // } else if (!/^application\/json/.test(contentType)) {
-    //     error = new Error(`Invalid content-type.\n` +
-    //         `Expected application/json but received ${contentType}`);
-    // }
-    // if (error) {
-    //     console.log(error.message);
-    //     // consume response data to free up memory
-    //     res.resume();
-    //     return;
-    // }
-    res.setEncoding('utf8')
-    let rawData = '';
-    res.on('data', (chunk) => rawData += String(chunk));
+http.get(url, res => {
+    let html = '';
+    res.on('data', chunk => html += chunk);
     res.on('end', () => {
-        try {
-            console.log(rawData)
-        } catch (e) {
-            console.log(e.message)
+        var courseData = filterCourse(html);
+        printCourse(courseData);
+    });
+}).on('error', function () {
+    console.log('获取数据失败');
+});
+
+function filterCourse(html) {
+    let $ = cheerio.load(html);
+    let courseData = [];
+    let chapters = $('.chapter');
+    chapters.each((index, el) => {
+        let item = $(el)
+        let chapterData = {
+            chapterTitle: '',
+            videos: []
         }
+        chapterData.chapterTitle = item.find('strong').text().replace(/\s*\r\n\s*/g, '')
+        let lis = item.find('.video').children('li')
+        lis.each((index, ele) => {
+            let self = $(ele)
+            let video = {
+                vTitle: '',
+                id: 0
+            }
+            video.vTitle = self.find('.J-media-item').text().replace(/\s*\r\n\s*/g, '')
+            video.id = self.attr('data-media-id')
+            chapterData.videos.push(video)
+        })
+        courseData.push(chapterData)
     })
-}).on('error', (e) => console.log(`http.get error:${e.message}`))
+    return courseData
+}
+
+function printCourse(courseData) {
+    courseData.forEach((el) => {
+        console.log(el.chapterTitle)
+        el.videos.forEach((item) => {
+            console.log(`【${item.id}】${item.vTitle}`)
+        })
+    })
+}
