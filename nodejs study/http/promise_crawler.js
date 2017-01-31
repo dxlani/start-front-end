@@ -64,7 +64,7 @@ function getpageAsync(url) {
             html: '',
         }
         console.log(`正在爬取……${url}`)
-        // get观看人数
+        // ajax get观看人数
         let numbers = new Promise((resolve, reject) => {
             let vid = url.match(/[^http://www.imooc.com/learn/]\d*/);
             let headers = {
@@ -92,7 +92,6 @@ function getpageAsync(url) {
                     rawData += chunk;
                 })
                 res.on('end', () => {
-                    // ajaxData.watchedNumber = parseInt(JSON.parse(rawData).data[0].numbers);
                     ajaxData.watchedNumber = parseInt(JSON.parse(rawData).data[0].numbers);
                     resolve(ajaxData);
                 }).on('error', (e) => {
@@ -100,6 +99,7 @@ function getpageAsync(url) {
                 })
             })
         })
+        // get网站html
         http.get(url, (res) => {
             let html = '';
             res.on('data', (chunk) => html += chunk);
@@ -127,9 +127,6 @@ Promise
             return filterCourse(ajaxData);
         });
         courseArr.sort((a, b) => {
-            // let x = a.watchedNumber;
-            // let y = b.watchedNumber;
-            // return y - x;
             a = a.watchedNumber;
             b = b.watchedNumber;
             return b - a;
@@ -137,5 +134,5 @@ Promise
         printCourse(courseArr);
     })
     .catch((e) => {
-        console.log('出错：' + e)
+        console.log(`出错：${e}`)
     })
