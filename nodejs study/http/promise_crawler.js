@@ -3,8 +3,6 @@ let cheerio = require('cheerio')
 let baseUrl = 'http://www.imooc.com/learn/';
 let vids = [728, 637, 348, 259, 197, 134, 75]
 
-
-
 // 爬取有用的信息
 function filterCourse(ajaxData) {
     let $ = cheerio.load(ajaxData.html);
@@ -114,7 +112,7 @@ function getpageAsync(url) {
     })
 }
 
-// 异步get接受到的数据组成的数组
+// getpageAsync返回的5个promise对象组成的数组
 let pagesArr = vids.map((vid) => {
     let url = `${baseUrl}${vid}`
     return getpageAsync(url);
