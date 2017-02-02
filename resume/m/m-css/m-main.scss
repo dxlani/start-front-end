@@ -1,0 +1,586 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+@mixin clearfix {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+@mixin basic($w:100%, $h:100%) {
+    width: $w;
+    height: $h;
+}
+
+// spirits背景图定位
+@mixin ixy($ix, $iy) {
+    background-position: $ix $iy;
+}
+
+body {
+    font: 400 12px/1.5 Microsoft YaHei, sans-serif;
+}
+
+html,
+body,
+.wp,
+.wp-inner,
+.page {
+    @include basic;
+}
+
+.wp {
+    overflow: hidden;
+}
+
+.page {
+    overflow: hidden;
+    position: relative;
+}
+
+@mixin bgsize {
+    background-size: 100% 100%;
+}
+
+@mixin bgsizeAuto {
+    background-size: 100% auto;
+}
+
+.page1 {
+    background: url(../m-images/bg1.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page2 {
+    background: url(../m-images/bg2.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page3 {
+    background: url(../m-images/bg3.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page4 {
+    background: url(../m-images/bg4.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page5 {
+    background: url(../m-images/bg5.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.logo,
+.peo,
+.tit,
+.feature {
+    position: absolute;
+    opacity: 0;
+}
+
+//  logo跳动动画 from animate.css
+@keyframes bounceIn {
+    0%,
+    20%,
+    40%,
+    60%,
+    80%,
+    to {
+        -webkit-animation-timing-function: cubic-bezier(.215, .61, .355, 1);
+        animation-timing-function: cubic-bezier(.215, .61, .355, 1)
+    }
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(.3, .3, .3);
+        transform: scale3d(.3, .3, .3)
+    }
+    20% {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1)
+    }
+    40% {
+        -webkit-transform: scale3d(.9, .9, .9);
+        transform: scale3d(.9, .9, .9)
+    }
+    60% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+        transform: scale3d(1.03, 1.03, 1.03)
+    }
+    80% {
+        -webkit-transform: scale3d(.97, .97, .97);
+        transform: scale3d(.97, .97, .97)
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1)
+    }
+}
+
+// 云移动动画
+@keyframes cloudMove {
+    0% {
+        transform: translateX(0)
+    }
+    100% {
+        transform: translateX(200%)
+    }
+}
+
+//右侧滑出动画
+@keyframes fadeInRight {
+    0% {
+        opacity: 0;
+        transform: translate(100%, 0)
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+//左侧滑出动画
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translate(-100%, 0)
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+//淡出动画
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.page1 {
+    //二屏人物r和标题t位置和缩放
+    .logo {
+        width: 3.66rem;
+        height: 1.45rem;
+        bottom: 5rem;
+        left: 50%;
+        margin: -1rem 0 0 -1.83rem;
+    }
+    .t1 {
+        width: 5.7rem;
+        height: 2.2rem;
+        bottom: 2.8rem;
+        left: 50%;
+        margin-left: -2.85rem;
+    }
+    .cloud {
+        position: absolute;
+        width: 20rem;
+        height: 4rem;
+        left: -20em;
+        bottom: 3rem;
+        animation: cloudMove 3s linear 0s infinite;
+    }
+    &.cur {
+        .logo {
+            animation: bounceIn .8s linear .2s 1 both;
+        }
+        .t1 {
+            animation: fadeInLeft .3s ease .1s 1 both;
+        }
+    }
+}
+
+.page2 {
+    //二屏人物r和标题t位置和缩放
+    .t2 {
+        width: 2.23rem;
+        height: 4.56rem;
+        top: .5rem;
+        left: .5rem;
+    }
+    .r2 {
+        width: 6.25rem;
+        height: 10.77rem;
+        right: 0;
+        bottom: 0;
+    }
+    .f2 {
+        width: 3.76rem;
+        height: 3.77rem;
+        left: .3rem;
+        bottom: 2rem;
+    }
+    &.cur {
+        .t2 {
+            animation: fadeInLeft .3s ease .1s 1 both;
+        }
+        .r2 {
+            animation: fadeInRight .5s ease 0s 1 both;
+        }
+        .f2 {
+            animation: fadeIn 1s ease .8s 1 both;
+        }
+    }
+}
+
+.page3 {
+    //二屏人物r和标题t位置和缩放
+    .t3 {
+        width: 1.91rem;
+        height: 5.92rem;
+        top: .5rem;
+        left: .5rem;
+    }
+    .r3 {
+        width: 6.4rem;
+        height: 10.9rem;
+        right: 0;
+        bottom: 0;
+    }
+    &.cur {
+        .t3 {
+            animation: fadeInLeft .5s ease .1s 1 both;
+        }
+        .r3 {
+            animation: fadeInRight .5s ease 0s 1 both;
+        }
+    }
+}
+
+.page4 {
+    //二屏人物r和标题t位置和缩放
+    .t4 {
+        width: 2.34rem;
+        height: 5.7rem;
+        top: 1.5rem;
+        left: 50%;
+        margin-left: -1.17rem;
+    }
+    .r4-1 {
+        width: 3.28rem;
+        height: 5.87rem;
+        right: 0;
+        top: 0;
+    }
+    .r4-2 {
+        width: 3.1rem;
+        height: 10.12rem;
+        left: 0;
+        bottom: 0;
+    }
+    &.cur {
+        .t4 {
+            animation: fadeIn .5s ease 0s 1 both;
+        }
+        .r4-1 {
+            animation: fadeInRight .5s ease 0s 1 both;
+        }
+        .r4-2 {
+            animation: fadeInLeft .5s ease 0s 1 both;
+        }
+    }
+}
+
+.page5 {
+    //五屏人物r和标题t位置和缩放
+    .t5 {
+        width: 2.13rem;
+        height: 4.77rem;
+        top: .5rem;
+        left: .5rem;
+    }
+    .r5 {
+        width: 100%;
+        height: 100%;
+        right: 0;
+        bottom: 0;
+    }
+    &.cur {
+        .t5 {
+            animation: fadeInLeft .5s ease .1s 1 both;
+        }
+        .r5 {
+            animation: fadeInRight .5s ease 0s 1 both;
+        }
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: .8rem;
+    }
+}
+
+.touch-tips {
+    // 闪烁动画
+    @keyframes fadeInOut {
+        0% {
+            opacity: 1;
+        }
+        100% {
+            opacity: .1;
+        }
+    }
+    position: absolute;
+    width: .56rem;
+    height: .56rem;
+    bottom: .35rem;
+    left: 50%;
+    margin-left: -.28rem;
+    background: url(../m-images/downpage.png) no-repeat 0 0 / 100% 300%;
+    animation: fadeInOut .6s linear alternate infinite;
+    &:after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: -10%;
+        left: -10%;
+        width: 120%;
+        height: 120%;
+        border: 1px solid #949b9e;
+        box-sizing: border-box;
+        border-radius: 100%;
+    }
+    &.bright {
+        background-position: 0 50%;
+    }
+    &.up {
+        bottom: 1.15rem;
+        background-position: 0 101%;
+    }
+    &.bright,
+    &.up {
+        &:after {
+            border-color: #ccc;
+        }
+    }
+}
+
+.popup-bg {
+    @include basic;
+    background: rgba(0, 0, 0, .6);
+    display: none;
+    position: relative;
+    .popup-content {
+        width: 5.3rem;
+        height: 7.88rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -4.2rem;
+        margin-left: -2.65rem;
+        .close-btn {
+            display: block;
+            width: .5rem;
+            height: .5rem;
+            position: absolute;
+            top: 0;
+            right: -.5rem;
+            background: url(../m-images/closepop.png) no-repeat center;
+        }
+        .picture-tips {
+            width: 100%;
+            height: .6rem;
+            line-height: 0;
+            text-align: center;
+            >span {
+                font-size: .35rem;
+                color: #fff;
+                vertical-align: middle;
+            }
+            &:before,
+            &:after {
+                display: inline-block;
+                vertical-align: middle;
+                width: .5rem;
+                height: 100%;
+                content: '';
+                background: url(../m-images/tips_left.png) no-repeat 0 0 / auto 100%;
+            }
+            &:after {
+                transform: rotateY(180deg);
+            }
+        }
+        .over {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            >ul {
+                width: 1000%;
+                height: 100%;
+                display: flex;
+                transition: all .6s ease;
+            }
+        }
+        .f2-images {
+            width: 5.3rem;
+            height: 100%;
+            flex: nowrap row;
+            >img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+}
+
+//新闻打开按钮
+.news-btn {
+    width: .45rem;
+    height: .48rem;
+    position: fixed;
+    right: 0;
+    top: .3rem;
+    background: url(../m-images/newsBtn.png) no-repeat 0 0 / 100% 100%;
+}
+
+//新闻内容
+.news-box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: -100%;
+    top: 0;
+    background: #fff;
+    opacity: 0;
+    transition: all .5s ease;
+    h3 {
+        width: 100%;
+        height: 1rem;
+        line-height: 1rem;
+        font-size: .3rem;
+        color: #eace95;
+        text-align: center;
+        background: url(../m-images/newstitbg.jpg) no-repeat 0 0 / 100% 100%;
+    }
+    .news-back {
+        font-size: .26rem;
+        color: #fff;
+        position: absolute;
+        top: .3rem;
+        left: .3rem;
+    }
+    .news-top {
+        width: 100%;
+        margin-top: .3rem;
+        border-bottom: 1px solid #98a4af;
+        text-align: center;
+        line-height: 0;
+        font-size: 0;
+        .news-tab {
+            display: inline-block;
+            width: 1.5rem;
+            height: .5rem;
+            line-height: .5rem;
+            font-size: .24rem;
+            color: #2f3a47;
+            background: #e7eff2;
+            &.on {
+                color: #fff;
+                background: #334762;
+            }
+        }
+    }
+    .news-content {
+        position: relative;
+        .news-list {
+            width: 100%;
+            font-size: .26rem;
+            padding: .1rem .35rem;
+            box-sizing: border-box;
+            position: absolute;
+            left: 0;
+            top: 0;
+            &.notice {
+                display: none;
+            }
+        }
+    }
+    // 这个是news-list里的 避免嵌套太深提出来写
+    .news-li {
+        width: 100%;
+        height: .65rem;
+        line-height: .65rem;
+        margin-top: .05em;
+        border-bottom: 1px dashed #a2acb5;
+        >a {
+            color: #000;
+            display: table;
+            width: 100%;
+            >span {
+                display: table-cell;
+            }
+        }
+        .txt {
+            width: 3.5rem;
+            max-width: 3.5rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+// z-index属性汇总 方便修改和插入
+// 标题图片
+.tit {
+    z-index: 80;
+}
+
+// 一屏logo层
+.logo {
+    z-index: 100;
+}
+
+// 人物图片层
+.peo {
+    z-index: 70;
+}
+
+// 游戏特色
+.feature {
+    z-index: 72;
+}
+
+// 跳动的鼠标提示
+.mouse-tips {
+    z-index: 97;
+}
+
+// 新闻按钮
+.news-btn {
+    z-index: 105
+}
+
+// 左侧新闻层
+.news-box {
+    z-index: 120;
+}
+
+// 第五屏页脚
+.footer {
+    z-index: 96;
+}
+
+// 图片视频弹出层
+.popup-bg {
+    z-index: 110;
+}

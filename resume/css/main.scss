@@ -1,0 +1,832 @@
+// reset
+body,
+div,
+h1,
+h2,
+h3,
+h4,
+form,
+input,
+img,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+p {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+@mixin clearfix {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+@mixin basic($w:100%, $h:100%) {
+    width: $w;
+    height: $h;
+}
+
+// spirits背景图定位
+@mixin ixy($ix, $iy) {
+    background-position: $ix $iy;
+}
+
+html,
+body {
+    @include basic;
+    font: 400 12px/1.5 Microsoft YaHei, sans-serif;
+}
+
+.wrap,
+.container,
+.column {
+    @include basic;
+}
+
+.wrap {
+    overflow: hidden;
+}
+
+.column {
+    overflow: hidden;
+    position: relative;
+}
+
+@mixin bgsize {
+    background-size: 100% 100%;
+}
+
+.page1 {
+    background: url(../images/headimg.jpg) no-repeat top center;
+    @include bgsize;
+}
+
+.page2 {
+    background: #4285f4;
+    @include bgsize;
+}
+
+.page3 {
+    background: #ea4335;
+    @include bgsize;
+}
+
+.page4 {
+    background: #fbbc05;
+    @include bgsize;
+}
+
+.page5 {
+    background: #34a853;
+    @include bgsize;
+}
+
+.footer {
+    position: absolute;
+    width: 100%;
+    height: 110px;
+    left: 0;
+    bottom: 0;
+    background: #0b1a2e;
+    font-size: 12px;
+    padding: 40px;
+    z-index: 10;
+    .foot-wrap {
+        width: 1000px;
+        height: 100%;
+        margin: 0 auto;
+        text-align: center;
+        background: url(../images/footbg.png) no-repeat 0 center;
+        .health-game {
+            color: #c0c2c2;
+        }
+        .copyright,
+        .copyright * {
+            color: #666;
+            margin-top: 20px;
+        }
+    }
+}
+
+.pro,
+.tit,
+.feature {
+    position: absolute;
+    opacity: 0;
+}
+
+//二屏人物r和标题t位置和缩放
+.r2 {
+    right: -600px;
+    bottom: -300px;
+    transform: scale(.6);
+}
+
+.t2 {
+    left: 6%;
+    top: -50px;
+    transform: scale(.6);
+}
+
+.f2 {
+    left: 20%;
+    top: -5%;
+    width: 518px;
+    height: 515px;
+    overflow: hidden;
+    transform: scale(.6);
+    >ul {
+        width: 1000%;
+        @include clearfix;
+        >li {
+            float: left;
+            width: 518px;
+            height: 515px;
+        }
+    }
+    .tab-btns {
+        height: 100%;
+        width: 50px;
+        margin-left: 447px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: url(../images/tab-btns.png) no-repeat 8px 136px;
+        padding-left: 30px;
+    }
+    .tab-btns>a {
+        display: block;
+        width: 10px;
+        height: 20px;
+        float: left;
+        margin-right: 15px;
+        margin-top: 247.5px;
+    }
+    .tab-btn1 {
+        background: url(../images/tab-btns.png) no-repeat;
+        @include ixy(0, -412px);
+    }
+    .tab-btn2 {
+        background: url(../images/tab-btns.png) no-repeat;
+        @include ixy(0, -463px);
+    }
+}
+
+//三屏人物r和标题t位置和缩放
+.r3 {
+    right: 105px;
+    top: -280px;
+    transform: scale(.5);
+}
+
+.t3 {
+    right: 25%;
+    top: -50px;
+    transform: scale(.6);
+}
+
+//四屏人物r、标题t、特色f的位置和缩放
+.r4-1 {
+    right: -520px;
+    top: -290px;
+    transform: scale(.5);
+}
+
+.r4-2 {
+    right: 240px;
+    top: -600px;
+    transform: scale(.5);
+}
+
+.t4 {
+    right: 37%;
+    top: -50px;
+    transform: scale(.6);
+}
+
+.f4 {
+    top: 50%;
+    right: 50%;
+    margin: -55px 90px 0 0;
+    width: 126px;
+    transform: scale(.6);
+    .f4-btns {
+        display: block;
+        width: 100%;
+        height: 126px;
+        margin-bottom: 25px;
+        background: url(../images/f4_feature.png) no-repeat 0 0;
+    }
+    .f4-btn1 {
+        @include ixy(0, -291px);
+    }
+    .f4-btn2 {
+        @include ixy(0, 0);
+    }
+    .f4-btn3 {
+        @include ixy(0, -146px);
+    }
+}
+
+.popup-bg {
+    @include basic;
+    background: rgba(0, 0, 0, .6);
+    display: none;
+    position: relative;
+    .popup-content {
+        width: 800px;
+        height: 450px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -225px;
+        margin-left: -400px;
+        text-align: center;
+        line-height: 450px;
+        .close-btn {
+            display: block;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 0;
+            right: -50px;
+            background: url(../images/close.jpg) no-repeat center;
+        }
+        .picture-tab {
+            display: block;
+            width: 55px;
+            height: 120px;
+            position: absolute;
+            top: 50%;
+            margin-top: -60px;
+            background: url(../images/picture-tab.png) no-repeat center;
+            &.left-tab {
+                left: -55px;
+                @include ixy(5px, -102px);
+            }
+            &.right-tab {
+                right: -55px;
+                @include ixy(5px, -252px);
+            }
+        }
+    }
+}
+
+//五屏人物r和标题t位置和缩放
+.r5 {
+    right: -15%;
+    top: -200px;
+    transform: scale(.6);
+}
+
+.t5 {
+    right: 5%;
+    top: -50px;
+    transform: scale(.6);
+}
+
+.f5 {
+    left: 5%;
+    top: 10%;
+    transform: scale(.6);
+}
+
+//加上.on的动画
+.on {
+    //右侧滑出动画
+    @keyframes fadeInRight {
+        0% {
+            opacity: 0;
+            transform: translate(100%, 0)
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    //左侧滑出动画
+    @keyframes fadeInLeft {
+        0% {
+            opacity: 0;
+            transform: translate(-100%, 0)
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    //淡出动画
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    //二屏
+    .r2 {
+        animation: fadeInRight .8s ease both;
+    }
+    .t2 {
+        animation: fadeInLeft .5s ease .1s both;
+    }
+    .f2 {
+        animation: fadeIn .8s ease both;
+    }
+    //三屏
+    .r3 {
+        animation: fadeInLeft .3s ease both;
+    }
+    .t3 {
+        animation: fadeIn .3s ease both;
+    }
+    //四屏
+    .r4-1 {
+        animation: fadeInRight .5s ease both;
+    }
+    .r4-2 {
+        animation: fadeInLeft .5s ease both;
+    }
+    .t4 {
+        animation: fadeIn .5s ease both;
+    }
+    .f4 {
+        animation: fadeIn .8s ease both;
+    }
+    //五屏
+    .r5 {
+        animation: fadeIn 1s ease .3s both;
+    }
+    .t5 {
+        animation: fadeInRight .8s ease both;
+    }
+    .f5 {
+        animation: fadeInLeft .8s ease both;
+    }
+}
+
+//一屏和五屏跳动的鼠标提示
+.mouse-tips {
+    @keyframes doUpDown {
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(0, -30%);
+        }
+    }
+    position: absolute;
+    width: 38px;
+    height: 101px;
+    left: 50%;
+    bottom: 20px;
+    margin-left: -19px;
+    background: url(../images/mouse_tips.png) no-repeat;
+    animation: doUpDown .5s ease-in-out infinite alternate both;
+    &.down {
+        background-position: 0 0;
+    }
+    &.up {
+        bottom: 200px;
+        background-position: 0 -170px;
+    }
+}
+
+//右侧fixed点击导航
+.nav-right {
+    $nrH: 348px;
+    width: 48px;
+    height: $nrH;
+    position: fixed;
+    right: 3%;
+    top: 50%;
+    margin-top: -$nrH/2;
+}
+
+.item {
+    background: url(../images/navRight_list.png) no-repeat;
+    height: 48px;
+    width: 48px;
+    margin-bottom: 10px;
+}
+
+//导航图标雪碧图定位
+.i1 {
+    @include ixy(0, 0);
+}
+
+.i2 {
+    @include ixy(0, -57px);
+}
+
+.i3 {
+    @include ixy(0, -113px);
+}
+
+.i4 {
+    @include ixy(0, -170px);
+}
+
+.i5 {
+    @include ixy(0, -226px);
+}
+
+.i6 {
+    @include ixy(0, -285px);
+}
+
+//导航图标hover式样
+.nav-right a:hover {
+    .i1 {
+        @include ixy(-80px, 0);
+    }
+    .i2 {
+        @include ixy(-80px, -57px);
+    }
+    .i3 {
+        @include ixy(-80px, -113px);
+    }
+    .i4 {
+        @include ixy(-80px, -170px);
+    }
+    .i5 {
+        @include ixy(-80px, -226px);
+    }
+    .i6 {
+        @include ixy(-80px, -285px);
+    }
+}
+
+//滚动或点击后附上class——on后的式样
+.i1 {
+    &.on {
+        @include ixy(-80px, 0);
+    }
+}
+
+.i2 {
+    &.on {
+        @include ixy(-80px, -57px);
+    }
+}
+
+.i3 {
+    &.on {
+        @include ixy(-80px, -113px);
+    }
+}
+
+.i4 {
+    &.on {
+        @include ixy(-80px, -170px);
+    }
+}
+
+.i5 {
+    &.on {
+        @include ixy(-80px, -226px);
+    }
+}
+
+.i6 {
+    &.on {
+        @include ixy(-80px, -285px);
+    }
+}
+
+// 左侧新闻弹出层
+.info {
+    $newsH: 100%;
+    width: 350px;
+    height: $newsH;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+//最新新闻按钮
+.info-tg {
+    $newsBtnH: 200px;
+    width: 55px;
+    height: $newsBtnH;
+    position: absolute;
+    right: -55px;
+    top: 50%;
+    margin-top: -$newsBtnH/2;
+    background: orange;
+    text-align: center;
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+    .info-txt {
+        width: 30px;
+        color: #fff;
+        font-size: 25px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+//新闻内容
+.info-box {
+    padding: 30px 50px;
+    .avatar {
+        display: block;
+        width: 100px;
+        height: 100px;
+        margin: 0 auto;
+        border-radius: 50px;
+        border: 1px solid #000;
+    }
+    .info-li {
+        height: 50px;
+        padding: 10px;
+        border-bottom: 1px dashed #fff;
+        margin-bottom: 10px;
+        >h3 {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@mixin pos($t: 0, $l: 0,$type: absolute) {
+    position: $type;
+    top: $t;
+    left: $l;
+}
+
+.title {
+    @include pos(40%, 50%);
+    width: 600px;
+    height: 150px;
+    margin-left:  -300px;
+    margin-top: -75px;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+}
+
+// 花瓣
+.petals {
+    >div {
+        width: 209px;
+        height: 142px;
+        position: fixed;
+        background: url(../images/petal.png) no-repeat 0 0;
+        animation: fadeIn .5s ease .5s both;
+    }
+    .p1 {
+        left: 85%;
+        top: -2%;
+        transform: rotate(0deg) scale(.5);
+    }
+    .p2 {
+        left: 5%;
+        top: -5%;
+        transform: rotate(15deg) scale(.6);
+    }
+    .p3 {
+        left: 20%;
+        top: 64%;
+        transform: rotate(20deg) scale(.9);
+    }
+    .p4 {
+        left: 77%;
+        top: 90%;
+        transform: rotate(10deg) scale(1);
+    }
+    .p5 {
+        left: 25%;
+        top: 20%;
+        transform: rotate(25deg) scale(.4);
+    }
+}
+
+// 弹幕盒子
+.barrageBox {
+    width: 100%;
+    height: 230px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    overflow: hidden;
+    .barrage {
+        display: block;
+        position: absolute;
+        bottom: 10px;
+        right: -300px;
+        span {
+            display: inline-block;
+        }
+        .jianbing {
+            height: 40px;
+            background-image: url(../images/jianbing.png);
+            background-repeat: no-repeat;
+            background-position-x: 0;
+            position: absolute;
+            top: -8px;
+            right: -80px;
+        }
+        .jianjian {
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            position: absolute;
+            top: 0;
+            left: -24px;
+        }
+        .txt {
+            height: 24px;
+            line-height: 24px;
+            font-size: 16px;
+            padding-right: 30px;
+            letter-spacing: 0;
+            word-break: keep-all;
+            white-space: pre;
+        }
+    }
+}
+
+// 三种式样的弹幕
+@mixin barragejx($jbr, $jw, $bpy, $bgc) {
+    .jianbing {
+        width: $jw + px;
+        background-position-y: $bpy + px;
+        right: $jbr + px;
+    }
+    .txt {
+        background: $bgc;
+    }
+    .jianjian {
+        border-right: 24px solid $bgc;
+    }
+}
+
+.barrage.j1 {
+    @include barragejx(-50, 66, 0, #b7ebc5)
+}
+
+.barrage.j2 {
+    @include barragejx( -80, 107, -60, #f5caee)
+}
+
+.barrage.j3 {
+    @include barragejx(-56, 75, -123, #b7ebfc)
+}
+
+.barTxt {
+    width: 130px;
+    height: 60px;
+    position: absolute;
+    bottom: 30%;
+    right: 28%;
+    >div {
+        width: 50%;
+        height: 100%;
+        line-height: 60px;
+        margin-bottom: 10px;
+        color: #874320;
+        background: #e0c56c;
+        font-size: 14px;
+        text-align: center;
+        box-sizing: border-box;
+        float: left;
+    }
+    .tabTxt {
+        border-radius: 15px 0 0 15px;
+    }
+    .sendTxt {
+        border-radius: 0 15px 15px 0;
+    }
+}
+
+.barBtns {
+    width: 130px;
+    height: 60px;
+    position: absolute;
+    bottom: 30%;
+    right: 28%;
+    >a {
+        display: block;
+        float: left;
+        width: 50%;
+        height: 100%;
+    }
+}
+
+.bar-send {
+    width: 100%;
+    height: 62px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .8);
+    display: none;
+    .input-box {
+        width: 730px;
+        height: 42px;
+        line-height: 42px;
+        margin: 10px auto;
+        >* {
+            display: block;
+            float: left;
+            height: 100%;
+        }
+        .input-value {
+            box-sizing: border-box;
+            width: 85%;
+            background: transparent;
+            text-indent: 30px;
+            color: #d5d3d3;
+            border: 1px solid #a89564;
+        }
+        >a {
+            width: 15%;
+            color: #fff;
+            background: #a89564;
+            text-align: center;
+            font-size: 20px;
+        }
+    }
+}
+
+// z-index属性汇总
+// 标题图片
+.tit {
+    z-index: 80;
+}
+
+// 人物图片层
+.pro {
+    z-index: 70;
+}
+
+.feature {
+    z-index: 72;
+}
+
+// 跳动的鼠标提示
+.mouse-tips {
+    z-index: 97;
+}
+
+// 右侧导航按钮
+.nav-right {
+    z-index: 100;
+}
+
+// 左侧新闻层
+.info {
+    z-index: 99;
+}
+
+// 花瓣
+.petals>div {
+    z-index: 95;
+}
+
+// 第五屏页脚
+.footer {
+    z-index: 96;
+}
+
+// 图片视频弹出层
+.popup-bg {
+    z-index: 110;
+}
+
+// 弹幕层
+.barrageBox {
+    z-index: 105;
+}
+
+.barrageBtn {
+    z-index: 104;
+}
+
+.barBtns {
+    z-index: 106;
+}
+
+.bar-send {
+    z-index: 107;
+}
