@@ -1,8 +1,10 @@
 var doFn = {
     // 储存第二屏风景图片的数组
     img: [],
-    // 弹幕是否显示
+    // 弹幕是否开启
     bar: false,
+    // 弹幕输入框是否打开
+    send: false,
     // 弹幕滚动定时器
     barTimer: null,
 
@@ -48,12 +50,19 @@ var doFn = {
                 }
                 newsControl();
                 setMtAndOn();
-                // 不在第一屏时关闭弹幕
-                if (onIndex != 0 && doFn.bar === true) {
-                    clearInterval(doFn.barTimer);
-                    $('.barrageBox').hide();
-                    $('.tabTxt').text('开启弹幕');
-                    doFn.bar = false;
+                // 不在第一屏时关闭弹幕及弹框
+                if (onIndex != 0) {
+                    if (doFn.bar === true) {
+                        clearInterval(doFn.barTimer);
+                        $('.barrageBox').hide();
+                        $('.tabTxt').text('开启弹幕');
+                        doFn.bar = false;
+                    }
+                    if (doFn.send === true) {
+                        $('.bar-send').slideUp(200);
+                        $('.sendTxt').text('发送弹幕');
+                        doFn.send = false;
+                    }
                 }
                 // 滚到第二屏的时候加载二屏轮播图片
                 if (onIndex === 1) {
@@ -137,7 +146,7 @@ var doFn = {
             });
         }
 
-        //二屏的风景图片加载 加载过一次便不执行了
+        //二屏的风景图片懒加载 加载过一次便不执行了
         function f2imgLoad() {
             if (onIndex === 1 && !imgLoad) {
                 $('.f2 area').each(function (index) {
@@ -244,7 +253,8 @@ var doFn = {
         var uml = 0;
 
         function setImgSrc() {
-            $('.popup-content').find('img').eq(0).attr('src', doFn.img[rel].src);
+            var imgSrc = doFn.img[rel].src;
+            $('.popup-content').find('img').eq(0).attr('src', imgSrc);
         }
         // 点击btn1 ul的ml+518px 限定范围 
         $('.tab-btn1').click(function () {
@@ -271,18 +281,22 @@ var doFn = {
             rel = $(this).attr('rel');
             $('.page2 .popup-bg').show();
             setImgSrc()
-                //点击左右tab按钮切换图片
+            //点击左右tab按钮切换图片
             $('.left-tab').click(function () {
                 if (rel > 0) {
                     rel--;
-                    setImgSrc();
+                } else {
+                    rel = doFn.img.length - 1;
                 }
+                setImgSrc();
             });
             $('.right-tab').click(function () {
-                if (rel < doFn.img.length) {
+                if (rel < doFn.img.length - 1) {
                     rel++;
-                    setImgSrc();
+                } else {
+                    rel = 0;
                 }
+                setImgSrc();
             });
         });
 
@@ -356,8 +370,9 @@ var doFn = {
                 }, 2000);
             }
 
-            // 随机发送弹幕
+            // 开启弹幕弹幕
             $('.startBar').on('click', function () {
+                console.log('ds');
                 if (!doFn.bar) {
                     startBar();
                 } else {
@@ -367,21 +382,21 @@ var doFn = {
                 }
                 doFn.bar = !doFn.bar;
             });
-            // 弹幕输入框是否打开
-            var send = false;
+
+            // 打开发送框
             $('.sendBar').on('click', function () {
-                if (!doFn.bar) {
+                if (!doFn.bar && !doFn.send) {
                     startBar();
                     doFn.bar = !doFn.bar;
                 }
-                if (!send) {
+                if (!doFn.send) {
                     $('.bar-send').slideDown(200);
                     $('.sendTxt').text('隐藏弹框');
                 } else {
                     $('.bar-send').slideUp(200);
                     $('.sendTxt').text('发送弹幕');
                 }
-                send = !send;
+                doFn.send = !doFn.send;
             });
 
             // focus清空input 按enter键发送弹幕
