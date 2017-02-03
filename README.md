@@ -4,7 +4,7 @@
 
 ## demo lists
 
-- vue.js问卷管理webapp <a href="http://win5do.cc/jianqn/#/" target="_blank">livedemo    <a href="#demo1">项目介绍</a>
+- vue.js问卷管理webapp <a href="http://win5do.cc/jianqn/#/" target="_blank">livedemo</a>    <a href="#demo1">项目介绍</a>
 - 应用各种动画的fullpage专题页面 <a href="http://win5do.cc/xx2" target="_blank">livedemo</a>     <a href="#demo2">项目介绍</a>
 
 <a href="http://win5do.cc/jianqn/#/" target="_blank"><h3 id="demo1">vue.js打造的问卷管理webapp</h3></a>
@@ -67,4 +67,5 @@
 - 不能跨域ajax：原网站第一屏有个flash，把地址改一下链接是可以打开的，但是在我的页面上会卡住，下到本地也不行，第一屏就用了张图了，flash+弹幕也会非常卡。原网站新闻列表也是通过ajax请求的，我这边当然拿不到了，就用静态的代替了。
 
 5. 总结
+
 看到这个网站挺时髦就来仿写了，想着简历也用这种全屏滚动的方式。以前都没有写过这么多js，光pc端就有四五百行，开始是从上到下的写法，才实现了一小部分就发现这么写代码太乱了，于是改成对象写法，相互调用的时候踩了很多this和作用域的坑，不得不重温下js红宝书。通过这个项目加深了自己对动画，事件，作用域的理解以及this的理解，对jq和css3的运用也更熟练了。但是即便是用了对象写法，而且注释也写得蛮多，但是fix bug的时候上下翻着看代码的时候还是感觉蛮蛋疼，很多地方要是封装成函数，通过传参、回调来调用，逻辑应该会更清晰了，解耦这方面还差很远。写过稍微复杂一点的项目才明白，模块化的必要性，webpack大法好！

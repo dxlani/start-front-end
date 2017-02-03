@@ -68,6 +68,10 @@ var doFn = {
                 if (onIndex === 1) {
                     f2imgLoad();
                 }
+                // 滚到第四屏时候加载视频
+                if (onIndex === 3) {
+                    $('.popup-content').find('video').attr('src', "http://videogame.ztgame.com.cn/xx2/20160927/xx2-147495913984.mp4");
+                }
                 // 滚动时pause四屏视频，隐藏二屏和四屏的弹层
                 if (onIndex != 1 && onIndex != 3) {
                     $('.popup-content').find('video')[0].pause();
