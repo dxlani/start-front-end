@@ -8,8 +8,7 @@ import ReactDOM from 'react-dom';
 var imageDatas = require('json-loader!../data/imageDatas.json');
 
 //将图片名称转成图片url路径信息 自执行函数
-//此处可能有坑
-imageDatas = (function getImageURL(imageDatasArr) {
+imageDatas = ((imageDatasArr) => {
   for (var i = 0; i < imageDatasArr.length; i++) {
     var singleImageData = imageDatasArr[i];
     singleImageData.imageURL = 'http://ohjk5hfzd.bkt.clouddn.com/movieWall' + singleImageData.fileName;
@@ -170,7 +169,7 @@ class AppComponent extends React.Component {
     var topImgNum = Math.floor(Math.random() * 2);
     var topFirstImgIndex = Math.floor(Math.random() * (imgsArrangeArr.length - topImgNum));
     var topArr = imgsArrangeArr.splice(topFirstImgIndex, topImgNum);
-    topArr.forEach(function(value, index) {
+    topArr.forEach((value, index) => {
         topArr[index] = {
           pos: {
             //利用getRangeRandom函数在范围内随机取得xy坐标
@@ -205,7 +204,7 @@ class AppComponent extends React.Component {
 
     //把取出的上和中图片信息放回imgsArrangeArr
     if (topArr && topArr.length > 0) {
-        topArr.forEach(function(value, index) {
+        topArr.forEach((value, index) => {
         imgsArrangeArr.splice(topFirstImgIndex, 0, topArr[index]);
 
       })
@@ -219,21 +218,20 @@ class AppComponent extends React.Component {
   }
 
   inverse(index) {
-    return function () {
+    return () => {
       var imgsArrangeArr = this.state.imgsArrangeArr;
       imgsArrangeArr[index].isInverse = !imgsArrangeArr[index].isInverse;
       this.setState({
         imgsArrangeArr: imgsArrangeArr
       })
-    }.bind(this);
+    }
   }
 
   center(index) {
-    return function () {
+    return () => {
       this.reArrange(index);
-    }.bind(this);
+    };
   }
-
 
   componentDidMount() {
 
@@ -282,7 +280,7 @@ class AppComponent extends React.Component {
     var controllerUnits = [];
     var imgFigures = [];
 
-    imageDatas.forEach(function (value, index) {
+    imageDatas.forEach((value, index) => {
       if (!this.state.imgsArrangeArr[index]) {
         this.state.imgsArrangeArr[index] = {
           pos: {
@@ -299,7 +297,7 @@ class AppComponent extends React.Component {
       controllerUnits.push(<Controller key={index} data={index} ref={'controller' + index} arrange={this.state.imgsArrangeArr[index]}
         inverse={this.inverse(index)}
         center={this.center(index)} />);
-    }.bind(this));
+    });
 
     return (
       <section>
@@ -311,7 +309,7 @@ class AppComponent extends React.Component {
         </nav>
         <h1 className="main-title">无风的电影墙</h1>
       </section>
-    )
+    );
   }
 }
 

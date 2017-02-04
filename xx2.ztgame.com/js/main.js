@@ -22,8 +22,9 @@ var doFn = {
         var clientH = 734;
         // 新闻弹出层状态
         var newsOut = true;
-        // 二屏的图片还未加载
+        // 二屏图片和四屏视频lazyload flag
         var imgLoad = false;
+        var videoLoad = false;
 
         function pageTurnHandler() {
             e = event || window.event;
@@ -65,12 +66,17 @@ var doFn = {
                     }
                 }
                 // 滚到第二屏的时候加载二屏轮播图片
-                if (onIndex === 1) {
-                    f2imgLoad();
+                if (onIndex === 1 && !imgLoad) {
+                    $('.f2 area').each(function (index) {
+                        doFn.img[index] = new Image();
+                        doFn.img[index].src = $(this).attr('data-url');
+                    });
+                    imgLoad = true;
                 }
                 // 滚到第四屏时候加载视频
-                if (onIndex === 3) {
+                if (onIndex === 3 && !videoLoad) {
                     $('.popup-content').find('video').attr('src', "http://videogame.ztgame.com.cn/xx2/20160927/xx2-147495913984.mp4");
+                    videoLoad = true;
                 }
                 // 滚动时pause四屏视频，隐藏二屏和四屏的弹层
                 if (onIndex != 1 && onIndex != 3) {
@@ -148,17 +154,6 @@ var doFn = {
                 currentOn('.column');
                 currentOn('.item');
             });
-        }
-
-        //二屏的风景图片懒加载 加载过一次便不执行了
-        function f2imgLoad() {
-            if (onIndex === 1 && !imgLoad) {
-                $('.f2 area').each(function (index) {
-                    doFn.img[index] = new Image();
-                    doFn.img[index].src = $(this).attr('data-url');
-                });
-                imgLoad = true;
-            }
         }
 
         // 新闻点击伸缩按钮
