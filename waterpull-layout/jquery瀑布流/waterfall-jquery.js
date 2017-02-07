@@ -6,7 +6,7 @@ $(document).ready(function(){
 			$.each(dataInt.data,function(){
 			var oPin=$('<div>').addClass('pin').appendTo($('#main'));
 			var oBox=$('<div>').addClass('box').appendTo(oPin);
-			$('<img>').attr('src','./images/' + $(this).attr('src') ).appendTo(oBox);
+			$('<img>').attr('src','../images/' + $(this).attr('src') ).appendTo(oBox);
 			});
 		}
 		waterFall();

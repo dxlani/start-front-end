@@ -12,7 +12,7 @@ window.onload=function(){
 				oBox.className='box';
 				oPin.appendChild(oBox);
 				var oImg=document.createElement('img');
-				oImg.src='images/'+dateInt.date[i].src;
+				oImg.src='../images/'+dateInt.date[i].src;
 				oBox.appendChild(oImg);
 			}
 			waterFall('main','pin');

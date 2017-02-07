@@ -1,0 +1,20 @@
+p1 头图
+p2 项目
+p3 技能
+p4 经历
+p5 结语
+
+伍丰 个人简历
+追求代码的简洁易读
+善于学习并解决问题
+对新技术好奇但理智
+
+p2
+vue jq react node css3 mobile
+
+p3
+85% 熟练使用 html5 css3 photoshop
+80% 基本掌握 jquery javascript scss
+70% 初步应用 vue webpack bootstrap
+20% 略知一二 nodejs react
+90% 开发工具 vscode gitbash github shadowsocks koala
