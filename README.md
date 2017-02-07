@@ -4,15 +4,15 @@
 
 ## demo lists
 
-- 基于vue.js的问卷管理webapp <a href="http://win5do.cc/jianqn/#/" target="_blank">livedemo</a>    <a href="#demo1">项目介绍</a>
-- 应用各种动画的fullpage专题页面 <a href="http://win5do.cc/xx2" target="_blank">livedemo</a>     <a href="#demo2">项目介绍</a>
-- react打造的电影墙页面<a href="http://win5do.cc/photowall" target="_blank">livedemo</a>    <a href="#demo3">项目介绍</a>
+- 基于vue.js的问卷管理webapp       <a href="http://win5do.cc/jianqn/#/" target="_blank">LiveDemo</a>    <a href="#demo1">项目介绍</a>    <a href="https://github.com/win5do/IFE/tree/master/task50-vue-questionnaire" target="_blank">SourceCode</a>
+- 应用各种动画的fullpage专题页面    <a href="http://win5do.cc/xx2" target="_blank">LiveDemo</a>     <a href="#demo2">项目介绍</a>      <a href="https://github.com/win5do/imooc/tree/master/xx2.ztgame.com" target="_blank">SourceCode</a>
+- react打造的电影墙页面     <a href="http://win5do.cc/photowall" target="_blank">LiveDemo</a>    <a href="#demo3">项目介绍</a>      <a href="https://github.com/win5do/imooc/tree/master/react-photoWall" target="_blank">SourceCode</a>
 
 <a href="http://win5do.cc/jianqn/#/" target="_blank"><h3 id="demo1">vue.js打造的问卷管理webapp</h3></a>
 
 1. 简介
 
-    这是根据<a href="http://ife.baidu.com/2016/task/detail?taskId=50" target="_blank">百度前端技术学院第50项任务</a>写的一个小型问卷网站，用vue.js打造成单页面web应用。可以创建、保存、填写问卷，能够统计填写结果并以表格的方式呈现出来。
+    这是根据<a href="http://ife.baidu.com/2016/task/detail?taskId=50" target="_blank">百度前端技术学院第50项任务</a>写的一个小型问卷网站，用vue.js打造成单页面web应用。可以创建、保存、填写问卷，能够统计填写结果并以图表统计的方式呈现出来。
 
 2. 技术栈
 
@@ -71,8 +71,6 @@
 5. 总结
 
     看到这个网站挺时髦就来仿写了，想着简历也用这种全屏滚动的方式。以前都没有写过这么多js，光pc端就有四五百行，开始是从上到下的写法，才实现了一小部分就发现这么写代码太乱了，于是改成对象写法，相互调用的时候踩了很多this和作用域的坑，不得不重温下js红宝书。通过这个项目加深了自己对动画，事件，作用域的理解以及this的理解，对jq和css3的运用也更熟练了。但是即便是用了对象写法，而且注释也写得蛮多，但是fix bug的时候上下翻着看代码的时候还是感觉蛮蛋疼，很多地方要是封装成函数，通过传参、回调来调用，逻辑应该会更清晰了，解耦这方面还差很远。写过稍微复杂一点的项目才明白，模块化的必要性，webpack大法好！
-
-react打造的电影墙页面
 
 <a href="http://win5do.cc/photowall" target="_blank"><h3 id="demo3">react打造的电影墙页面</h3></a>
 

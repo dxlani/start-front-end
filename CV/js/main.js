@@ -185,62 +185,6 @@ var doFn = {
         });
 
     },
-
-    // 第二屏图片预览函数
-    f2PictureFn: function () {
-        var $ul = $('.f2 > ul');
-        var uml = 0;
-
-        function setImgSrc() {
-            $('.popup-content').find('img').eq(0).attr('src', doFn.img[rel].src);
-        }
-        // 点击btn1 ul的ml+518px 限定范围 
-        $('.tab-btn1').click(function () {
-            if (uml >= -1036 && uml < 0) {
-                $ul.animate({
-                    'marginLeft': '+=518'
-                }, 500);
-                uml += 518;
-            }
-        });
-
-        // 点击btn2 ul的ml-518px 限定范围
-        $('.tab-btn2').click(function () {
-            if (uml <= 0 && uml > -1036) {
-                $ul.animate({
-                    'marginLeft': '-=518'
-                }, 500);
-                uml -= 518;
-            };
-        });
-
-        // 点击area图片预览弹层show
-        $('.f2 area').click(function (index) {
-            rel = $(this).attr('rel');
-            $('.page2 .popup-bg').show();
-            setImgSrc()
-            //点击左右tab按钮切换图片
-            $('.left-tab').click(function () {
-                if (rel > 0) {
-                    rel--;
-                    setImgSrc();
-                }
-            });
-            $('.right-tab').click(function () {
-                if (rel < doFn.img.length) {
-                    rel++;
-                    setImgSrc();
-                }
-            });
-        });
-
-        // 点击关闭按钮隐藏图片预览弹层
-        $('.close-btn').click(function () {
-            $('.page2 .popup-bg').hide();
-        });
-
-    },
 }
 
 doFn.scrollFn();
-doFn.f2PictureFn();

@@ -184,7 +184,7 @@ body {
     .project {
         position: absolute;
         height: 100px;
-        width: 400px;
+        width: 450px;
         background: #fff;
         border: 1px solid #eee;
         box-shadow: 1px 3px 3px 0 #b9b9b9;
@@ -203,10 +203,32 @@ body {
             color: #fff;
         }
         .pro-txt {
-            float: right;
-            width: 280px;
+            float: left;
+            width: 250px;
             height: 100%;
+            margin-left: 10px;
             text-align: left;
+            >h3 {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+            >p {
+                font-size: 13px;
+            }
+        }
+        .pro-btn {
+            float: right;
+            width: 80px;
+            height: 100%;
+            .pro-link {
+                display: block;
+                padding: 5px 0;
+                margin: 8px 0;
+                color: #fff;
+                background: #ef4d4d;
+                border-radius: 4px;
+                box-shadow: 0 3px 0 0 #ab3434;
+            }
         }
         // 左侧
         $pTop: 100px;
@@ -287,11 +309,11 @@ body {
             top: 0;
             width: 100%;
             height: 100%;
-            padding: 20px;
+            padding: 15px;
             text-indent: 2em;
-            text-align: left;
+            text-align: justify;
             box-sizing: border-box;
-            font-size: 16px;
+            font-size: 14px;
             transform: rotateY(180deg) translateZ(1px);
             backface-visibility: hidden;
             background: #efefef;
@@ -392,7 +414,6 @@ body {
             opacity: 1;
         }
     }
-    
     //二屏
     .pro2,
     .pro4,
@@ -611,17 +632,18 @@ body {
     @include basic;
     background: rgba(0, 0, 0, .6);
     display: none;
-    position: relative;
+    position: fixed;
+    left: 0;
+    top: 0;
     .popup-content {
-        width: 800px;
-        height: 450px;
+        width: 600px;
+        height: 400px;
         position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -225px;
-        margin-left: -400px;
+        left: calc(50% - 300px);
+        top: calc(50% - 200px);
         text-align: center;
         line-height: 450px;
+        background: #fff;
         .close-btn {
             display: block;
             width: 50px;
