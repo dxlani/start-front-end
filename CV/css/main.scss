@@ -5,6 +5,7 @@ h1,
 h2,
 h3,
 h4,
+h5,
 form,
 input,
 img,
@@ -54,12 +55,12 @@ body {
 
 @font-face {
     font-family: "iconfont";
-    src: url('../fonts/iconfont.eot?t=1486389491786');
+    src: url('../fonts/iconfont.eot?t=1486564141126');
     /* IE9*/
-    src: url('../fonts/iconfont.eot?t=1486389491786#iefix') format('embedded-opentype'), /* IE6-IE8 */
-    url('../fonts/iconfont.woff?t=1486389491786') format('woff'), /* chrome, firefox */
-    url('../fonts/iconfont.ttf?t=1486389491786') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-    url('../fonts/iconfont.svg?t=1486389491786#iconfont') format('svg');
+    src: url('../fonts/iconfont.eot?t=1486564141126#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/iconfont.woff?t=1486564141126') format('woff'), /* chrome, firefox */
+    url('../fonts/iconfont.ttf?t=1486564141126') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../fonts/iconfont.svg?t=1486564141126#iconfont') format('svg');
     /* iOS 4.1- */
 }
 
@@ -128,6 +129,14 @@ body {
     content: "\e620";
 }
 
+.icon-qianjin:before {
+    content: "\e602";
+}
+
+.icon-github:before {
+    content: "\e601";
+}
+
 .wrap,
 .container,
 .column {
@@ -143,15 +152,9 @@ body {
     position: relative;
 }
 
-.page1 {
-    background: url(../images/headimg.jpg) no-repeat top center;
-    background-size: cover;
-}
-
 .page2,
 .page4 {
     background: #e8e8e8;
-    // background: #ffeded;
 }
 
 .page3,
@@ -162,13 +165,23 @@ body {
 // 一屏 标题
 .page1 {
     text-align: center;
-    .bg-half {
+    .bg1 {
+        display: block;
         @include basic;
-        background: rgba(0, 0, 0, .1);
+    }
+    .bg-black {
+        position: absolute;
+        left: 0;
+        top: 0;
+        @include basic;
+        background: rgba(0, 0, 0, .3);
     }
     .title1 {
+        position: absolute;
+        left: 0;
+        top: 250px;
+        width: 100%;
         height: 150px;
-        margin-top: 250px;
         color: #fff;
         font-size: 30px;
     }
@@ -366,8 +379,9 @@ body {
             height: 100%;
             text-align: center;
             box-sizing: border-box;
-            padding: 15px 0 0 15px;
-            font-size: 15px;
+            padding: 30px 0 0 15px;
+            font-size: 18px;
+            font-weight: 700;
             word-wrap: break-word;
             letter-spacing: 20px;
         }
@@ -379,6 +393,22 @@ body {
             height: 100%;
             box-sizing: border-box;
             padding: 30px;
+            line-height: 2;
+            text-indent: 2em;
+            text-align: left;
+        }
+    }
+}
+
+.page5 {
+    text-align: center;
+    .content {
+        margin: 250px 0 0;
+        .end {
+            opacity: 0;
+            font-size: 30px;
+            font-weight: 500;
+            margin: 10px 0;
         }
     }
 }
@@ -494,6 +524,38 @@ body {
     .his3 {
         animation: expand2 .8s 1.2s ease backwards;
     }
+    // 五屏
+    @keyframes fadeInUpBig {
+        from {
+            opacity: 0;
+            -webkit-transform: translate3d(0, 2000px, 0);
+            transform: translate3d(0, 2000px, 0);
+        }
+        to {
+            opacity: 1;
+            -webkit-transform: none;
+            transform: none;
+        }
+    }
+    .end {
+        animation: fadeInUpBig 1s ease both;
+    }
+    $endDelay: .5s;
+    .end2 {
+        animation-delay: $endDelay;
+    }
+    .end3 {
+        animation-delay: $endDelay * 2;
+    }
+    .end4 {
+        animation-delay: $endDelay * 3;
+    }
+    .end5 {
+        animation-delay: $endDelay * 4;
+    }
+    .end6 {
+        animation-delay: $endDelay * 5;
+    }
 }
 
 //一屏和五屏跳动的鼠标提示
@@ -518,7 +580,7 @@ body {
         background-position: 0 0;
     }
     &.up {
-        bottom: 200px;
+        bottom: 50px;
         background-position: 0 -170px;
     }
 }
@@ -530,36 +592,47 @@ body {
     height: $newsH;
     margin-top: -$newsH/2;
     position: fixed;
-    left: -5px;
+    left: -350px;
     top: 50%;
-    background: rgba(255, 255, 255, 0.2);
     color: #fff;
+    background: rgba(0, 0, 0, .5);
+    border-radius: 0 4px 4px 0;
 }
 
 //个人信息呼出按钮
 .info-tg {
-    $newsBtnH: 200px;
-    width: 55px;
+    $newsBtnH: 60px;
+    width: 40px;
     height: $newsBtnH;
     position: absolute;
-    right: -50px;
+    right: -39px;
     top: 50%;
     margin-top: -$newsBtnH/2;
-    background: orange;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
     text-align: center;
-    &:before {
-        content: '';
-        display: inline-block;
+    .info-arrow {
         height: 100%;
-        vertical-align: middle;
-    }
-    .info-txt {
-        width: 30px;
         color: #fff;
-        font-size: 25px;
-        display: inline-block;
-        vertical-align: middle;
+        font-size: 20px;
     }
+    .inverse {
+        transform: rotateY(180deg);
+    }
+    // &:before {
+    //     content: '';
+    //     display: inline-block;
+    //     height: 100%;
+    //     vertical-align: middle;
+    // }
+    // .info-txt {
+    //     width: 30px;
+    //     color: #333;
+    //     font-size: 25px;
+    //     display: inline-block;
+    //     vertical-align: middle;
+    // }
 }
 
 //info内容
@@ -595,82 +668,34 @@ body {
     right: 3%;
     top: 50%;
     margin-top: -$nrH/2;
-}
-
-.item {
-    height: 50px;
-    width: 50px;
-    margin: 10px 0;
-    background: #fe2f62;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 30px;
-    color: #fff;
-    text-align: center;
-    position: relative;
-    transition: all .8s ease;
-    //标签换行会使居中失效 还是绝对定位好用
-    white-space: pre;
-    &:hover,
-    &.on {
-        background: #fec02d;
-        color: #000;
-        transform: scale(1.3);
-        margin: 20px 0;
-    }
-    span {
-        display: none;
-        position: absolute;
-        left: -50px;
-        top: 13px;
-        font-size: 16px;
-        color: #000;
-    }
-}
-
-.popup-bg {
-    @include basic;
-    background: rgba(0, 0, 0, .6);
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    .popup-content {
-        width: 600px;
-        height: 400px;
-        position: absolute;
-        left: calc(50% - 300px);
-        top: calc(50% - 200px);
+    .item {
+        height: 50px;
+        width: 50px;
+        margin: 10px 0;
+        background: #fe2f62;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 30px;
+        color: #fff;
         text-align: center;
-        line-height: 450px;
-        background: #fff;
-        .close-btn {
-            display: block;
-            width: 50px;
-            height: 50px;
-            position: absolute;
-            top: 0;
-            right: -50px;
-            background: url(../images/close.jpg) no-repeat center;
+        position: relative;
+        transition: all .8s ease;
+        //标签换行会使居中失效 还是绝对定位好用
+        white-space: pre;
+        &:hover,
+        &.on {
+            background: #fec02d;
+            color: #000;
+            transform: scale(1.3);
+            margin: 20px 0;
         }
-        .picture-tab {
-            display: block;
-            width: 55px;
-            height: 120px;
+        span {
+            display: none;
             position: absolute;
-            top: 50%;
-            margin-top: -60px;
-            background: url(../images/picture-tab.png) no-repeat center;
-            &.left-tab {
-                left: -55px;
-                @include ixy(5px,
-                -102px);
-            }
-            &.right-tab {
-                right: -55px;
-                @include ixy(5px,
-                -252px);
-            }
+            left: -50px;
+            top: 13px;
+            font-size: 16px;
+            color: #000;
         }
     }
 }
@@ -678,45 +703,19 @@ body {
 .footer {
     position: absolute;
     width: 100%;
-    height: 110px;
+    height: 50px;
+    line-height: 50px;
+    color: #888;
     left: 0;
     bottom: 0;
-    background: #0b1a2e;
+    background: #444;
     font-size: 12px;
-    padding: 40px;
-    z-index: 10;
-    .foot-wrap {
-        width: 1000px;
-        height: 100%;
-        margin: 0 auto;
-        text-align: center;
-        background: url(../images/footbg.png) no-repeat 0 center;
-        .health-game {
-            color: #c0c2c2;
-        }
-        .copyright,
-        .copyright * {
-            color: #666;
-            margin-top: 20px;
-        }
+    >a {
+        color: #888;
     }
 }
 
 // z-index属性汇总
-// 标题图片
-.tit {
-    z-index: 80;
-}
-
-// 人物图片层
-.pro {
-    z-index: 70;
-}
-
-.feature {
-    z-index: 72;
-}
-
 // 跳动的鼠标提示
 .mouse-tips {
     z-index: 97;
@@ -732,34 +731,7 @@ body {
     z-index: 99;
 }
 
-// 花瓣
-.petals>div {
-    z-index: 95;
-}
-
 // 第五屏页脚
 .footer {
     z-index: 96;
-}
-
-// 图片视频弹出层
-.popup-bg {
-    z-index: 110;
-}
-
-// 弹幕层
-.barrageBox {
-    z-index: 105;
-}
-
-.barrageBtn {
-    z-index: 104;
-}
-
-.barBtns {
-    z-index: 106;
-}
-
-.bar-send {
-    z-index: 107;
 }

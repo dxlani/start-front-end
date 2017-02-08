@@ -1,4 +1,4 @@
-body, div, h1, h2, h3, h4, form, input, img, ul, ol, li, dl, dt, dd, p { margin: 0; padding: 0; border: none; outline: 0; }
+body, div, h1, h2, h3, h4, h5, form, input, img, ul, ol, li, dl, dt, dd, p { margin: 0; padding: 0; border: none; outline: 0; }
 
 li { list-style: none; }
 
@@ -6,9 +6,9 @@ a { text-decoration: none; }
 
 html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsoft YaHei, sans-serif; }
 
-@font-face { font-family: "iconfont"; src: url("../fonts/iconfont.eot?t=1486389491786");
+@font-face { font-family: "iconfont"; src: url("../fonts/iconfont.eot?t=1486564141126");
   /* IE9*/
-  src: url("../fonts/iconfont.eot?t=1486389491786#iefix") format("embedded-opentype"), url("../fonts/iconfont.woff?t=1486389491786") format("woff"), url("../fonts/iconfont.ttf?t=1486389491786") format("truetype"), url("../fonts/iconfont.svg?t=1486389491786#iconfont") format("svg")
+  src: url("../fonts/iconfont.eot?t=1486564141126#iefix") format("embedded-opentype"), url("../fonts/iconfont.woff?t=1486564141126") format("woff"), url("../fonts/iconfont.ttf?t=1486564141126") format("truetype"), url("../fonts/iconfont.svg?t=1486564141126#iconfont") format("svg")
   /* iOS 4.1- */ }
 .iconfont { font-family: "iconfont" !important; font-size: 16px; font-style: normal; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 .iconfont:before { vertical-align: middle; }
@@ -38,21 +38,24 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 
 .icon-daima:before { content: "\e620"; }
 
+.icon-qianjin:before { content: "\e602"; }
+
+.icon-github:before { content: "\e601"; }
+
 .wrap, .container, .column { width: 100%; height: 100%; }
 
 .wrap { overflow: hidden; }
 
 .column { overflow: hidden; position: relative; }
 
-.page1 { background: url(../images/headimg.jpg) no-repeat top center; background-size: cover; }
-
 .page2, .page4 { background: #e8e8e8; }
 
 .page3, .page5 { background: #bbb; }
 
 .page1 { text-align: center; }
-.page1 .bg-half { width: 100%; height: 100%; background: rgba(0, 0, 0, 0.1); }
-.page1 .title1 { height: 150px; margin-top: 250px; color: #fff; font-size: 30px; }
+.page1 .bg1 { display: block; width: 100%; height: 100%; }
+.page1 .bg-black { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); }
+.page1 .title1 { position: absolute; left: 0; top: 250px; width: 100%; height: 150px; color: #fff; font-size: 30px; }
 
 .page2 { text-align: center; }
 .page2 .title2 { margin-top: 20px; font-size: 40px; }
@@ -84,8 +87,12 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 .page4 .content { width: 650px; height: 300px; margin: 100px auto 0; }
 .page4 .history { float: left; width: 50px; height: 100%; margin: 0 2px; background: #fff; border: 1px solid #eee; border-radius: 2px; box-shadow: 1px 3px 3px 0 #b9b9b9; overflow: hidden; position: relative; -webkit-transition: all .8s ease; transition: all .8s ease; }
 .page4 .history.cur { width: 500px; }
-.page4 .history .year { position: absolute; left: 0; top: 0; width: 50px; height: 100%; text-align: center; box-sizing: border-box; padding: 15px 0 0 15px; font-size: 15px; word-wrap: break-word; letter-spacing: 20px; }
-.page4 .history .intro { position: absolute; left: 50px; top: 0; width: 450px; height: 100%; box-sizing: border-box; padding: 30px; }
+.page4 .history .year { position: absolute; left: 0; top: 0; width: 50px; height: 100%; text-align: center; box-sizing: border-box; padding: 30px 0 0 15px; font-size: 18px; font-weight: 700; word-wrap: break-word; letter-spacing: 20px; }
+.page4 .history .intro { position: absolute; left: 50px; top: 0; width: 450px; height: 100%; box-sizing: border-box; padding: 30px; line-height: 2; text-indent: 2em; text-align: left; }
+
+.page5 { text-align: center; }
+.page5 .content { margin: 250px 0 0; }
+.page5 .content .end { opacity: 0; font-size: 30px; font-weight: 500; margin: 10px 0; }
 
 @-webkit-keyframes fadeInRight { 0% { opacity: 0; -webkit-transform: translate(100%, 0); transform: translate(100%, 0); }
   100% { opacity: 1; } }
@@ -128,6 +135,16 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 .on .history { -webkit-animation: expand1 1.2s ease backwards; animation: expand1 1.2s ease backwards; }
 .on .his2 { -webkit-animation-delay: .6s; animation-delay: .6s; }
 .on .his3 { -webkit-animation: expand2 .8s 1.2s ease backwards; animation: expand2 .8s 1.2s ease backwards; }
+@-webkit-keyframes fadeInUpBig { from { opacity: 0; -webkit-transform: translate3d(0, 2000px, 0); transform: translate3d(0, 2000px, 0); }
+  to { opacity: 1; -webkit-transform: none; transform: none; } }
+@keyframes fadeInUpBig { from { opacity: 0; -webkit-transform: translate3d(0, 2000px, 0); transform: translate3d(0, 2000px, 0); }
+  to { opacity: 1; -webkit-transform: none; transform: none; } }
+.on .end { -webkit-animation: fadeInUpBig 1s ease both; animation: fadeInUpBig 1s ease both; }
+.on .end2 { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
+.on .end3 { -webkit-animation-delay: 1s; animation-delay: 1s; }
+.on .end4 { -webkit-animation-delay: 1.5s; animation-delay: 1.5s; }
+.on .end5 { -webkit-animation-delay: 2s; animation-delay: 2s; }
+.on .end6 { -webkit-animation-delay: 2.5s; animation-delay: 2.5s; }
 
 .mouse-tips { position: absolute; width: 38px; height: 101px; left: 50%; bottom: 20px; margin-left: -19px; background: url(../images/mouse_tips.png) no-repeat; -webkit-animation: doUpDown .5s ease-in-out infinite alternate both; animation: doUpDown .5s ease-in-out infinite alternate both; }
 @-webkit-keyframes doUpDown { 0% { -webkit-transform: translate(0, 0); transform: translate(0, 0); }
@@ -135,13 +152,13 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 @keyframes doUpDown { 0% { -webkit-transform: translate(0, 0); transform: translate(0, 0); }
   100% { -webkit-transform: translate(0, -30%); transform: translate(0, -30%); } }
 .mouse-tips.down { background-position: 0 0; }
-.mouse-tips.up { bottom: 200px; background-position: 0 -170px; }
+.mouse-tips.up { bottom: 50px; background-position: 0 -170px; }
 
-.info { width: 350px; height: 600px; margin-top: -300px; position: fixed; left: -5px; top: 50%; background: rgba(255, 255, 255, 0.2); color: #fff; }
+.info { width: 350px; height: 600px; margin-top: -300px; position: fixed; left: -350px; top: 50%; color: #fff; background: rgba(0, 0, 0, 0.5); border-radius: 0 4px 4px 0; }
 
-.info-tg { width: 55px; height: 200px; position: absolute; right: -50px; top: 50%; margin-top: -100px; background: orange; text-align: center; }
-.info-tg:before { content: ''; display: inline-block; height: 100%; vertical-align: middle; }
-.info-tg .info-txt { width: 30px; color: #fff; font-size: 25px; display: inline-block; vertical-align: middle; }
+.info-tg { width: 40px; height: 60px; position: absolute; right: -39px; top: 50%; margin-top: -30px; background: rgba(0, 0, 0, 0.5); border-radius: 0 6px 6px 0; cursor: pointer; text-align: center; }
+.info-tg .info-arrow { height: 100%; color: #fff; font-size: 20px; }
+.info-tg .inverse { -webkit-transform: rotateY(180deg); transform: rotateY(180deg); }
 
 .info-box { padding: 15px 50px; }
 .info-box .avatar { display: block; width: 100px; height: 100px; margin: 0 auto; border-radius: 50px; border: 1px solid #fff; }
@@ -150,28 +167,12 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 .info-box .info-li > p { font-size: 16px; }
 
 .nav-right { height: 348px; position: fixed; right: 3%; top: 50%; margin-top: -174px; }
+.nav-right .item { height: 50px; width: 50px; margin: 10px 0; background: #fe2f62; border-radius: 25px; cursor: pointer; font-size: 30px; color: #fff; text-align: center; position: relative; -webkit-transition: all .8s ease; transition: all .8s ease; white-space: pre; }
+.nav-right .item:hover, .nav-right .item.on { background: #fec02d; color: #000; -webkit-transform: scale(1.3); -ms-transform: scale(1.3); transform: scale(1.3); margin: 20px 0; }
+.nav-right .item span { display: none; position: absolute; left: -50px; top: 13px; font-size: 16px; color: #000; }
 
-.item { height: 50px; width: 50px; margin: 10px 0; background: #fe2f62; border-radius: 25px; cursor: pointer; font-size: 30px; color: #fff; text-align: center; position: relative; -webkit-transition: all .8s ease; transition: all .8s ease; white-space: pre; }
-.item:hover, .item.on { background: #fec02d; color: #000; -webkit-transform: scale(1.3); -ms-transform: scale(1.3); transform: scale(1.3); margin: 20px 0; }
-.item span { display: none; position: absolute; left: -50px; top: 13px; font-size: 16px; color: #000; }
-
-.popup-bg { width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); display: none; position: fixed; left: 0; top: 0; }
-.popup-bg .popup-content { width: 600px; height: 400px; position: absolute; left: calc(50% - 300px); top: calc(50% - 200px); text-align: center; line-height: 450px; background: #fff; }
-.popup-bg .popup-content .close-btn { display: block; width: 50px; height: 50px; position: absolute; top: 0; right: -50px; background: url(../images/close.jpg) no-repeat center; }
-.popup-bg .popup-content .picture-tab { display: block; width: 55px; height: 120px; position: absolute; top: 50%; margin-top: -60px; background: url(../images/picture-tab.png) no-repeat center; }
-.popup-bg .popup-content .picture-tab.left-tab { left: -55px; background-position: 5px -102px; }
-.popup-bg .popup-content .picture-tab.right-tab { right: -55px; background-position: 5px -252px; }
-
-.footer { position: absolute; width: 100%; height: 110px; left: 0; bottom: 0; background: #0b1a2e; font-size: 12px; padding: 40px; z-index: 10; }
-.footer .foot-wrap { width: 1000px; height: 100%; margin: 0 auto; text-align: center; background: url(../images/footbg.png) no-repeat 0 center; }
-.footer .foot-wrap .health-game { color: #c0c2c2; }
-.footer .foot-wrap .copyright, .footer .foot-wrap .copyright * { color: #666; margin-top: 20px; }
-
-.tit { z-index: 80; }
-
-.pro { z-index: 70; }
-
-.feature { z-index: 72; }
+.footer { position: absolute; width: 100%; height: 50px; line-height: 50px; color: #888; left: 0; bottom: 0; background: #444; font-size: 12px; }
+.footer > a { color: #888; }
 
 .mouse-tips { z-index: 97; }
 
@@ -179,18 +180,6 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 
 .info { z-index: 99; }
 
-.petals > div { z-index: 95; }
-
 .footer { z-index: 96; }
-
-.popup-bg { z-index: 110; }
-
-.barrageBox { z-index: 105; }
-
-.barrageBtn { z-index: 104; }
-
-.barBtns { z-index: 106; }
-
-.bar-send { z-index: 107; }
 
 /*# sourceMappingURL=main.css.map */

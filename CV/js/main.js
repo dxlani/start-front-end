@@ -16,10 +16,11 @@ var doFn = {
         var onScroll = false;
         // 计数器
         var scrTimer = null;
+        var infoTimer = null;
         // 默认屏幕高度
         var clientH = 734;
         // info弹出层状态
-        var infoOut = true;
+        var infoOut = false;
         // 二屏的图片还未加载
         var imgLoad = false;
 
@@ -54,17 +55,21 @@ var doFn = {
         function whenIndexChange() {
 
             setMtAndOn();
-            // info控制 不在第一屏的时候自动隐藏
+            // info控制 不在第五屏的时候自动隐藏
             (function infoControl() {
+                clearTimeout(infoTimer);
                 if (onIndex === 0) {
-                    infoOut = true;
                     $('.info').fadeIn(300);
-                    infoToggle();
-
+                } else if (onIndex === 4) {
+                    infoTimer = setTimeout(function () {
+                        $('.info').fadeIn(300);
+                        infoOut = true;
+                        infoToggle();
+                    }, 2000);
                 } else {
+                    $('.info').fadeOut(300);
                     infoOut = false;
                     infoToggle();
-                    $('.info').fadeOut(300);
                 }
             })();
 
@@ -136,13 +141,17 @@ var doFn = {
         // info弹出层缩进和弹出动画 不是完全隐藏会露出一条
         function infoToggle() {
             if (infoOut) {
-                $('.info').animate({
-                    'marginLeft': 0
-                }, 300);
+                $('.info').stop(false, true).animate({
+                    'left': 0
+                }, 300, function () {
+                    $('.info-arrow').addClass('inverse');
+                });
             } else {
-                $('.info').animate({
-                    'marginLeft': '-350px'
-                }, 300);
+                $('.info').stop(false, true).animate({
+                    'left': '-350px'
+                }, 300, function () {
+                    $('.info-arrow').removeClass('inverse');
+                });
             }
         }
 
@@ -162,8 +171,8 @@ var doFn = {
             // 点第六个按钮——先显示info，然后相当于info点击伸缩按钮
             if (index === 5) {
                 $(this).click(function () {
-                    infoOut = !infoOut;
                     $('.info').fadeIn(300);
+                    infoOut = !infoOut;
                     infoToggle();
                 })
             } else {
