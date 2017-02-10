@@ -1,11 +1,4 @@
 var doFn = {
-    // 储存第二屏风景图片的数组
-    img: [],
-    // 弹幕是否显示
-    bar: false,
-    // 弹幕滚动定时器
-    barTimer: null,
-
     //鼠标滚动 上下箭头键 鼠标点击导航按钮页面切换
     scrollFn: function () {
         // 当前所在屏幕 从0开始
@@ -14,82 +7,141 @@ var doFn = {
         var mt = 0;
         // 是否正在滚动
         var onScroll = false;
-        // 计数器
-        var scrTimer = null;
-        var infoTimer = null;
-        // 默认屏幕高度
-        var clientH = 734;
         // info弹出层状态
         var infoOut = false;
-        // 二屏的图片还未加载
-        var imgLoad = false;
+        // clearTimer
+        var infoTimer = null;
+        var p4Timer = null;
 
-        function pageTurnHandler() {
-            e = event || window.event;
+        function preventCombo() {
             // 如果没有在滚动 开始滚动 并将onScroll设置为true 
-            // 设置一个1s的倒计时 防止频繁出发滚动事件 滚动完成后将onScroll设置为false
+            // 设置一个倒计时 防止频繁出发滚动事件 滚动完成后将onScroll设置为false
             if (!onScroll) {
                 onScroll = true;
-                scrTimer = setTimeout(function () {
+                setTimeout(function () {
                     onScroll = false;
-                    scrTimer = null;
                 }, 500);
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+
+        (function pageScroll() {
+            // 给document绑定鼠标滚轮事件、键盘事件、鼠标移动事件
+            $(document).on('mousewheel keydown', function () {
+                if (preventCombo()) {
+                    return;
+                };
+
+                e = event || window.event;
                 // 滚轮向下滚动event.wheelDelta为负 onIndex++
                 if (e.wheelDelta < 0 || e.keyCode == 40) {
-                    clientH = $(window).height();
-                    if (mt > -clientH * 4) {
+                    if (onIndex <= 3) {
                         onIndex++;
                     }
                 }
                 // 滚轮向上滚动event.wheelDelta为正 onIndex--
                 else if (e.wheelDelta > 0 || e.keyCode == 38) {
-                    if (mt < 0) {
+                    if (onIndex >= 1) {
                         onIndex--;
                     }
                 }
-                whenIndexChange();
-            }
-        }
 
-        // onIndex改变时的一些逻辑
+                whenIndexChange();
+            });
+        })();
+
+        (function swipe() {
+            // 移动端滑动事件
+            var startX = 0;
+            var startY = 0;
+            var endX = 0;
+            var endY = 0;
+            $(document).on({
+                'touchstart': function (event) {
+                    startX = event.touches[0].clientX;
+                    startY = event.touches[0].clientY;
+                },
+                'touchend': function (event) {
+                    if (preventCombo()) {
+                        return;
+                    };
+
+                    endX = event.changedTouches[0].clientX;
+                    endY = event.changedTouches[0].clientY;
+                    var dX = endX - startX;
+                    var dY = endY - startY;
+                    switch (slideDirect(dX, dY)) {
+                        case -2:
+                            if (onIndex < 4) {
+                                onIndex++;
+                            }
+                            break;
+                        case 2:
+                            if (onIndex > 0) {
+                                onIndex--;
+                            }
+                            break;
+                    }
+                    whenIndexChange();
+                }
+            });
+
+            // 判断滑动方向  注意移动是与滑动相反的方向　左滑应该右移 
+            function slideDirect(dX, dY) {
+                var abs = Math.abs(dX) - Math.abs(dY);
+                if (dX === 0 && dY === 0) {
+                    // 没有滑动
+                    return 0;
+                } else if (abs > 0) {
+                    if (dX > 0) {
+                        // 右滑
+                        return 1;
+                    } else {
+                        // 左滑
+                        return -1;
+                    }
+                } else {
+                    if (dY > 0) {
+                        // 下滑
+                        return 2;
+                    } else {
+                        // 上滑
+                        return -2;
+                    }
+                }
+            }
+        })();
+
         function whenIndexChange() {
+            // onIndex改变时的一些逻辑
 
             setMtAndOn();
-            // info控制 不在第五屏的时候自动隐藏
-            (function infoControl() {
-                clearTimeout(infoTimer);
+            // info控制 在第五屏定时弹出 不在隐藏 在第一屏漏个按钮
+            clearTimeout(infoTimer);
+            if (onIndex === 4) {
+                    infoTimer = setTimeout(function () {
+                    $('.info').fadeIn(300);
+                    infoOut = true;
+                    infoToggle();
+                }, 4000);
+            } else {
                 if (onIndex === 0) {
                     $('.info').fadeIn(300);
-                } else if (onIndex === 4) {
-                    infoTimer = setTimeout(function () {
-                        $('.info').fadeIn(300);
-                        infoOut = true;
-                        infoToggle();
-                    }, 2000);
                 } else {
                     $('.info').fadeOut(300);
-                    infoOut = false;
-                    infoToggle();
                 }
-            })();
+                infoOut = false;
+                infoToggle();
+            }
 
-            //二屏的风景图片加载 加载过一次便不执行了
-            (function f2imgLoad() {
-                if (onIndex === 1 && !imgLoad) {
-                    $('.f2 area').each(function (index) {
-                        doFn.img[index] = new Image();
-                        doFn.img[index].src = $(this).attr('data-url');
-                    });
-                    imgLoad = true;
-                }
-            })();
-
-            setMtAndOn();
 
             // 第四屏看完动画再绑定事件
             if (onIndex === 3) {
                 clearTimeout(p4Timer);
-                var p4Timer = setTimeout(function () {
+                    p4Timer = setTimeout(function () {
                     $('.history').on('mouseover', function () {
                         if ($(this).attr('class').indexOf('cur') < 0) {
                             $('.history').removeClass('cur');
@@ -128,7 +180,7 @@ var doFn = {
                 }
             }
 
-            clientH = $(window).height();
+            var clientH = $(window).height();
             mt = -clientH * onIndex;
             $('.container').stop(true, false).animate({
                 'margin-top': mt
@@ -181,19 +233,25 @@ var doFn = {
                     whenIndexChange();
                 })
             }
-            $(this).hover(function () {
-                $(this).find('span').show();
-            }, function () {
-                $(this).find('span').hide();
-            })
         });
-
-        // 给document绑定鼠标滚轮事件、键盘事件、鼠标移动事件
-        $(document).on({
-            'mousewheel keydown': pageTurnHandler
-        });
-
     },
+
+    touchEvent: function () {
+
+        // skill模拟hover
+        $('.skill').on({
+            'touchstart': function (event) {
+                $(this).addClass('inverse');
+            },
+            'touchend': function (event) {
+                setTimeout(function () {
+                    $(event.delegateTarget).removeClass('inverse');
+                }, 800);
+            }
+        });
+    },
+
 }
 
 doFn.scrollFn();
+doFn.touchEvent();

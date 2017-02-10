@@ -137,6 +137,10 @@ body {
     content: "\e601";
 }
 
+.icon-down:before {
+    content: "\e70f";
+}
+
 .wrap,
 .container,
 .column {
@@ -162,6 +166,10 @@ body {
     background: #bbb;
 }
 
+.title {
+    font-size: 30px;
+}
+
 // 一屏 标题
 .page1 {
     text-align: center;
@@ -176,26 +184,31 @@ body {
         @include basic;
         background: rgba(0, 0, 0, .3);
     }
-    .title1 {
+    .tit1 {
         position: absolute;
         left: 0;
         top: 250px;
         width: 100%;
         height: 150px;
         color: #fff;
-        font-size: 30px;
+        >h2 {
+            font-size: 40px;
+        }
     }
 }
 
 // 二屏project
 .page2 {
     text-align: center;
-    .title2 {
-        margin-top: 20px;
-        font-size: 40px;
+    .tit2 {
+        margin: 20px 0;
+    }
+    .content {
+        width: 940px;
+        margin: 0 auto;
     }
     .project {
-        position: absolute;
+        display: table;
         height: 100px;
         width: 450px;
         background: #fff;
@@ -205,22 +218,23 @@ body {
         opacity: 0;
         cursor: pointer;
         box-sizing: border-box;
-        padding: 10px;
+        padding: 5px;
         .pro-img {
-            float: left;
-            width: 80px;
-            height: 80px;
-            border-radius: 50px;
-            background: #666;
-            font-size: 50px;
-            color: #fff;
+            display: table-cell;
+            vertical-align: middle;
+            >.iconfont {
+                width: 80px;
+                height: 80px;
+                border-radius: 100px;
+                background: #666;
+                font-size: 50px;
+                color: #fff;
+            }
         }
         .pro-txt {
-            float: left;
-            width: 250px;
-            height: 100%;
-            margin-left: 10px;
+            display: table-cell;
             text-align: left;
+            padding: 0 10px;
             >h3 {
                 font-size: 14px;
                 margin-bottom: 5px;
@@ -230,12 +244,11 @@ body {
             }
         }
         .pro-btn {
-            float: right;
-            width: 80px;
-            height: 100%;
+            display: table-cell;
+            vertical-align: middle;
             .pro-link {
                 display: block;
-                padding: 5px 0;
+                padding: 5px 10px;
                 margin: 8px 0;
                 color: #fff;
                 background: #ef4d4d;
@@ -243,42 +256,25 @@ body {
                 box-shadow: 0 3px 0 0 #ab3434;
             }
         }
-        // 左侧
-        $pTop: 100px;
-        $pLeft: 51%;
-        &.pro1 {
-            right: $pLeft;
-            top: $pTop;
-        }
-        &.pro3 {
-            right: $pLeft;
-            top: $pTop + 200;
-        }
-        &.pro5 {
-            right: $pLeft;
-            top: $pTop + 400;
-        }
-        // 右侧
-        &.pro2 {
-            left: $pLeft;
-            top: $pTop + 100;
-        }
-        &.pro4 {
-            left: $pLeft;
-            top: $pTop + 300;
-        }
-        &.pro6 {
-            left: $pLeft;
-            top: $pTop + 500;
+        @for $i from 1 through 6 {
+            &.pro#{$i} {
+                @if $i%2==1 {
+                    float: left;
+                    margin-right: 50%;
+                }
+                @else {
+                    float: right;
+                    margin-left: 50%;
+                }
+            }
         }
     }
 }
 
 .page3 {
     text-align: center;
-    .title3 {
+    .tit3 {
         margin-top: 60px;
-        font-size: 40px;
     }
     .content {
         width: auto;
@@ -298,8 +294,10 @@ body {
         transition: transform .8s ease;
         position: relative;
         transform-style: preserve-3d;
-        &:hover {
-            transform: rotateY(180deg);
+        @media (min-width: 641px) {
+            &:hover {
+                transform: rotateY(180deg);
+            }
         }
         .skill-title {
             font-size: 18px;
@@ -347,9 +345,8 @@ body {
 
 .page4 {
     text-align: center;
-    .title4 {
+    .tit4 {
         margin-top: 60px;
-        font-size: 40px;
     }
     .content {
         width: 650px;
@@ -403,7 +400,7 @@ body {
 .page5 {
     text-align: center;
     .content {
-        margin: 250px 0 0;
+        margin: 200px 0 0;
         .end {
             opacity: 0;
             font-size: 30px;
@@ -522,7 +519,7 @@ body {
         animation-delay: .6s;
     }
     .his3 {
-        animation: expand2 .8s 1.2s ease backwards;
+        animation: expand2 .6s 1.2s ease backwards;
     }
     // 五屏
     @keyframes fadeInUpBig {
@@ -558,6 +555,10 @@ body {
     }
 }
 
+.inverse {
+    transform: rotateY(180deg);
+}
+
 //一屏和五屏跳动的鼠标提示
 .mouse-tips {
     @keyframes doUpDown {
@@ -565,29 +566,34 @@ body {
             transform: translate(0, 0);
         }
         100% {
-            transform: translate(0, -30%);
+            transform: translate(0, -80%);
+        }
+    }
+    @keyframes doUpDown2 {
+        0% {
+            transform: translate(0, 0) rotate(180deg);
+        }
+        100% {
+            transform: translate(0, -80%) rotate(180deg);
         }
     }
     position: absolute;
-    width: 38px;
-    height: 101px;
-    left: 50%;
+    width: 50px;
+    height: 50px;
+    left: calc(50% - 25px);
     bottom: 20px;
-    margin-left: -19px;
-    background: url(../images/mouse_tips.png) no-repeat;
     animation: doUpDown .5s ease-in-out infinite alternate both;
-    &.down {
-        background-position: 0 0;
-    }
+    color: #fff;
+    font-size: 50px;
     &.up {
         bottom: 50px;
-        background-position: 0 -170px;
+        animation-name: doUpDown2;
     }
 }
 
 // 左侧个人信息弹出层
 .info {
-    $newsH: 600px;
+    $newsH: 590px;
     width: 350px;
     height: $newsH;
     margin-top: -$newsH/2;
@@ -616,9 +622,6 @@ body {
         height: 100%;
         color: #fff;
         font-size: 20px;
-    }
-    .inverse {
-        transform: rotateY(180deg);
     }
     // &:before {
     //     content: '';
@@ -682,20 +685,30 @@ body {
         transition: all .8s ease;
         //标签换行会使居中失效 还是绝对定位好用
         white-space: pre;
-        &:hover,
-        &.on {
-            background: #fec02d;
-            color: #000;
-            transform: scale(1.3);
-            margin: 20px 0;
-        }
-        span {
+        >span {
             display: none;
             position: absolute;
             left: -50px;
             top: 13px;
             font-size: 16px;
             color: #000;
+        }
+        &.on {
+            background: #fec02d;
+            color: #000;
+            transform: scale(1.3);
+            margin: 20px 0;
+        }
+        @media (min-width: 641px) {
+            &:hover {
+                background: #fec02d;
+                color: #000;
+                transform: scale(1.3);
+                margin: 20px 0;
+                >span {
+                    display: block;
+                }
+            }
         }
     }
 }
@@ -734,4 +747,236 @@ body {
 // 第五屏页脚
 .footer {
     z-index: 96;
+}
+
+@media (max-width: 640px) {
+    .title {
+        font-size: .25rem;
+    }
+    // 一屏 标题
+    .page1 {
+        .tit1 {
+            left: 0;
+            top: 3rem;
+            height: 1.5rem;
+            >h2 {
+                font-size: .3rem;
+            }
+        }
+    }
+    // 二屏project
+    .page2 {
+        .tit2 {
+            margin: .05rem 0;
+        }
+        .content {
+            width: 3.6rem;
+            margin-left: .03rem;
+        }
+        .project {
+            width: 3.6rem;
+            height: 1rem;
+            padding: .05rem;
+            margin-bottom: .1rem;
+            .pro-img {
+                >.iconfont {
+                    width: .7rem;
+                    height: .7rem;
+                    font-size: .4rem;
+                }
+            }
+            .pro-txt {
+                width: 2.3rem;
+                margin-left: .1rem;
+                >h3 {
+                    font-size: .14rem;
+                    margin-bottom: .05rem;
+                }
+                >p {
+                    font-size: .13rem;
+                }
+            }
+            .pro-btn {
+                .pro-link {
+                    padding: .05rem;
+                    margin: .05rem 0;
+                    font-size: .12rem;
+                }
+            }
+        }
+    }
+    .page3 {
+        .tit3 {
+            margin-top: .2rem;
+        }
+        .content {
+            margin: .3rem auto 0;
+        }
+        .skill {
+            width: 1.5rem, ;
+            height: 2.9rem;
+            margin: .05rem .1rem;
+            &.skill5 {
+                display: none;
+            }
+            .skill-title {
+                font-size: .18rem;
+                width: 1rem;
+                height: .4rem;
+                margin: .1rem auto;
+            }
+            .skill-point {
+                font-size: .16rem;
+                margin: .05rem 0;
+                padding: .05rem .1rem;
+            }
+            .backface {
+                padding: .15rem;
+                font-size: .14rem;
+            }
+        }
+    }
+    .page4 {
+        .tit4 {
+            margin-top: .5rem;
+        }
+        .content {
+            width: 3.8rem;
+            height: 4rem;
+            margin: .8rem auto 0;
+        }
+        .history {
+            width: .3rem;
+            height: 100%;
+            &.cur {
+                width: 2.6rem;
+            }
+            .year {
+                width: .3rem;
+                height: 100%;
+                padding: .25rem 0 0 .1rem;
+                font-size: .18rem;
+            }
+            .intro {
+                left: .3rem;
+                top: 0;
+                width: 2.3rem;
+                height: 100%;
+                padding: .1rem;
+                font-size: .14rem;
+            }
+        }
+    }
+    .page5 {
+        .content {
+            margin: 2rem 0 0;
+            .end {
+                margin: .1rem 0;
+                font-size: .25rem;
+            }
+        }
+    }
+    .on {
+        // 四屏history
+        @keyframes expand1 {
+            0% {
+                width: .3rem;
+            }
+            50% {
+                width: 2.6rem;
+            }
+            100% {
+                width: .3rem;
+            }
+        }
+        @keyframes expand2 {
+            0% {
+                width: .3rem;
+            }
+            100% {
+                width: 2.6rem;
+            }
+        }
+    }
+    .mouse-tips {
+        width: .5rem;
+        height: .5rem;
+        left: calc(50% - .25rem);
+        bottom: .2rem;
+        font-size: .5rem;
+        &.up {
+            bottom: .5rem;
+        }
+    }
+    // 左侧个人信息弹出层
+    .info {
+        $newsH: 5.8rem;
+        width: 3rem;
+        height: $newsH;
+        margin-top: -$newsH/2;
+        position: fixed;
+        left: -3rem;
+        top: 50%;
+    }
+    //个人信息呼出按钮
+    .info-tg {
+        $newsBtnH: .6rem;
+        width: .4rem;
+        height: $newsBtnH;
+        position: absolute;
+        right: -.39rem;
+        top: 50%;
+        margin-top: -$newsBtnH/2;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 0 6px 6px 0;
+        cursor: pointer;
+        text-align: center;
+        .info-arrow {
+            height: 100%;
+            color: #fff;
+            font-size: .2rem;
+        }
+        .inverse {
+            transform: rotateY(180deg);
+        }
+    }
+    //info内容
+    .info-box {
+        padding: .15rem .5rem;
+        .avatar {
+            width: 1rem;
+            height: 1rem;
+        }
+        .info-li {
+            padding: 0 .1rem .1rem;
+            margin-bottom: .15rem;
+            >h3 {
+                font-size: .18rem;
+                margin-bottom: .1rem;
+            }
+            >p {
+                font-size: .16rem;
+            }
+        }
+    }
+    //右侧fixed点击导航
+    .nav-right {
+        $nrH: 3.3rem;
+        height: $nrH;
+        margin-top: -$nrH/2;
+        .item {
+            height: .4rem;
+            width: .4rem;
+            margin: .1rem 0;
+            font-size: .25rem;
+            &.on {
+                margin: .2rem 0;
+            }
+        }
+    }
+    .footer {
+        height: .5rem;
+        line-height: .5rem;
+        font-size: .12rem;
+    }
 }
