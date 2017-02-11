@@ -139,17 +139,27 @@ var doFn = {
             }
             infoToggle();
 
-            // 第四屏看完动画再绑定事件
+            // 第四屏先来一遍动画再绑定事件
             if (onIndex === 3) {
                 clearTimeout(p4Timer);
+                $('.history').removeClass('cur');
+                $('.history').eq(0).addClass('cur');
+                p4Timer = setTimeout(function () {
+                    $('.history').removeClass('cur');
+                    $('.history').eq(1).addClass('cur');
+                }, 800);
+                p4Timer = setTimeout(function () {
+                    $('.history').removeClass('cur');
+                    $('.history').eq(2).addClass('cur');
+                }, 1600);
                 p4Timer = setTimeout(function () {
                     $('.history').on('mouseover', function () {
                         if ($(this).attr('class').indexOf('cur') < 0) {
                             $('.history').removeClass('cur');
-                            $(this).addClass('cur')
+                            $(this).addClass('cur');
                         }
                     });
-                }, 2000);
+                }, 2400);
             } else {
                 $('.history').off('mouseover');
                 $('.history').removeClass('cur').eq(-1).addClass('cur');
@@ -192,24 +202,6 @@ var doFn = {
             }, 400);
         };
 
-        // info弹出层缩进和弹出动画 不是完全隐藏会露出一条
-        // function infoToggle() {
-        //     var infoW = $('.info').width();
-        //     if (infoOut) {
-        //         $('.info').stop(false, true).animate({
-        //             'left': 0
-        //         }, 300, function () {
-        //             $('.info-arrow').addClass('inverse');
-        //         });
-        //     } else {
-        //         $('.info').stop(false, true).animate({
-        //             'left': -infoW
-        //         }, 300, function () {
-        //             $('.info-arrow').removeClass('inverse');
-        //         });
-        //     }
-        // }
-
         function infoToggle() {
             var infoW = $('.info').width();
             switch (infoOut) {
@@ -244,6 +236,7 @@ var doFn = {
             }
             infoToggle();
         });
+        // 防止click引发的touchend冒泡
         $('.info-tg, .item').on('touchend', function () {
             event.stopPropagation();
         });
@@ -273,7 +266,7 @@ var doFn = {
             },
             'touchend': function (event) {
                 setTimeout(function () {
-                    $(event.delegateTarget).removeClass('inverse');
+                    $('.skill').removeClass('inverse');
                 }, 800);
             }
         });

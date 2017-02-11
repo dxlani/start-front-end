@@ -404,12 +404,16 @@ body {
 .page5 {
     text-align: center;
     .content {
-        margin: 200px 0 0;
+        margin: 180px 0 0;
         .end {
             opacity: 0;
             font-size: 30px;
             font-weight: 500;
             margin: 10px 0;
+            >a {
+                color: #333;
+                font-size: 25px;
+            }
         }
     }
 }
@@ -496,35 +500,6 @@ body {
     .skill6 {
         animation-delay: 1.2s;
     }
-    // 四屏history
-    @keyframes expand1 {
-        0% {
-            width: 50px;
-        }
-        50% {
-            width: 500px;
-        }
-        100% {
-            width: 50px;
-        }
-    }
-    @keyframes expand2 {
-        0% {
-            width: 50px;
-        }
-        100% {
-            width: 500px;
-        }
-    }
-    .history {
-        animation: expand1 1.2s ease backwards;
-    }
-    .his2 {
-        animation-delay: .6s;
-    }
-    .his3 {
-        animation: expand2 .6s 1.2s ease backwards;
-    }
     // 五屏
     @keyframes fadeInUpBig {
         from {
@@ -602,7 +577,7 @@ body {
     height: $newsH;
     margin-top: -$newsH/2;
     position: fixed;
-    left: -350px; 
+    left: -350px;
     top: 50%;
     color: #fff;
     background: rgba(0, 0, 0, .5);
@@ -865,32 +840,13 @@ body {
     }
     .page5 {
         .content {
-            margin: 2rem 0 0;
+            margin: 1.8rem 0 0;
             .end {
                 margin: .1rem 0;
                 font-size: .25rem;
-            }
-        }
-    }
-    .on {
-        // 四屏history
-        @keyframes expand1 {
-            0% {
-                width: .3rem;
-            }
-            50% {
-                width: 2.6rem;
-            }
-            100% {
-                width: .3rem;
-            }
-        }
-        @keyframes expand2 {
-            0% {
-                width: .3rem;
-            }
-            100% {
-                width: 2.6rem;
+                >a {
+                    font-size: .20rem;
+                }
             }
         }
     }
