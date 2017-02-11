@@ -151,6 +151,10 @@ body {
     overflow: hidden;
 }
 
+.container {
+    transition: all .5s ease;
+}
+
 .column {
     overflow: hidden;
     position: relative;
@@ -598,11 +602,12 @@ body {
     height: $newsH;
     margin-top: -$newsH/2;
     position: fixed;
-    left: -350px;
+    left: -350px; 
     top: 50%;
     color: #fff;
     background: rgba(0, 0, 0, .5);
     border-radius: 0 4px 4px 0;
+    transition: all .3s ease;
 }
 
 //个人信息呼出按钮
@@ -623,19 +628,6 @@ body {
         color: #fff;
         font-size: 20px;
     }
-    // &:before {
-    //     content: '';
-    //     display: inline-block;
-    //     height: 100%;
-    //     vertical-align: middle;
-    // }
-    // .info-txt {
-    //     width: 30px;
-    //     color: #333;
-    //     font-size: 25px;
-    //     display: inline-block;
-    //     vertical-align: middle;
-    // }
 }
 
 //info内容
@@ -647,7 +639,7 @@ body {
         height: 100px;
         margin: 0 auto;
         border-radius: 50px;
-        border: 1px solid #fff;
+        border: 2px solid #fff;
     }
     .info-li {
         padding: 0 10px 10px;
@@ -773,6 +765,10 @@ body {
             width: 3.6rem;
             margin-left: .03rem;
         }
+        .pro5,
+        .pro6 {
+            display: none;
+        }
         .project {
             width: 3.6rem;
             height: 1rem;
@@ -807,18 +803,18 @@ body {
     }
     .page3 {
         .tit3 {
-            margin-top: .2rem;
+            margin-top: .1rem;
         }
         .content {
-            margin: .3rem auto 0;
+            margin: .1rem auto 0;
+        }
+        .skill5 {
+            display: none;
         }
         .skill {
-            width: 1.5rem, ;
-            height: 2.9rem;
+            width: 1.4rem;
+            height: 2.5rem;
             margin: .05rem .1rem;
-            &.skill5 {
-                display: none;
-            }
             .skill-title {
                 font-size: .18rem;
                 width: 1rem;
@@ -827,23 +823,23 @@ body {
             }
             .skill-point {
                 font-size: .16rem;
-                margin: .05rem 0;
-                padding: .05rem .1rem;
+                margin: .03rem 0;
+                padding: .03rem .1rem;
             }
             .backface {
-                padding: .15rem;
-                font-size: .14rem;
+                padding: .1rem;
+                font-size: .13rem;
             }
         }
     }
     .page4 {
         .tit4 {
-            margin-top: .5rem;
+            margin-top: .2rem;
         }
         .content {
             width: 3.8rem;
             height: 4rem;
-            margin: .8rem auto 0;
+            margin: .3rem auto 0;
         }
         .history {
             width: .3rem;

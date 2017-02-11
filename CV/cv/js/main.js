@@ -8,7 +8,7 @@ var doFn = {
         // 是否正在滚动
         var onScroll = false;
         // info弹出层状态
-        var infoOut = false;
+        var infoOut = 0;
         // clearTimer
         var infoTimer = null;
         var p4Timer = null;
@@ -119,29 +119,30 @@ var doFn = {
             // onIndex改变时的一些逻辑
 
             setMtAndOn();
-            // info控制 在第五屏定时弹出 不在隐藏 在第一屏漏个按钮
+            // info控制 在第五屏定时弹出 不在隐藏 在第一屏显示个按钮
+            // infoOut = 0;
+            // infoToggle();
             clearTimeout(infoTimer);
-            if (onIndex === 4) {
+            switch (onIndex) {
+                case 4:
                     infoTimer = setTimeout(function () {
-                    $('.info').fadeIn(300);
-                    infoOut = true;
-                    infoToggle();
-                }, 4000);
-            } else {
-                if (onIndex === 0) {
-                    $('.info').fadeIn(300);
-                } else {
-                    $('.info').fadeOut(300);
-                }
-                infoOut = false;
-                infoToggle();
+                        infoOut = 2;
+                        infoToggle();
+                    }, 4000);
+                    break;
+                case 0:
+                    infoOut = 1;
+                    break;
+                default:
+                    infoOut = 0;
+                    break;
             }
-
+            infoToggle();
 
             // 第四屏看完动画再绑定事件
             if (onIndex === 3) {
                 clearTimeout(p4Timer);
-                    p4Timer = setTimeout(function () {
+                p4Timer = setTimeout(function () {
                     $('.history').on('mouseover', function () {
                         if ($(this).attr('class').indexOf('cur') < 0) {
                             $('.history').removeClass('cur');
@@ -182,35 +183,69 @@ var doFn = {
 
             var clientH = $(window).height();
             mt = -clientH * onIndex;
-            $('.container').stop(true, false).animate({
-                'margin-top': mt
-            }, 500, function () {
+            $('.container').css({
+                'transform': 'translateY(' + mt + 'px)'
+            });
+            setTimeout(function () {
                 currentOn('.column');
                 currentOn('.item');
-            });
+            }, 400);
         };
 
         // info弹出层缩进和弹出动画 不是完全隐藏会露出一条
+        // function infoToggle() {
+        //     var infoW = $('.info').width();
+        //     if (infoOut) {
+        //         $('.info').stop(false, true).animate({
+        //             'left': 0
+        //         }, 300, function () {
+        //             $('.info-arrow').addClass('inverse');
+        //         });
+        //     } else {
+        //         $('.info').stop(false, true).animate({
+        //             'left': -infoW
+        //         }, 300, function () {
+        //             $('.info-arrow').removeClass('inverse');
+        //         });
+        //     }
+        // }
+
         function infoToggle() {
-            if (infoOut) {
-                $('.info').stop(false, true).animate({
-                    'left': 0
-                }, 300, function () {
+            var infoW = $('.info').width();
+            switch (infoOut) {
+                case 2:
+                    $('.info').show().css({
+                        'left': 0
+                    });
                     $('.info-arrow').addClass('inverse');
-                });
-            } else {
-                $('.info').stop(false, true).animate({
-                    'left': '-350px'
-                }, 300, function () {
+                    break;
+                case 1:
+                    $('.info').css({
+                        'left': -infoW
+                    });
                     $('.info-arrow').removeClass('inverse');
-                });
+                    break;
+                default:
+                    $('.info').css({
+                        'left': '-100%'
+                    });
+                    $('.info-arrow').removeClass('inverse');
+                    break;
             }
         }
 
-        // info点击伸缩按钮
-        $('.info-tg').click(function () {
-            infoOut = !infoOut;
+        $('.info-tg, .info-tg2').on('click', function () {
+            event.stopPropagation();
+            event.preventDefault();
+            if (infoOut === 2) {
+                infoOut = 1
+            } else {
+                infoOut = 2
+            }
             infoToggle();
+        });
+        $('.info-tg, .item').on('touchend', function () {
+            event.stopPropagation();
         });
 
         // 缩放页面时按照当前可视高度自动调整mt
@@ -218,17 +253,11 @@ var doFn = {
             setMtAndOn();
         });
 
-        // 给右侧导航按钮绑定点击事件
         $('.nav-right').find('.item').each(function (index) {
-            // 点第六个按钮——先显示info，然后相当于info点击伸缩按钮
-            if (index === 5) {
+            // 给右侧导航按钮绑定点击事件
+            if (index !== 5) {
                 $(this).click(function () {
-                    $('.info').fadeIn(300);
-                    infoOut = !infoOut;
-                    infoToggle();
-                })
-            } else {
-                $(this).click(function () {
+                    event.stopPropagation();
                     onIndex = index;
                     whenIndexChange();
                 })
@@ -237,7 +266,6 @@ var doFn = {
     },
 
     touchEvent: function () {
-
         // skill模拟hover
         $('.skill').on({
             'touchstart': function (event) {
