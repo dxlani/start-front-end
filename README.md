@@ -14,4 +14,4 @@
 
 - rem+flex布局的移动端页面 <a href="https://win5do.github.io/IFE/task11-mobile-web/" target="_blank">LiveDemo</a>    <a href="https://github.com/win5do/IFE/tree/master/task11-mobile-web" target="_blank">SourceCode</a>
 
-- js jq css3分别实现瀑布流 <a href="https://win5do.github.io/win5do/imooc/waterpull-layout/js-wpl" target="_blank">LiveDemo</a>    <a href="https://github.com/win5do/imooc/tree/master/waterpull-layout" target="_blank">SourceCode</a>
+- js jq css3分别实现瀑布流 <a href="https://win5do.github.io/imooc/waterpull-layout/js-wpl/" target="_blank">LiveDemo</a>    <a href="https://github.com/win5do/imooc/tree/master/waterpull-layout" target="_blank">SourceCode</a>

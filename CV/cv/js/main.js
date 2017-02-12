@@ -153,11 +153,11 @@ var doFn = {
                 p4Timer = setTimeout(function () {
                     $('.history').removeClass('cur');
                     $('.history').eq(1).addClass('cur');
-                }, 800);
+                }, 1000);
                 p4Timer = setTimeout(function () {
                     $('.history').removeClass('cur');
                     $('.history').eq(2).addClass('cur');
-                }, 1600);
+                }, 2000);
                 p4Timer = setTimeout(function () {
                     $('.history').on('mouseover', function () {
                         if ($(this).attr('class').indexOf('cur') < 0) {
@@ -165,7 +165,7 @@ var doFn = {
                             $(this).addClass('cur');
                         }
                     });
-                }, 2400);
+                }, 3000);
             } else {
                 p4Animate = true;
                 $('.history').off('mouseover');

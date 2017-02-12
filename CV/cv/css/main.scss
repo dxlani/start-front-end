@@ -403,7 +403,7 @@ body {
             margin: 10px 0;
             >a {
                 color: #333;
-                font-size: 25px;
+                font-size: 30px;
             }
         }
     }
@@ -606,6 +606,11 @@ body {
         margin: 0 auto;
         border-radius: 1000px;
         border: 2px solid #fff;
+        overflow: hidden;
+        >img {
+            width: 100%;
+            height: 100%;
+        }
     }
     .info-li {
         padding: 0 10px 10px;
@@ -839,7 +844,7 @@ body {
                 margin: .1rem 0;
                 font-size: .25rem;
                 >a {
-                    font-size: .20rem;
+                    font-size: .3rem;
                 }
             }
         }
