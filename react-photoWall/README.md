@@ -1,4 +1,4 @@
-<a href="http://win5do.cc/photowall" target="_blank"><h3 id="demo3">react打造的电影墙页面</h3></a>
+<a href="http://win5do.cc/photowall" target="_blank"><h3 id="readme">react打造的电影墙页面</h3></a>
 
 1. 简介
 
