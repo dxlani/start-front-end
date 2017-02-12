@@ -12,6 +12,7 @@ var doFn = {
         // clearTimer
         var infoTimer = null;
         var p4Timer = null;
+        var p4Animate = true;
 
         function preventCombo() {
             // 如果没有在滚动 开始滚动 并将onScroll设置为true 
@@ -60,11 +61,14 @@ var doFn = {
             var endX = 0;
             var endY = 0;
             $(document).on({
-                'touchstart': function (event) {
+                'touchmove': function () {
+                    event.preventDefault();
+                },
+                'touchstart': function () {
                     startX = event.touches[0].clientX;
                     startY = event.touches[0].clientY;
                 },
-                'touchend': function (event) {
+                'touchend': function () {
                     if (preventCombo()) {
                         return;
                     };
@@ -92,7 +96,7 @@ var doFn = {
             // 判断滑动方向  注意移动是与滑动相反的方向　左滑应该右移 
             function slideDirect(dX, dY) {
                 var abs = Math.abs(dX) - Math.abs(dY);
-                if (dX === 0 && dY === 0) {
+                if (Math.abs(dX) < 10 && Math.abs(dY) < 10) {
                     // 没有滑动
                     return 0;
                 } else if (abs > 0) {
@@ -120,18 +124,16 @@ var doFn = {
 
             setMtAndOn();
             // info控制 在第五屏定时弹出 不在隐藏 在第一屏显示个按钮
-            // infoOut = 0;
-            // infoToggle();
             clearTimeout(infoTimer);
             switch (onIndex) {
+                case 0:
+                    infoOut = 1;
+                    break;
                 case 4:
                     infoTimer = setTimeout(function () {
                         infoOut = 2;
                         infoToggle();
                     }, 4000);
-                    break;
-                case 0:
-                    infoOut = 1;
                     break;
                 default:
                     infoOut = 0;
@@ -141,7 +143,11 @@ var doFn = {
 
             // 第四屏先来一遍动画再绑定事件
             if (onIndex === 3) {
+                if (!p4Animate) {
+                    return;
+                }
                 clearTimeout(p4Timer);
+                p4Animate = false;
                 $('.history').removeClass('cur');
                 $('.history').eq(0).addClass('cur');
                 p4Timer = setTimeout(function () {
@@ -161,6 +167,7 @@ var doFn = {
                     });
                 }, 2400);
             } else {
+                p4Animate = true;
                 $('.history').off('mouseover');
                 $('.history').removeClass('cur').eq(-1).addClass('cur');
             }

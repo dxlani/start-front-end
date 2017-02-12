@@ -85,11 +85,11 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 .page3 { text-align: center; }
 .page3 .tit3 { margin-top: 60px; }
 .page3 .content { width: auto; height: 300px; margin: 100px auto 0; }
-.page3 .skill { display: inline-block; vertical-align: middle; width: 150px; height: 100%; margin: 5px 20px; background: #efefef; border: 1px solid #efefef; box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, 0.35); border-radius: 2px; -webkit-transition: -webkit-transform .8s ease; transition: transform .8s ease; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d; }
+.page3 .skill { display: inline-block; vertical-align: middle; width: 150px; height: 100%; margin: 5px 20px; background: #efefef; border: 1px solid #efefef; box-shadow: 0px 3px 4px 1px rgba(0, 0, 0, 0.35); border-radius: 2px; position: relative; -webkit-transition: -webkit-transform .8s ease; transition: transform .8s ease; -webkit-transform-style: preserve-3d; transform-style: preserve-3d; }
 @media (min-width: 641px) { .page3 .skill:hover { -webkit-transform: rotateY(180deg); transform: rotateY(180deg); } }
 .page3 .skill .skill-title { font-size: 18px; width: 100px; height: 40px; margin: 10px auto; border-bottom: 3px solid red; }
 .page3 .skill .skill-point { font-size: 16px; display: inline-block; margin: 5px 20px; padding: 5px 10px; background: rgba(255, 154, 0, 0.4); border-radius: 8px; }
-.page3 .skill .backface { position: absolute; left: 0; top: 0; width: 100%; height: 100%; padding: 15px; text-indent: 2em; text-align: justify; box-sizing: border-box; font-size: 14px; -webkit-transform: rotateY(180deg) translateZ(1px); transform: rotateY(180deg) translateZ(1px); -webkit-backface-visibility: hidden; backface-visibility: hidden; background: #efefef; }
+.page3 .skill .backface { position: absolute; left: 0; top: 0; width: 100%; height: 100%; padding: 15px; text-indent: 2em; text-align: justify; box-sizing: border-box; font-size: 14px; -webkit-transform: rotateY(180deg) translateZ(1px); transform: rotateY(180deg) translateZ(1px); -webkit-backface-visibility: hidden; backface-visibility: hidden; overflow: hidden; background: #efefef; }
 
 .page4 { text-align: center; }
 .page4 .tit4 { margin-top: 60px; }
@@ -97,7 +97,7 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 .page4 .history { float: left; width: 50px; height: 100%; margin: 0 2px; background: #fff; border: 1px solid #eee; border-radius: 2px; box-shadow: 1px 3px 3px 0 #b9b9b9; overflow: hidden; position: relative; -webkit-transition: all .8s ease; transition: all .8s ease; }
 .page4 .history.cur { width: 500px; }
 .page4 .history .year { position: absolute; left: 0; top: 0; width: 50px; height: 100%; text-align: center; box-sizing: border-box; padding: 30px 0 0 15px; font-size: 18px; font-weight: 700; word-wrap: break-word; letter-spacing: 20px; }
-.page4 .history .intro { position: absolute; left: 50px; top: 0; width: 450px; height: 100%; box-sizing: border-box; padding: 30px; line-height: 2; text-indent: 2em; text-align: left; }
+.page4 .history .intro { position: absolute; left: 50px; top: 0; width: 450px; height: 100%; box-sizing: border-box; padding: 30px; line-height: 2; text-indent: 2em; text-align: left; word-break: break-all; }
 
 .page5 { text-align: center; }
 .page5 .content { margin: 180px 0 0; }
@@ -162,8 +162,9 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 .info-tg .info-arrow { height: 100%; color: #fff; font-size: 20px; }
 
 .info-box { padding: 15px 50px; }
-.info-box .avatar { display: block; width: 100px; height: 100px; margin: 0 auto; border-radius: 50px; border: 2px solid #fff; }
+.info-box .avatar { display: block; width: 100px; height: 100px; margin: 0 auto; border-radius: 1000px; border: 2px solid #fff; }
 .info-box .info-li { padding: 0 10px 10px; border-bottom: 1px dashed #fff; margin-bottom: 15px; }
+.info-box .info-li:last-child { border: none; }
 .info-box .info-li > h3 { font-size: 18px; margin-bottom: 10px; }
 .info-box .info-li > p { font-size: 16px; }
 
