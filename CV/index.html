@@ -12,6 +12,13 @@
         }
         window.onresize = remSize;
         window.onload = remSize;
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
+            var angle = screen.orientation.angle || window.orientation;
+            console.log(screen.orientation.angle, 'he', window.orientation)
+            if (angle === 90 || angle === -90) {
+                alert("竖屏浏览体验更佳，亦可使用PC");
+            }
+        });
     </script>
     <link rel="stylesheet" type="text/css" href="cv/css/main.css" />
 </head>
@@ -149,7 +156,7 @@
                             <p><span class="skill-point">Npm</span></p>
                         </div>
                         <div class="backface">
-                            学习过2016前端热门的三大技术—vue、react、webpack，能够基本运用，用vue和react写过demo，学会了使用webpack作为构建工具，eslint规范格式，，npm进行包管理。
+                            学习过2016前端热门的三大技术—vue、react、webpack，能够基本运用，用vue和react写过demo，学会了使用webpack作为构建工具，eslint规范格式，npm进行包管理。
                         </div>
                     </div>
                     <div class="skill skill4">
@@ -175,7 +182,7 @@
                             <p><span class="skill-point">PickaDate</span></p>
                         </div>
                         <div class="backface">
-                            在这个开源社区欣欣向荣的时代，大神的轮子自然用过不少，列几个常用的差距。swiper：超顺滑的轮播及滑动；动画的贝塞尔曲线太难折腾了，还是用Animate.css吧；用sotrtable搞定拽排序……宛如一个github搬运工了。
+                            在这个开源形式一片大好的时代，大神的轮子自然用过不少，列几个常用的差距。swiper：超顺滑的轮播及滑动；动画的贝塞尔曲线太难折腾了，还是用Animate.css吧；用sotrtable搞定拽排序……宛如一个github搬运工了。
                         </div>
                     </div>
                 </div>
@@ -204,9 +211,9 @@
                     <div class="end end3">对新技术好奇但理智</div>
                     <div class="end end4">我是你要找的前端吗</div>
                     <div class="end end5">去了解更多</div>
-                    <div class="end end5">
+                    <div class="end end6">
                         <a class="iconfont icon-github" href="https://github.com/win5do" target="_blank"></a>
-                        <a class="iconfont icon-hire" href="https://github.com/win5do" target="_blank"></a>
+                        <a class="iconfont icon-linkedin" href="http://www.linkedin.com/in/win5do/" target="_blank"></a>
                     </div>
                 </div>
                 <div class="mouse-tips up iconfont icon-down"></div>

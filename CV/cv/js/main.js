@@ -36,15 +36,15 @@ var doFn = {
                     return;
                 };
 
-                e = event || window.event;
+                event = event || window.event;
                 // 滚轮向下滚动event.wheelDelta为负 onIndex++
-                if (e.wheelDelta < 0 || e.keyCode == 40) {
+                if (event.wheelDelta < 0 || event.keyCode == 40) {
                     if (onIndex <= 3) {
                         onIndex++;
                     }
                 }
                 // 滚轮向上滚动event.wheelDelta为正 onIndex--
-                else if (e.wheelDelta > 0 || e.keyCode == 38) {
+                else if (event.wheelDelta > 0 || event.keyCode == 38) {
                     if (onIndex >= 1) {
                         onIndex--;
                     }

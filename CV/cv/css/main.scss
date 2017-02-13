@@ -41,11 +41,6 @@ a {
     height: $h;
 }
 
-// spirits背景图定位
-@mixin ixy($ix, $iy) {
-    background-position: $ix $iy;
-}
-
 html,
 body {
     @include basic;
@@ -139,6 +134,10 @@ body {
 
 .icon-down:before {
     content: "\e70f";
+}
+
+.icon-linkedin:before {
+    content: "\e6e2";
 }
 
 .wrap,
@@ -451,20 +450,10 @@ body {
     .pro5 {
         animation: fadeInLeft .8s ease both;
     }
-    .pro2 {
-        animation-delay: .2s;
-    }
-    .pro3 {
-        animation-delay: .4s;
-    }
-    .pro4 {
-        animation-delay: .6s;
-    }
-    .pro5 {
-        animation-delay: .8s;
-    }
-    .pro6 {
-        animation-delay: 1.2s;
+    @for $i from 1 through 6 {
+        .pro#{$i} {
+            animation-delay: .2s * ($i - 1);
+        }
     }
     //三屏skill
     @keyframes rotate360 {
@@ -476,20 +465,10 @@ body {
     .skill {
         animation: rotate360 1.2s ease;
     }
-    .skill2 {
-        animation-delay: .2s;
-    }
-    .skill3 {
-        animation-delay: .4s;
-    }
-    .skill4 {
-        animation-delay: .6s;
-    }
-    .skill5 {
-        animation-delay: .8s;
-    }
-    .skill6 {
-        animation-delay: 1.2s;
+    @for $i from 1 through 6 {
+        .skill#{$i} {
+            animation-delay: 0.2s * ($i - 1);
+        }
     }
     // 五屏
     @keyframes fadeInUpBig {
@@ -507,21 +486,10 @@ body {
     .end {
         animation: fadeInUpBig 1s ease both;
     }
-    $endDelay: .5s;
-    .end2 {
-        animation-delay: $endDelay;
-    }
-    .end3 {
-        animation-delay: $endDelay * 2;
-    }
-    .end4 {
-        animation-delay: $endDelay * 3;
-    }
-    .end5 {
-        animation-delay: $endDelay * 4;
-    }
-    .end6 {
-        animation-delay: $endDelay * 5;
+    @for $i from 1 through 6 {
+        .end#{$i} {
+            animation-delay: 0.5s * ($i - 1);
+        }
     }
 }
 
@@ -707,7 +675,7 @@ body {
 
 // 左侧新闻层
 .info {
-    z-index: 99;
+    z-index: 110;
 }
 
 // 第五屏页脚

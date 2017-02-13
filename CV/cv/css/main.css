@@ -44,6 +44,8 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 
 .icon-down:before { content: "\e70f"; }
 
+.icon-linkedin:before { content: "\e6e2"; }
+
 .wrap, .container, .column { width: 100%; height: 100%; }
 
 .wrap { overflow: hidden; }
@@ -119,24 +121,27 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
   100% { opacity: 1; } }
 .on .pro2, .on .pro4, .on .pro6 { -webkit-animation: fadeInRight .8s ease both; animation: fadeInRight .8s ease both; }
 .on .pro1, .on .pro3, .on .pro5 { -webkit-animation: fadeInLeft .8s ease both; animation: fadeInLeft .8s ease both; }
-.on .pro2 { -webkit-animation-delay: .2s; animation-delay: .2s; }
-.on .pro3 { -webkit-animation-delay: .4s; animation-delay: .4s; }
-.on .pro4 { -webkit-animation-delay: .6s; animation-delay: .6s; }
-.on .pro5 { -webkit-animation-delay: .8s; animation-delay: .8s; }
-.on .pro6 { -webkit-animation-delay: 1.2s; animation-delay: 1.2s; }
+.on .pro1 { -webkit-animation-delay: 0s; animation-delay: 0s; }
+.on .pro2 { -webkit-animation-delay: 0.2s; animation-delay: 0.2s; }
+.on .pro3 { -webkit-animation-delay: 0.4s; animation-delay: 0.4s; }
+.on .pro4 { -webkit-animation-delay: 0.6s; animation-delay: 0.6s; }
+.on .pro5 { -webkit-animation-delay: 0.8s; animation-delay: 0.8s; }
+.on .pro6 { -webkit-animation-delay: 1s; animation-delay: 1s; }
 @-webkit-keyframes rotate360 { 0% { -webkit-transform: rotateY(-360deg); transform: rotateY(-360deg); } }
 @keyframes rotate360 { 0% { -webkit-transform: rotateY(-360deg); transform: rotateY(-360deg); } }
 .on .skill { -webkit-animation: rotate360 1.2s ease; animation: rotate360 1.2s ease; }
-.on .skill2 { -webkit-animation-delay: .2s; animation-delay: .2s; }
-.on .skill3 { -webkit-animation-delay: .4s; animation-delay: .4s; }
-.on .skill4 { -webkit-animation-delay: .6s; animation-delay: .6s; }
-.on .skill5 { -webkit-animation-delay: .8s; animation-delay: .8s; }
-.on .skill6 { -webkit-animation-delay: 1.2s; animation-delay: 1.2s; }
+.on .skill1 { -webkit-animation-delay: 0s; animation-delay: 0s; }
+.on .skill2 { -webkit-animation-delay: 0.2s; animation-delay: 0.2s; }
+.on .skill3 { -webkit-animation-delay: 0.4s; animation-delay: 0.4s; }
+.on .skill4 { -webkit-animation-delay: 0.6s; animation-delay: 0.6s; }
+.on .skill5 { -webkit-animation-delay: 0.8s; animation-delay: 0.8s; }
+.on .skill6 { -webkit-animation-delay: 1s; animation-delay: 1s; }
 @-webkit-keyframes fadeInUpBig { from { opacity: 0; -webkit-transform: translate3d(0, 2000px, 0); transform: translate3d(0, 2000px, 0); }
   to { opacity: 1; -webkit-transform: none; transform: none; } }
 @keyframes fadeInUpBig { from { opacity: 0; -webkit-transform: translate3d(0, 2000px, 0); transform: translate3d(0, 2000px, 0); }
   to { opacity: 1; -webkit-transform: none; transform: none; } }
 .on .end { -webkit-animation: fadeInUpBig 1s ease both; animation: fadeInUpBig 1s ease both; }
+.on .end1 { -webkit-animation-delay: 0s; animation-delay: 0s; }
 .on .end2 { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
 .on .end3 { -webkit-animation-delay: 1s; animation-delay: 1s; }
 .on .end4 { -webkit-animation-delay: 1.5s; animation-delay: 1.5s; }
@@ -183,7 +188,7 @@ html, body { width: 100%; height: 100%; color: #333; font: 400 14px/1.5 Microsof
 
 .nav-right { z-index: 100; }
 
-.info { z-index: 99; }
+.info { z-index: 110; }
 
 .footer { z-index: 96; }
 
