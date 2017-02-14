@@ -8,10 +8,7 @@
         // 判断是否为移动端
         if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) ||
             /Android|iPhone|Windows Phone|webOS|iPod|BlackBerry/i.test(navigator.userAgent)) {
-            if (window.location.href.indexOf("?pc") === -1) {
-                window.location.href = "m/index.html";
-                // 本地 /code/imooc/xx2.ztgame.com/m/index.html
-            }
+            window.location.href = "m/index.html";
         }
     </script>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
@@ -31,7 +28,7 @@
                 <div class="barrageBox"></div>
                 <div class="barTxt">
                     <div class="tabTxt">开启弹幕</div>
-                    <div class="sendTxt">发送弹幕</div>        
+                    <div class="sendTxt">发送弹幕</div>
                 </div>
                 <!--弹幕按钮 z-index得在弹幕之上-->
                 <div class="barBtns">

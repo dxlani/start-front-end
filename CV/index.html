@@ -6,19 +6,21 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>伍丰-简历-前端工程师</title>
     <script type="text/javascript">
-        function remSize() {
+        (function () {
             sw = document.documentElement.clientWidth;
-            document.documentElement.style.fontSize = Math.floor(sw / 4.14) + 'px';
-        }
-        window.onresize = remSize;
-        window.onload = remSize;
-        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
-            var angle = screen.orientation.angle || window.orientation;
-            console.log(screen.orientation.angle, 'he', window.orientation)
-            if (angle === 90 || angle === -90) {
-                alert("竖屏浏览体验更佳，亦可使用PC");
+
+            function remSize() {
+                document.documentElement.style.fontSize = Math.floor(sw / 4.14) + 'px';
             }
-        });
+            window.onresize = remSize;
+            window.onload = remSize;
+            window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
+                var angle = window.screen.orientation.angle || window.orientation;
+                if (sw < 769 && angle === 90 || angle === -90) {
+                    alert("竖屏浏览体验更佳，亦可使用PC");
+                }
+            });
+        })();
     </script>
     <link rel="stylesheet" type="text/css" href="cv/css/main.css" />
 </head>
@@ -169,7 +171,7 @@
                             <p><span class="skill-point">ShadowSocks</span></p>
                         </div>
                         <div class="backface">
-                            常用的编辑器是微软的VSCode；能熟练运用Chrome调整css、调试debug；koala用来编译scss，压缩js；ShadowSocks用来翻墙看世界；使用git命令配合github等代码库进行版本控制。
+                            常用的编辑器是微软的VSCode；能熟练运用Chrome调整css、调试debug；koala用来编译scss，压缩js，自动添加prefix；ShadowSocks用来翻墙看世界；使用git命令配合github等代码库进行版本控制。
                         </div>
                     </div>
                     <div class="skill skill5">

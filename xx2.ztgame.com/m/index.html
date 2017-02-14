@@ -19,6 +19,10 @@
             var html = document.getElementsByTagName('html')[0];
             html.style.fontSize = htmlSize + 'px';
         })(640);
+        if (!/AppleWebKit.*Mobile/i.test(navigator.userAgent) ||
+            !/Android|iPhone|Windows Phone|webOS|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = "../index.html";
+        }
     </script>
     <div class="wp">
         <div class="wp-inner">
