@@ -35,7 +35,7 @@ var doFn = {
                 scrTimer = setTimeout(function () {
                     onScroll = false;
                     scrTimer = null;
-                }, 800);
+                }, 500);
                 // 滚轮向下滚动event.wheelDelta为负 onIndex++
                 if (e.wheelDelta < 0 || e.keyCode == 40) {
                     clientH = $(window).height();
@@ -49,40 +49,45 @@ var doFn = {
                         onIndex--;
                     }
                 }
-                newsControl();
-                setMtAndOn();
-                // 不在第一屏时关闭弹幕及弹框
-                if (onIndex != 0) {
-                    if (doFn.bar === true) {
-                        clearInterval(doFn.barTimer);
-                        $('.barrageBox').hide();
-                        $('.tabTxt').text('开启弹幕');
-                        doFn.bar = false;
-                    }
-                    if (doFn.send === true) {
-                        $('.bar-send').slideUp(200);
-                        $('.sendTxt').text('发送弹幕');
-                        doFn.send = false;
-                    }
+                whenPageChange()
+            }
+        }
+
+        function whenPageChange() {
+            // 页面变动后的一些逻辑
+            newsControl();
+            setMtAndOn();
+            // 不在第一屏时关闭弹幕及弹框
+            if (onIndex != 0) {
+                if (doFn.bar === true) {
+                    clearInterval(doFn.barTimer);
+                    $('.barrageBox').hide();
+                    $('.tabTxt').text('开启弹幕');
+                    doFn.bar = false;
                 }
-                // 滚到第二屏的时候加载二屏轮播图片
-                if (onIndex === 1 && !imgLoad) {
-                    $('.f2 area').each(function (index) {
-                        doFn.img[index] = new Image();
-                        doFn.img[index].src = $(this).attr('data-url');
-                    });
-                    imgLoad = true;
+                if (doFn.send === true) {
+                    $('.bar-send').slideUp(200);
+                    $('.sendTxt').text('发送弹幕');
+                    doFn.send = false;
                 }
-                // 滚到第四屏时候加载视频
-                if (onIndex === 3 && !videoLoad) {
-                    $('.popup-content').find('video').attr('src', "http://videogame.ztgame.com.cn/xx2/20160927/xx2-147495913984.mp4");
-                    videoLoad = true;
-                }
-                // 滚动时pause四屏视频，隐藏二屏和四屏的弹层
-                if (onIndex != 1 && onIndex != 3) {
-                    $('.popup-content').find('video')[0].pause();
-                    $('.popup-bg').hide();
-                }
+            }
+            // 滚到第二屏的时候加载二屏轮播图片
+            if (onIndex === 1 && !imgLoad) {
+                $('.f2 area').each(function (index) {
+                    doFn.img[index] = new Image();
+                    doFn.img[index].src = $(this).attr('data-url');
+                });
+                imgLoad = true;
+            }
+            // 滚到第四屏时候加载视频
+            if (onIndex === 3 && !videoLoad) {
+                $('.popup-content').find('video').attr('src', "http://videogame.ztgame.com.cn/xx2/20160927/xx2-147495913984.mp4");
+                videoLoad = true;
+            }
+            // 滚动时pause四屏视频，隐藏二屏和四屏的弹层
+            if (onIndex != 1 && onIndex != 3) {
+                $('.popup-content').find('video')[0].pause();
+                $('.popup-bg').hide();
             }
         }
 
@@ -99,58 +104,48 @@ var doFn = {
             }
         }
 
-        // 新闻弹出层隐藏和出现动画
-        function newsHide() {
-            $('.news-left').fadeOut(300);
-        }
-
-        function newsShow() {
-            $('.news-left').fadeIn(300);
-        }
-
         // 新闻控制 不在第一屏的时候自动隐藏
         function newsControl() {
             if (onIndex === 0) {
                 newsOut = true;
-                newsShow();
+                $('.news-left').fadeIn(300);
                 newsToggle();
-
             } else {
                 newsOut = false;
                 newsToggle();
-                newsHide();
-            }
-        }
-
-        // 给当前所在屏加上class——on，适用于column和nav-right
-        function currentOn(className) {
-            $(className).removeClass('on');
-            switch (onIndex) {
-                case 0:
-                    $(className).eq(0).addClass('on');
-                    break;
-                case 1:
-                    $(className).eq(1).addClass('on');
-                    break;
-                case 2:
-                    $(className).eq(2).addClass('on');
-                    break;
-                case 3:
-                    $(className).eq(3).addClass('on');
-                    break;
-                case 4:
-                    $(className).eq(4).addClass('on');
-                    break;
+                $('.news-left').fadeOut(300);
             }
         }
 
         // 通过onIndex的值来设置container的margin-top值，并给当前的附上class——on
         function setMtAndOn() {
+            // 给当前所在屏加上class——on，适用于column和nav-right
+            function currentOn(className) {
+                $(className).removeClass('on');
+                switch (onIndex) {
+                    case 0:
+                        $(className).eq(0).addClass('on');
+                        break;
+                    case 1:
+                        $(className).eq(1).addClass('on');
+                        break;
+                    case 2:
+                        $(className).eq(2).addClass('on');
+                        break;
+                    case 3:
+                        $(className).eq(3).addClass('on');
+                        break;
+                    case 4:
+                        $(className).eq(4).addClass('on');
+                        break;
+                }
+            }
+
             clientH = $(window).height();
             mt = -clientH * onIndex;
             $('.container').stop(true, false).animate({
                 'margin-top': mt
-            }, 800, function () {
+            }, 500, function () {
                 currentOn('.column');
                 currentOn('.item');
             });
@@ -173,14 +168,13 @@ var doFn = {
             if (index === 5) {
                 $(this).click(function () {
                     newsOut = !newsOut;
-                    newsShow();
+                    $('.news-left').fadeIn(300);
                     newsToggle();
                 })
             } else {
                 $(this).click(function () {
                     onIndex = index;
-                    setMtAndOn();
-                    newsControl();
+                    whenPageChange();
                 })
             }
         });
