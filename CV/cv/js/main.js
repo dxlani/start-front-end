@@ -179,23 +179,7 @@ var doFn = {
             // 给当前所在屏加上class——on，适用于column和nav-right
             function currentOn(className) {
                 $(className).removeClass('on');
-                switch (onIndex) {
-                    case 0:
-                        $(className).eq(0).addClass('on');
-                        break;
-                    case 1:
-                        $(className).eq(1).addClass('on');
-                        break;
-                    case 2:
-                        $(className).eq(2).addClass('on');
-                        break;
-                    case 3:
-                        $(className).eq(3).addClass('on');
-                        break;
-                    case 4:
-                        $(className).eq(4).addClass('on');
-                        break;
-                }
+                $(className).eq(onIndex).addClass('on');
             }
 
             var clientH = $(window).height();
