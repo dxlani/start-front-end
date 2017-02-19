@@ -7,14 +7,14 @@
     <title>伍丰-简历-前端工程师</title>
     <script type="text/javascript">
         (function () {
-            sw = document.documentElement.clientWidth;
-
             function remSize() {
+                let sw = document.documentElement.clientWidth;
                 document.documentElement.style.fontSize = Math.floor(sw / 4.14) + 'px';
             }
             window.onresize = remSize;
             window.onload = remSize;
             window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function () {
+                let sw = document.documentElement.clientWidth;
                 var angle = window.screen.orientation.angle || window.orientation;
                 if (sw < 769 && (angle === 90 || angle === -90)) {
                     alert("竖屏浏览体验更佳，亦可使用PC");
@@ -60,12 +60,12 @@
                             <div class="iconfont icon-jquery-copy"></div>
                         </div>
                         <div class="pro-txt">
-                            <h3>fullpage专题页面(双端)</h3>
-                            <p>全屏滚动，css3动画，弹幕，视频，pc及mobile双端这里都有哦，点开LiveDemo看看吧！</p>
+                            <h3>基于jquery或zepto滚动插件</h3>
+                            <p>可用于fullpage页面和轮播，并且能够嵌套多个滚动框架，有竖直和横向滚动两种模式，可以自定义动画时间以及导航栏。</p>
                         </div>
                         <div class="pro-btn">
-                            <a class="pro-link" href="http://win5do.cc/xx2" target="_blank">LiveDemo</a>
-                            <a class="pro-link" href="https://github.com/win5do/imooc/tree/master/xx2.ztgame.com#readme" target="_blank">项目心得</a>
+                            <a class="pro-link" href="https://win5do.github.io/gun.js/" target="_blank">LiveDemo</a>
+                            <a class="pro-link" href="https://github.com/win5do/gun.js" target="_blank">项目心得</a>
                         </div>
                     </div>
                     <div class="project pro3">
@@ -96,28 +96,28 @@
                     </div>
                     <div class="project pro5">
                         <div class="pro-img">
+                            <div class="iconfont icon-jquery-copy"></div>
+                        </div>
+                        <div class="pro-txt">
+                            <h3>fullpage专题页面(双端)</h3>
+                            <p>全屏滚动，css3动画，弹幕，视频，pc及mobile双端这里都有哦，点开LiveDemo看看吧！</p>
+                        </div>
+                        <div class="pro-btn">
+                            <a class="pro-link" href="http://win5do.cc/xx2" target="_blank">LiveDemo</a>
+                            <a class="pro-link" href="https://github.com/win5do/imooc/tree/master/xx2.ztgame.com#readme" target="_blank">项目心得</a>
+                        </div>
+                    </div>
+                    <div class="project pro6">
+                        <div class="pro-img">
                             <div class="iconfont icon-nodejs"></div>
                         </div>
                         <div class="pro-txt">
-                            <h3>node.js网络小爬虫(node)</h3>
+                            <h3>node.js网络小爬虫</h3>
                             <p>学习nodejs时写的一个网页爬虫，爬取慕课网上的课程信息，根据学习人数排序输出，并保存至json文件中。</p>
                         </div>
                         <div class="pro-btn">
                             <a class="pro-link" href="https://github.com/win5do/imooc/blob/master/nodejs%20study/http/savebyfs.js" target="_blank">LiveDemo</a>
                             <a class="pro-link" href="https://github.com/win5do/imooc/tree/master/nodejs%20study/http#readme" target="_blank">项目心得</a>
-                        </div>
-                    </div>
-                    <div class="project pro6">
-                        <div class="pro-img">
-                            <div class="iconfont icon-mobile"></div>
-                        </div>
-                        <div class="pro-txt">
-                            <h3>适配多尺寸设备的移动端页面(m端)</h3>
-                            <p>根据设计稿还原的一个移动端页面，使用rem为单位适配多尺寸设备，并广泛应用flex布局。</p>
-                        </div>
-                        <div class="pro-btn">
-                            <a class="pro-link" href="https://win5do.github.io/IFE/task11-mobile-web/" target="_blank">LiveDemo</a>
-                            <a class="pro-link" href="https://github.com/win5do/IFE/tree/master/task11-mobile-web#readme" target="_blank">项目心得</a>
                         </div>
                     </div>
                 </div>
@@ -143,6 +143,7 @@
                             <p><span class="skill-point">JavaScript</span></p>
                             <p><span class="skill-point">jQuery</span></p>
                             <p><span class="skill-point">Zepto</span></p>
+                            <p><span class="skill-point">Bootstrap</span></p>
                             <p><span class="skill-point">Es6</span></p>
                         </div>
                         <div class="backface">
@@ -158,7 +159,7 @@
                             <p><span class="skill-point">Npm</span></p>
                         </div>
                         <div class="backface">
-                            学习过2016前端热门的三大技术—vue、react、webpack，能够基本运用，用vue和react写过demo，学会了使用webpack作为构建工具，eslint规范格式，npm进行包管理。
+                            学习过2016前端热门的三大技术—vue、react、webpack，能够基本运用，使用vue和react写了一些demo，学会了使用webpack作为构建工具，eslint规范格式，npm进行包管理。
                         </div>
                     </div>
                     <div class="skill skill4">
@@ -184,7 +185,7 @@
                             <p><span class="skill-point">PickaDate</span></p>
                         </div>
                         <div class="backface">
-                            在这个开源形式一片大好的时代，大神的轮子自然用过不少，列几个常用的差距。swiper：超顺滑的轮播及滑动；动画的贝塞尔曲线太难折腾了，还是用Animate.css吧；用sotrtable搞定拽排序……宛如一个github搬运工了。
+                            在这个开源形势一片大好的时代，大神的轮子自然用过不少，列几个常用的差距。swiper：超顺滑的轮播及滑动；动画的贝塞尔曲线太难折腾了，还是用Animate.css吧；用sotrtable搞定拽排序……宛如一个github搬运工了。
                         </div>
                     </div>
                 </div>
@@ -193,16 +194,43 @@
                 <h2 class="title tit4">个人经历</h2>
                 <div class="content">
                     <div class="history his1">
-                        <div class="year">2015</div>
-                        <div class="intro">2015年从一所二本院校毕业，学了的是化工专业，当初就是调剂的，也没认真对待这事，懵懂的我也没早早为转行做准备。毕业后比较迷茫，在化工行业一家企业呆了半年。开始只是想平平淡淡的混日子，后来发现人生还有几十年呢，这么平淡的生活多无趣，得找点自己真正热爱的事情来干干。昔日的网瘾少年，便准备进军更有激情的互联网行业。</div>
+                        <div class="year">EXP1</div>
+                        <dl class="intro">
+                            <dt class="company">武汉双虎涂料有限公司</dt>
+                            <dt>2015.3 - 2015.7</dt>
+                            <dt class="job">实习</dt>
+                            <dd>大学调剂的化工专业</dd>
+                            <dd>大四在一家化工企业实习</dd>
+                            <dd>感觉对化工无爱</dd>
+                            <dd>想找一份真正热爱的工作</dd>
+                            <dd>便转行了互联网</dd>
+                        </dl>
                     </div>
                     <div class="history his2">
-                        <div class="year">2016</div>
-                        <div class="intro">互联网的第一站是在福州畅玩网络科技有限公司(www.18183.com)担任网站编辑，负责网站的内容运营、seo优化、专区搭建、专题制作等工作。虽然比以前更忙碌了，却爱上了互联网的氛围。工作期间也接触到不少前端的东西，业余时间也在网上自学前端。编辑的上升空间还是太有限，我渴望更有创造力更有挑战性的工作，代码才是互联网的核心，自己也对前端兴趣浓厚，便在年底辞职，专心学习前端。</div>
+                        <div class="year">EXP2</div>
+                        <dl class="intro">
+                            <dt class="company">福州畅玩网络科技有限公司</dt>
+                            <dt>2015.9 - 2016.4</dt>
+                            <dt class="job">网站编辑</dt>
+                            <dd>端游内容运营</dd>
+                            <dd>专题策划制作</dd>
+                            <dd>微信公众号运营</dd>
+                            <dd>SEO优化</dd>
+                            <dd>专区搭建上线</dd>
+                        </dl>
                     </div>
                     <div class="history his3 cur">
-                        <div class="year">2017</div>
-                        <div class="intro">离职之后有大把的时间折腾代码，购买了自己的域名和主机，尝试写了几个完整的项目，通过边做边学巩固知识。一行行代码让页面从无到有，通过查阅和请教解决问题，反复的调试来修复bug，很享受这种编程的乐趣。每天敲敲代码，提交commit，阅读相关书籍，过得非常充实，进步也十分明显。自认为已具备初级前端的能力水平，于是便制作了这份简历，希望在工作中发挥自己的价值。</div>
+                        <div class="year">EXP3</div>
+                        <dl class="intro">
+                            <dt class="company">武汉九州科技有限公司</dt>
+                            <dt>2016.4 - 2017.1</dt>
+                            <dt class="job">前端工程师</dt>
+                            <dd>制作pc 移动端及响应式页面</dd>
+                            <dd>使用h5 css3 js编写页面交互</dd>
+                            <dd>使用ajax与后端进行数据交互</dd>
+                            <dd>业余时间努力学习各种新技术</dd>
+                            <dd>渴望更有挑战的工作</dd>
+                        </dl>
                     </div>
                 </div>
             </div>

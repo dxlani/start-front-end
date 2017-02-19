@@ -31,20 +31,20 @@ var doFn = {
 
         (function pageScroll() {
             // 给document绑定鼠标滚轮事件、键盘事件、鼠标移动事件
-            $(document).on('mousewheel keydown', function () {
+            $(document).on('mousewheel keydown DOMMouseScroll', function (event) {
                 if (preventCombo()) {
                     return;
                 };
 
                 event = event || window.event;
-                // 滚轮向下滚动event.wheelDelta为负 onIndex++
-                if (event.wheelDelta < 0 || event.keyCode == 40) {
+                let delta = event.wheelDelta || -event.detail;
+                // 滚轮向下滚动event.wheelDelta为负 firefox相反
+                if (delta < 0 || event.keyCode == 40) {
                     if (onIndex <= 3) {
                         onIndex++;
                     }
                 }
-                // 滚轮向上滚动event.wheelDelta为正 onIndex--
-                else if (event.wheelDelta > 0 || event.keyCode == 38) {
+                else if (delta > 0 || event.keyCode == 38) {
                     if (onIndex >= 1) {
                         onIndex--;
                     }
@@ -61,14 +61,14 @@ var doFn = {
             var endX = 0;
             var endY = 0;
             $(document).on({
-                'touchmove': function () {
+                'touchmove': function (event) {
                     event.preventDefault();
                 },
-                'touchstart': function () {
+                'touchstart': function (event) {
                     startX = event.touches[0].clientX;
                     startY = event.touches[0].clientY;
                 },
-                'touchend': function () {
+                'touchend': function (event) {
                     if (preventCombo()) {
                         return;
                     };
@@ -217,7 +217,7 @@ var doFn = {
             }
         }
 
-        $('.info-tg, .info-tg2').on('click', function () {
+        $('.info-tg, .info-tg2').on('click', function (event) {
             event.stopPropagation();
             event.preventDefault();
             if (infoOut === 2) {
@@ -228,7 +228,7 @@ var doFn = {
             infoToggle();
         });
         // 防止click引发的touchend冒泡
-        $('.info-tg, .item').on('touchend', function () {
+        $('.info-tg, .item').on('touchend', function (event) {
             event.stopPropagation();
         });
 
@@ -240,7 +240,7 @@ var doFn = {
         $('.nav-right').find('.item').each(function (index) {
             // 给右侧导航按钮绑定点击事件
             if (index !== 5) {
-                $(this).click(function () {
+                $(this).click(function (event) {
                     event.stopPropagation();
                     onIndex = index;
                     whenIndexChange();
