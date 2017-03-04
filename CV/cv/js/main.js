@@ -37,14 +37,14 @@ var doFn = {
                 };
 
                 event = event || window.event;
-                let delta = event.wheelDelta || -event.detail;
+                var wheel = event.wheelDelta || - event.detail;
                 // 滚轮向下滚动event.wheelDelta为负 firefox相反
-                if (delta < 0 || event.keyCode == 40) {
+                if (wheel < 0 || event.keyCode == 40) {
                     if (onIndex <= 3) {
                         onIndex++;
                     }
                 }
-                else if (delta > 0 || event.keyCode == 38) {
+                else if (wheel > 0 || event.keyCode == 38) {
                     if (onIndex >= 1) {
                         onIndex--;
                     }
