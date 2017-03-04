@@ -1,10 +1,7 @@
 # 前端学习过程中写的一些demo
 
-<<<<<<< HEAD
 我不想当前端了，我要转后端，(*^__^*) 嘻嘻……
-=======
 求职中，微信：win5do，QQ：244495733
->>>>>>> f92d24313dc14bd90edaebc2d57465287f9d77ca
 
 * 基于vue.js的问卷管理webapp       <a href="http://win5do.cc/jianqn/#/" target="_blank">LiveDemo</a>    <a href="https://github.com/win5do/IFE/tree/master/task50-vue-questionnaire#readme" target="_blank">项目介绍</a>
 
