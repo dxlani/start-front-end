@@ -1,0 +1,329 @@
+@charset "utf-8";
+/*初始化*/
+html,body,div,ul,li,dl,dt,dd,table,tr,td,h1,h2,h3,h4,h5,h6,p,img,input,form,fieldset {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: 12px;
+}
+li {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+}
+img {
+	border: none;
+}
+input,select,textarea,form {
+	background: none;
+	border: none;
+	outline: none;
+}
+textarea {
+	resize: none;
+}
+/*清除浮动*/
+.clearfix:after {
+	content: "";
+	clear: both;
+	display: block;
+	visibility: hidden;
+	height: 0;
+}
+.clear {
+	zoom: 1;
+}
+/*float style*/
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+/*main style*/
+body {
+	background: #5d5d5d;
+	position: relative;
+}
+.wrap {
+	margin: 0 auto;
+	width: 900px;
+	height: 1386px;
+	padding-left: 40px;
+	padding-right: 40px;
+	background: #fff;
+	overflow: hidden;
+}
+.header-right {
+	background: #d55d5c;
+	color: #fff;
+	width: 110px;
+	height: 17px;
+	text-align: center;
+	padding-top: 44px;
+}
+.header span {
+	float: right;
+	margin-top: -16px;
+}
+.header {
+	width: 900px;
+	height: 61px;
+	border-bottom: 2px solid #918d8c;
+}
+.first {
+	margin-top: 40px;
+}
+.first-right {
+	float: right;
+	width: 203px;
+	height: 301px;
+	border-top: 2px solid #ca8194;
+}
+
+.first-right .p1 {
+	font: 24px/40px "Microsoft YaHei", sans-serif;
+	text-decoration: underline;
+}
+
+.first-right .p1 span {
+	font-size: 28px;
+}
+
+.first-right .p2 {
+	color: #676767;
+	font-family: "KaiTi", arial, sans-serif;
+}
+.first-right .p3 {
+	font: 116px "Microsoft YaHei", sans-serif;
+	color: #73b667;
+}
+.first-right .p4 {
+	float: left;
+	font: 55px "Microsoft YaHei", sans-serif;
+}
+.first-right .p5 {
+	font: 21px "Microsoft YaHei", sans-serif;
+}
+.first-right .p6 {
+	font: 12px "Microsoft YaHei", sans-serif;
+}
+.first-right .p56 {
+	margin-top: 16px;
+}
+.first-left {
+	width: 641px;
+	height: 510px;
+	position: relative;
+	overflow: hidden;
+}
+.first-left .image {
+	width: 641px;
+	height: 301px;
+}
+.first-left .trans-l {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 191px;
+	height: 301px;
+	opacity: .4;
+	filter:alpha(opacity=40);
+}
+.first-left .trans-r {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 191px;
+	height: 301px;
+	opacity: .4;
+	filter: alpha(opacity=40);
+}
+.first-left .first-bottom {
+	margin-top: 30px;
+	width: 641px;
+	height: 180px;
+	font: 12px/16px "SimSun",sans-serif;
+}
+.first-left .what {
+	float: left;
+	width: 230px;
+	margin-right: 30px;
+}
+.first-left .when {
+	float: left;
+	width: 210px;
+}
+.first-left .how {
+	float: right;
+	width: 140px;
+	height: 170px;
+	position: relative;
+}
+.first-left .first-bottom h3 {
+	font: 700 16px "Microsoft YaHei", sans-serif;
+	text-decoration: underline;
+}
+
+.first-left .what h3 {
+	color: #3d9058;
+}
+.first-left .when h3 {
+	color: #d2a86c;
+}
+.first-left .how h3 {
+	color: #d06f7a;
+}
+.first-left .how-bottom {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+.first-left .how-bottom span {
+	color: #cd4a48;
+	font-style: italic;
+	opacity: .7;
+	filter: alpha(opacity=70);
+}
+.second {
+	border-bottom: 1px solid #938e8c;
+	width: 900px;
+	height: 620px;
+	margin-top: 40px;
+}
+.second .second-left {
+	width: 417px;
+	height: 620px;
+	float: left;
+}
+.second .second-left h2,
+.second .second-left h3 {
+	font: 700 42px "SimHei", sans-serif;
+	color: #11456b;
+}
+.second .second-left h3 {
+	border-bottom: 2px solid #11456b;
+	margin-bottom: 20px;
+}
+.second .big {
+	font: 700 72px "SimHei", sans-serif;
+	color: #f5e327;
+}
+.second .second-left img {
+	width: 170px;
+	height: 290px;
+	float: right;
+	top: 50px;
+	right: 0;
+	margin: 15px 0 15px 15px;
+}
+.second .second-left p {
+	font: 12px/16px "SimSun", sans-serif;
+	text-indent: 2em;
+}
+.second .second-right {
+	width: 458px;
+	height: 620px;
+	float: right;
+}
+.second .second-right-image img {
+	width: 458px;
+	height: 275px;
+}
+.second .second-right-image {
+	position: relative;
+	width: 458px;
+	height: 275px;
+}
+.second .translucence {
+	background: rgba(115, 115, 115, 0.4);
+	height: 60px;
+	width: 458px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	color: #72b16a;
+	font: italic 12px/1.4 "Microsoft YaHei", sans-serif;
+}
+.second .translucence span {
+	font: 26px/60px "Microsoft YaHei", sans-serif;
+	color: #fff;
+	/*height: 44px;*/
+	border-left: 3px solid #72b16a;
+	margin-left: 40px;
+	padding-left: 10px;/*设置inline-block的问题*/
+}
+.second .second-bottom {
+	background: #eeeed6;
+	margin-top: 30px;
+	overflow: hidden;
+}
+.second .second-bottom li{
+	margin: 0 0 20px 20px;
+	list-style-image: url(../images/triangle.png);
+	font: italic 16px/20px "SimSun", sans-serif;
+}
+.second .second-bottom-l {
+	width: 260px;
+	height: 160px;
+	background: #d55d5c;
+	float: left;
+}
+.second .second-bottom-l h1 {
+	font: 110px "Microsoft YaHei", sans-serif;
+	color: #fff;
+	line-height: 160px;
+	height: 160px;
+	float: left;
+	padding-left: 8px;
+}
+.second .middle-timor {
+	height: 76px;
+	border-left: 2px #fff solid;
+	float: right;
+	width: 170px;
+	margin-top: 37px;
+	padding: 5px;
+}
+.second .middle-timor h2 {
+	font: italic 21px/24px "SimHei", sans-serif;
+	color: #fff;
+}
+.second .middle-timor p {
+	font: 12px/16px "SimHei", sans-serif;
+	color: #fff;
+}
+.second .second-bottom-r {
+	float: right;
+	width: 150px;
+	position: relative;
+	overflow: hidden;
+	padding: 20px;
+}
+.second .second-bottom-r p {
+	font: italic 12px/16px "SimHei", sans-serif;
+	color: #5a5b5b;
+	text-indent: 30px;
+}
+.second .second-bottom-r span {
+	color: #d55d5c;
+	font: 72px "SimHei", sans-serif;
+	position: absolute;
+	line-height: 1;
+}
+.second #before {
+	left: -20px;
+	top: 10px;
+}
+.second #later {
+	right: -15px;
+	bottom: -30px;
+}
+.footer {
+	width: 880px;
+	color: #d55d5c;
+	text-align: right;
+	padding: 10px;
+}

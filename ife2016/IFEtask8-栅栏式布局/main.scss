@@ -1,0 +1,54 @@
+@mixin clearfix {
+	content: "";
+	display: table;
+	clear: both;
+}
+@mixin reset {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	@include reset;
+}
+
+/* main css */
+.container {
+	padding: 10px;
+}
+.row {
+	@include clearfix;
+	text-align: center;
+	line-height: 50px;
+	width: 100%;
+}
+[class*="col"] {
+	float: left;
+	margin: 10px;
+	height: 50px;
+	background: #eee;
+	border: solid #ccc 1px;
+	box-sizing: border-box;
+}
+@mixin getWidth ($flag) {
+	@if $flag {
+		@for $i from 1 through 12 {
+			.col-md-#{$i} {
+				width: calc(100% / 12 * #{$i} - 20px);
+			}
+		}
+	}
+	@else {
+		@for $i from 1 through 12 {
+			.col-sm-#{$i} {
+				width: calc(100% / 12 * #{$i} - 20px);
+			}
+		}
+	}
+}
+@media (min-width: 769px) {
+	@include getWidth(true);
+}
+@media (max-width: 768px) {
+	@include getWidth(false);
+}

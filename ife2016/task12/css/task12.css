@@ -1,0 +1,127 @@
+@charset "utf-8";
+/*reset*/
+* {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style-type: none;
+}
+
+.wrap {
+	width: 1000px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+/*table*/
+table {
+	margin: 0 auto;
+	text-align: center;
+	width: 300px;
+}
+th {
+	background: #000;
+	color: #fff;
+}
+tr:nth-child(odd) {
+	background: #ccc;
+}
+tr:nth-child(-n + 4) {
+	color: #f00;
+}
+
+/*input*/
+.trans {
+	width: 200px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border: 1px solid #f00;
+	border-radius: 5px;
+	transition: width 1s;
+}
+.trans:focus {
+	width: 500px;
+}
+
+/*轮播*/
+.containter {
+	margin: 0 auto;
+	width: 500px;
+	height: 300px;
+	overflow: hidden;
+	position: relative;
+}
+.slider {
+	width: 1500px;
+	height: 300px;
+}
+.slider li {
+	float: left;
+	width: 500px;
+	height: 300px;
+}
+.intro {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 999;
+}
+.intro li {
+	float: left;
+}
+.intro a {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	font-size: 30px;
+	line-height: 50px;
+	margin-right: 2px;
+	text-align: center;
+	background: rgba(0, 0, 0, .5);
+	z-index: 999;
+}
+#cur {
+	background: rgba(255, 255, 255, .5);
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.slider {
+	animation: slider 10s ease-out infinite;
+}
+@keyframes slider {
+	0%,25% {
+		margin-left: 0;
+	}
+	30%,60% {
+		margin-left: -500px;
+	}
+	65%,95% {
+		margin-left: -1000px;
+	}
+	100% {
+		margin-left: 0;
+	}
+}
+#cur {
+	animation: cur 10s ease-out infinite;
+}
+@keyframes cur {
+	0%,25% {
+		left: 0;
+	}
+	30%,60% {
+		left: 52px;
+	}
+	65%,95% {
+		left: 104px;
+	}
+	100% {
+		left: 0;
+	}
+}
